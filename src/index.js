@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from '~/App';
 import reportWebVitals from './reportWebVitals';
 
+import 'bootstrap/dist/css/bootstrap-grid.min.css';
 import { I18nextProvider } from 'react-i18next';
 import i18n from './i18n';
 

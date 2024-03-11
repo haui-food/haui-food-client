@@ -1,5 +1,16 @@
 {
     "header": {
         "na01": "Home"
+    },
+    "footer": {
+        "title01": "About HaUIFood",
+        "title02": "About HaUI",
+        "title03": "Blog",
+        "title04": "Open a restaurant on HaUIFood",
+        "title05": "Become a HaUIFood shipper",
+        "title06": "Support Center",
+        "title07": "Frequently Asked Questions",
+        "title08": "Contact Us",
+        "title09": "Privacy Policy"
     }
 }

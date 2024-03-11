@@ -1,5 +1,16 @@
 {
     "header": {
         "na01": "Trang chủ"
+    },
+    "footer": {
+        "title01": "Về HaUIFood",
+        "title02": "Về HaUI",
+        "title03": "Blog",
+        "title04": "Mở quán trên HaUIFood",
+        "title05": "Trở thành shipper HaUIFood",
+        "title06": "Trung tâm hỗ trợ",
+        "title07": "Câu hỏi thường gặp",
+        "title08": "Liên hệ chúng tôi",
+        "title09": "Chính sách bảo mật"
     }
 }
