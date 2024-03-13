@@ -8,7 +8,13 @@ const cx = classNames.bind(styles);
 function Home() {
   const { t } = useTranslation();
 
-  return <h1 className={cx('heading')}>{t('header.na01')}</h1>;
+  return (
+    <div className={cx('home')}>
+      <div className={cx('container')}>
+        <h1 className={cx('heading')}>{t('header.na01')}</h1>
+      </div>
+    </div>
+  );
 }
 
 export default Home;

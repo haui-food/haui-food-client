@@ -4,7 +4,11 @@
 :root {
   --primary-color: #00ba51;
   --primary-bg: #00b14f;
+  --font-family: 'Lato', sans-serif;
   --text-color: #1c1c1c;
+  --while: #fff;
+  --icon-color: brightness(0) saturate(100%) invert(39%) sepia(4%) saturate(0%) hue-rotate(138deg) brightness(100%)
+    contrast(91%);
 }
 
 * {
@@ -20,6 +24,7 @@ html {
 
 body {
   font-size: 1.6rem;
+  font-family: var(--font-family);
   line-height: 1.5;
   text-rendering: optimizeSpeed;
   color: var(--text-color);
@@ -64,4 +69,8 @@ ul {
 
 .dot-separate {
   margin: 0 8px;
+}
+
+.icon {
+  filter: var(--icon-color);
 }
