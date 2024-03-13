@@ -17,8 +17,10 @@ function Header() {
     window.onscroll = () => {
       if (window.scrollY > 1) {
         headerRef.current.style.backgroundColor = '#fff';
+        headerRef.current.style.boxShadow = '0px 0px 10px 5px #e0dada';
       } else {
         headerRef.current.style.backgroundColor = 'transparent';
+        headerRef.current.style.boxShadow = 'none';
       }
     };
   }, []);
