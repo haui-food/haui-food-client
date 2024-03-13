@@ -1,6 +1,7 @@
 {
     "header": {
-        "na01": "Home"
+        "na01": "Home",
+        "na02": "Login/Sign Up"
     },
     "footer": {
         "title01": "About HaUIFood",

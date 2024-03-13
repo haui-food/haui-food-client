@@ -1,6 +1,7 @@
 {
     "header": {
-        "na01": "首页"
+        "na01": "首页",
+        "na02": "登录/注册"
     },
     "footer": {
         "title01": "关于HaUIFood",

@@ -1,0 +1,8 @@
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
+
+.home {
+  height: 100vh;
+  background-image: url('../../assets/images/home/background-top.jpg');
+}
