@@ -50,9 +50,8 @@
     height: 32px;
     align-items: center;
     justify-content: center;
-    border-radius: 8px;
-    filter: grayscale(40%);
-    transition: filter, translate;
+    border-radius: 6px;
+    transition: translate;
     transition-duration: 0.3s;
 
     @include media-breakpoint-down(sm) {
@@ -60,21 +59,7 @@
       height: 42px;
     }
 
-    &--facebook {
-      background-color: #4863a9;
-    }
-
-    &--instagram {
-      background-color: #2134af;
-      background-image: linear-gradient(214deg, #2134af 0%, #515bd4 11%, #dd2a7b 62%, #feda77 72%, #f58529 91%);
-    }
-
-    &--linkedin {
-      background-color: #2f71ab;
-    }
-
     &:hover {
-      filter: grayscale(0);
       translate: 0 -3px;
     }
   }
