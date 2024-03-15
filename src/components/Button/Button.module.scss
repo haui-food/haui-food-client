@@ -1,3 +1,7 @@
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
+
 .wrapper {
   display: inline-flex;
   align-items: center;
@@ -55,10 +59,19 @@
   }
 }
 
+.large {
+  width: 100%;
+  padding: 14px 16px;
+}
+
 .action {
   font-size: 1.5rem;
   font-weight: 500;
   min-width: 42px;
   min-height: 42px;
   padding: 7px 10px;
+
+  @include media-breakpoint-down(md) {
+    padding: 8px 10px;
+  }
 }

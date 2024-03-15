@@ -9,7 +9,7 @@ import styles from './Header.module.scss';
 import routes from '~/config/routes';
 import images from '~/assets/images';
 import Button from '~/components/Button';
-import { ArrowDownIcon, CartIcon, ClockIcon, CloseIcon } from '~/components/Icons';
+import { ArrowDownIcon, CartIcon, ClockIcon, CloseIcon, MenuIcon } from '~/components/Icons';
 import CartItem from '~/components/CartItem';
 
 const cx = classNames.bind(styles);
@@ -18,6 +18,7 @@ function Header() {
   const { t } = useTranslation();
   const [showLanguages, setShowLanguages] = useState(false);
   const [showCart, setShowCart] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
   const isProduct = true;
 
   const headerRef = useRef(null);
@@ -42,15 +43,22 @@ function Header() {
   };
 
   const handleCloseCart = () => {
-    setShowCart(false);
+    if (showCart) {
+      setShowCart(false);
+    }
+    if (showMenu) {
+      setShowMenu(false);
+    }
   };
 
   useEffect(() => {
     window.onscroll = () => {
-      if (window.scrollY > 1) {
-        headerRef.current.style.backgroundColor = '#fff';
-      } else {
-        headerRef.current.style.backgroundColor = 'transparent';
+      if (window.innerWidth >= 992) {
+        if (window.scrollY > 1) {
+          headerRef.current.style.backgroundColor = '#fff';
+        } else {
+          headerRef.current.style.backgroundColor = 'transparent';
+        }
       }
     };
   }, []);
@@ -70,15 +78,12 @@ function Header() {
 
     if (showCart) {
       window.addEventListener('wheel', disableScroll, { passive: false });
-      window.addEventListener('touchmove', disableScroll, { passive: false });
     } else {
       window.removeEventListener('wheel', disableScroll);
-      window.removeEventListener('touchmove', disableScroll);
     }
 
     return () => {
       window.removeEventListener('wheel', disableScroll);
-      window.removeEventListener('touchmove', disableScroll);
     };
   }, [showCart]);
 
@@ -86,13 +91,31 @@ function Header() {
     <div ref={headerRef} className={cx('wrapper')}>
       <div className={cx('container gx-5')}>
         <div className={cx('header')}>
+          {/* Mobile Menu */}
+          <button onClick={() => setShowMenu(!showMenu)} className={cx('header__menu')}>
+            <MenuIcon />
+          </button>
+          <ul className={cx('header__menu-options', showMenu ? 'header__menu-options--show' : '')}>
+            <li
+              onClick={() => {
+                setShowCart(false);
+                setShowMenu(false);
+              }}
+              className={cx('header__menu-option')}
+            >
+              <CartIcon className={cx('icon')} />
+              Giỏ hàng
+            </li>
+            <li className={cx('header__menu-bottom')}></li>
+          </ul>
+
           {/* Logo */}
           <Link to={routes.home}>
             <img src={images.logo} alt="logo" className={cx('header__logo')} />
           </Link>
 
           {/* Actions */}
-          <div className={cx('header__actions')}>
+          <nav className={cx('header__actions')}>
             <div onClick={() => setShowCart(!showCart)} className={cx('header__actions-group', 'header__actions-cart')}>
               <Button action outline>
                 <CartIcon className={cx('icon')} />
@@ -149,7 +172,7 @@ function Header() {
                 中国人
               </li>
             </ul>
-          </div>
+          </nav>
         </div>
 
         {/* Cart */}
@@ -160,10 +183,12 @@ function Header() {
             </button>
             {isProduct && (
               <div className={cx('cart__top-block')}>
-                <h5 className={cx('cart__top-title')}>Giỏ đồ ăn</h5>
+                <h5 className={cx('cart__top-title')}>{t('cart.title01')}</h5>
                 <p className={cx('cart__top-desc')}>
                   <ClockIcon className={cx('cart__top-clock')} />
-                  <span>Thời gian giao: 15 phút (Cách bạn 0,5 km)</span>
+                  <span>
+                    {t('cart.desc01')} 15 {t('cart.desc05')}
+                  </span>
                 </p>
               </div>
             )}
@@ -172,10 +197,10 @@ function Header() {
             {!isProduct && (
               <div className={cx('cart__empty')}>
                 <img className={cx('cart__empty-img')} src={images.cart} alt="cart" />
-                <h5 className={cx('cart__empty-title')}>Giỏ hàng trống</h5>
-                <p className={cx('cart__empty-desc')}>Thêm sản phẩm vào giỏ hàng của bạn và đặt hàng tại đây.</p>
+                <h5 className={cx('cart__empty-title')}>{t('cart.title02')}</h5>
+                <p className={cx('cart__empty-desc')}>{t('cart.desc02')}</p>
                 <button onClick={handleCloseCart} className={cx('cart__empty-btn')}>
-                  Tiếp trục mua hàng
+                  {t('button.btn02')}
                 </button>
               </div>
             )}
@@ -193,10 +218,10 @@ function Header() {
                   </div>
                   <div className={cx('cart__summary')}>
                     <div className={cx('cart__summary-info')}>
-                      <span className={cx('cart__summary-price')}>Tổng cộng</span>
+                      <span className={cx('cart__summary-price')}>{t('cart.desc03')}</span>
                       <span className={cx('cart__summary-price')}>510.000 ₫</span>
                     </div>
-                    <p className={cx('cart__summary-desc')}>Phí giao hàng sẽ được tính tự động sau khi bạn đặt đơn.</p>
+                    <p className={cx('cart__summary-desc')}>{t('cart.desc04')}</p>
                   </div>
                 </div>
               </div>
@@ -205,15 +230,21 @@ function Header() {
           {isProduct && (
             <div className={cx('cart__bottom')}>
               <div className={cx('cart__bottom-info')}>
-                <span className={cx('cart__bottom-price')}>Tổng cộng</span>
+                <span className={cx('cart__bottom-price')}>{t('cart.desc03')}</span>
                 <span className={cx('cart__bottom-price')}>510.000 ₫</span>
               </div>
+              <Button large primary>
+                {/* {t('button.btn01')} */}
+                {t('button.btn03')}
+              </Button>
             </div>
           )}
         </div>
       </div>
       {/* Overlay */}
-      {showCart && <div onClick={handleCloseCart} className={cx('overlay', showCart ? 'overlay--show' : '')}></div>}
+      {(showCart || showMenu) && (
+        <div onClick={handleCloseCart} className={cx('overlay', showMenu || showCart ? 'overlay--show' : '')}></div>
+      )}
     </div>
   );
 }

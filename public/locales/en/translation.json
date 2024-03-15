@@ -13,5 +13,19 @@
         "title07": "Frequently Asked Questions",
         "title08": "Contact Us",
         "title09": "Privacy Policy"
+    },
+    "button": {
+        "btn01": "Checkout",
+        "btn02": "Continue Shopping",
+        "btn03": "Log in to place order"
+    },
+    "cart": {
+        "title01": "Food Basket",
+        "title02": "Empty Cart",
+        "desc01": "Delivery Time:",
+        "desc02": "Add products to your cart and place your order here.",
+        "desc03": "Total",
+        "desc04": "Delivery fee will be automatically calculated after you place the order.",
+        "desc05": "minutes"
     }
 }

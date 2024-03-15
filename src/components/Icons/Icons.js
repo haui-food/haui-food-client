@@ -106,7 +106,22 @@ export const MinusIcon = ({ width = '1.6rem', height = '1.6rem', className }) =>
   </svg>
 );
 
-export const FacebookIcon = ({ width = '1.8rem', height = '1.8rem', className }) => (
+export const MenuIcon = ({ width = '1.2rem', height = '1.6rem', className }) => (
+  <svg
+    className={className}
+    width={width}
+    height={height}
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 14 17"
+    fill="none"
+  >
+    <path d="M13 1.5H1" stroke="#1A162E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M13 9H1" stroke="#1A162E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M6 16H1" stroke="#1A162E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+export const FacebookIcon = ({ width = '2.8rem', height = '2.8rem', className }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     className={className}
@@ -124,7 +139,7 @@ export const FacebookIcon = ({ width = '1.8rem', height = '1.8rem', className })
   </svg>
 );
 
-export const InstagramIcon = ({ width = '1.8rem', height = '1.8rem', className }) => (
+export const InstagramIcon = ({ width = '2.6rem', height = '2.6rem', className }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     className={className}
@@ -147,7 +162,7 @@ export const InstagramIcon = ({ width = '1.8rem', height = '1.8rem', className }
   </svg>
 );
 
-export const LinkedinIcon = ({ width = '1.8rem', height = '1.8rem', className }) => (
+export const LinkedinIcon = ({ width = '2.8rem', height = '2.8rem', className }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     className={className}

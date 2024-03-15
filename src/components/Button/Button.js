@@ -9,6 +9,7 @@ function Button({
   href,
   primary = false,
   outline = false,
+  large = false,
   action = false,
   disabled = false,
   className,
@@ -45,6 +46,7 @@ function Button({
     [className]: className,
     primary,
     outline,
+    large,
     action,
     disabled,
   });

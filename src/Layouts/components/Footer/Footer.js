@@ -74,28 +74,13 @@ function Footer() {
 
           <div className={cx('col col-xxl-3 col-xl-3 col-12')}>
             <div className={cx('footer__socials')}>
-              <a
-                href="#!"
-                rel="noreferrer"
-                target="_blank"
-                className={cx('footer__social-link', 'footer__social-link--facebook')}
-              >
+              <a href="#!" rel="noreferrer" target="_blank" className={cx('footer__social-link')}>
                 <FacebookIcon />
               </a>
-              <a
-                href="#!"
-                rel="noreferrer"
-                target="_blank"
-                className={cx('footer__social-link', 'footer__social-link--instagram')}
-              >
+              <a href="#!" rel="noreferrer" target="_blank" className={cx('footer__social-link')}>
                 <InstagramIcon />
               </a>
-              <a
-                href="#!"
-                rel="noreferrer"
-                target="_blank"
-                className={cx('footer__social-link', 'footer__social-link--linkedin')}
-              >
+              <a href="#!" rel="noreferrer" target="_blank" className={cx('footer__social-link')}>
                 <LinkedinIcon />
               </a>
             </div>

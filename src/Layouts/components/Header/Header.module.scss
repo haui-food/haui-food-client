@@ -13,7 +13,9 @@
   transition: background-color 0.2s;
 
   @include media-breakpoint-down(md) {
-    height: 72px;
+    position: relative;
+    height: 60px;
+    background-color: var(--white);
   }
 }
 
@@ -22,6 +24,58 @@
   align-items: center;
   justify-content: space-between;
 
+  &__menu {
+    display: none;
+    padding: 11px 14px;
+    border-radius: 4px;
+    background-color: var(--white);
+
+    @include media-breakpoint-down(md) {
+      display: block;
+    }
+
+    &-options {
+      position: absolute;
+      top: 60px;
+      left: 0px;
+      width: 100vw;
+      min-height: 200px;
+      max-height: calc(100vh - 62px);
+      transform: translateX(-100%);
+      opacity: 0;
+      border-radius: 0 4px 4px;
+      background-color: #f6f8fa;
+      transition: transform, opacity;
+      transition-duration: 0.3s;
+      border: 1px solid;
+      border-color: var(--white) rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.15);
+      box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.175);
+      z-index: 9999;
+
+      &--show {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    &-option,
+    &-bottom {
+      background-color: var(--white);
+    }
+
+    &-option {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 14px 16px;
+      border-bottom: 1px solid #f1f4f6;
+    }
+
+    &-bottom {
+      height: 72px;
+    }
+  }
+
   &__logo {
     width: 140px;
     height: 50px;
@@ -29,7 +83,7 @@
     border-radius: 5px;
 
     @include media-breakpoint-down(md) {
-      width: 90px;
+      display: none;
     }
   }
 
@@ -84,20 +138,6 @@
   }
 }
 
-.overlay {
-  position: fixed;
-  width: 100%;
-  height: 200vh;
-  opacity: 0;
-  background-color: rgba(0, 0, 0, 0.65);
-  z-index: 999;
-  transition: opacity 0.5s;
-
-  &--show {
-    opacity: 0.4;
-  }
-}
-
 .cart {
   position: absolute;
   top: 0;
@@ -110,10 +150,20 @@
   z-index: 9999;
   transform: translateX(100%);
   opacity: 0;
-  transition: transform, opacity;
+  transition: transform, opacity, visibility;
   transition-duration: 0.5s;
+  visibility: hidden;
+
+  @include media-breakpoint-down(lg) {
+    width: 100%;
+  }
+
+  @include media-breakpoint-down(md) {
+    display: none;
+  }
 
   &--show {
+    visibility: visible;
     opacity: 1;
     transform: translateX(0);
   }
@@ -123,6 +173,10 @@
     align-items: center;
     text-align: center;
     border-bottom: 1px solid #f0efef;
+
+    @include media-breakpoint-down(md) {
+      padding: 8px;
+    }
 
     &-block {
       flex: 1;
@@ -220,10 +274,10 @@
   &__scroll {
     overflow-y: auto;
     height: 100%;
-    position: relative;
   }
 
   &__content {
+    padding-bottom: 500px;
     padding: 24px;
     min-height: calc(100% - 52px);
   }
@@ -258,6 +312,9 @@
     width: 100%;
     background-color: var(--white);
     box-shadow: 0 -2px 6px 0 rgba(28, 28, 28, 0.06);
+    @include media-breakpoint-down(md) {
+      padding: 16px;
+    }
 
     &-info {
       display: flex;
