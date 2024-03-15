@@ -1,6 +1,7 @@
 {
     "header": {
-        "na01": "Trang chủ"
+        "na01": "Trang chủ",
+        "na02": "Đăng nhập/Đăng kí"
     },
     "footer": {
         "title01": "Về HaUIFood",
@@ -12,5 +13,19 @@
         "title07": "Câu hỏi thường gặp",
         "title08": "Liên hệ chúng tôi",
         "title09": "Chính sách bảo mật"
+    },
+    "button": {
+        "btn01": "Thanh toán",
+        "btn02": "Tiếp tục mua hàng",
+        "btn03": "Đăng nhập để đặt đơn"
+    },
+    "cart": {
+        "title01": "Giỏ đồ ăn",
+        "title02": "Giỏ hàng trống",
+        "desc01": "Thời gian giao:",
+        "desc02": "Thêm sản phẩm vào giỏ hàng của bạn và đặt hàng tại đây.",
+        "desc03": "Tổng cộng",
+        "desc04": "Phí giao hàng sẽ được tính tự động sau khi bạn đặt đơn.",
+        "desc05": "phút"
     }
 }

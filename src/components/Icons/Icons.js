@@ -17,6 +17,18 @@ export const ArrowDownIcon = ({ width = '1.2rem', height = '1.2rem', className }
   </svg>
 );
 
+export const CloseIcon = ({ width = '2.4rem', height = '2.4rem', className }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" className={className} width={width} height={height} viewBox="0 0 24 24">
+    <g fill="none" fillRule="evenodd">
+      <path d="M0 0h24v24H0z" />
+      <g fill="#676767" fillRule="nonzero">
+        <path d="M19 4.293l.707.707L5 19.707 4.293 19z" />
+        <path d="M19.707 19l-.707.707L4.293 5 5 4.293z" />
+      </g>
+    </g>
+  </svg>
+);
+
 export const CartIcon = ({ width = '2rem', height = '2.2rem', className }) => (
   <svg className={className} width={width} height={height} xmlns="http://www.w3.org/2000/svg">
     <g stroke="none" fill="none">
@@ -46,7 +58,70 @@ export const CartIcon = ({ width = '2rem', height = '2.2rem', className }) => (
   </svg>
 );
 
-export const FacebookIcon = ({ width = '1.8rem', height = '1.8rem', className }) => (
+export const ClockIcon = ({ width = '2.4rem', height = '2.4rem', className }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" className={className} width={width} height={height} viewBox="0 0 24 24">
+    <g fill="none" fillRule="evenodd">
+      <path d="M0 0h24v24H0z" />
+      <circle cx="12" cy="12" r="9" stroke="#676767" stroke-linecap="square" />
+      <path fill="#676767" fillRule="nonzero" d="M17.41 11.5v1H11.5V6.59h1v4.91z" />
+    </g>
+  </svg>
+);
+
+export const PlusIcon = ({ width = '1.6rem', height = '1.6rem', className }) => (
+  <svg
+    className={className}
+    width={width}
+    height={height}
+    viewBox="0 0 16 16"
+    version="1.1"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <g id="icon/16px/add" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+      <path
+        d="M9,9 L9,13.8925781 L7,13.8925781 C7,13.8925781 7,13.4882853 7,12.6796875 C7,11.8710897 7,10.8710997 7,9.6796875 L7,9 L6.21289062,9 C5.02147842,9 4.02148842,9 3.21289062,9 C2.40429283,9 2,9 2,9 L2,7 L7,7 L7,6.10546875 C7,4.91405654 7,3.91406654 7,3.10546875 C7,2.29687096 7,1.89257812 7,1.89257812 L9,1.89257813 L9,7 L14,7 L14,9 C14,9 13.5957072,9 12.7871094,9 C11.9785116,9 10.9785216,9 9.78710938,9 L9,9 Z"
+        id="Combined-Shape"
+        fill="#00A5CF"
+      ></path>
+    </g>
+  </svg>
+);
+
+export const MinusIcon = ({ width = '1.6rem', height = '1.6rem', className }) => (
+  <svg
+    className={className}
+    width={width}
+    height={height}
+    viewBox="0 0 16 16"
+    version="1.1"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <g id="icon/16px/remove" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+      <path
+        d="M14,9 C14,9 13.5957072,9 12.7871094,9 C11.9785116,9 10.9785216,9 9.78710937,9 C8.59569717,9 7.40430283,9 6.21289062,9 C5.02147842,9 4.02148842,9 3.21289062,9 C2.40429283,9 2,9 2,9 L2,7 L14,7 L14,9 Z"
+        id="–"
+        fill="#00A5CF"
+      ></path>
+    </g>
+  </svg>
+);
+
+export const MenuIcon = ({ width = '1.2rem', height = '1.6rem', className }) => (
+  <svg
+    className={className}
+    width={width}
+    height={height}
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 14 17"
+    fill="none"
+  >
+    <path d="M13 1.5H1" stroke="#1A162E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M13 9H1" stroke="#1A162E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M6 16H1" stroke="#1A162E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+export const FacebookIcon = ({ width = '2.8rem', height = '2.8rem', className }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     className={className}
@@ -64,7 +139,7 @@ export const FacebookIcon = ({ width = '1.8rem', height = '1.8rem', className })
   </svg>
 );
 
-export const InstagramIcon = ({ width = '1.8rem', height = '1.8rem', className }) => (
+export const InstagramIcon = ({ width = '2.6rem', height = '2.6rem', className }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     className={className}
@@ -87,7 +162,7 @@ export const InstagramIcon = ({ width = '1.8rem', height = '1.8rem', className }
   </svg>
 );
 
-export const LinkedinIcon = ({ width = '1.8rem', height = '1.8rem', className }) => (
+export const LinkedinIcon = ({ width = '2.8rem', height = '2.8rem', className }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     className={className}
