@@ -28,7 +28,7 @@
     width: 360px;
     padding: 47px 24px;
     border-radius: 5px;
-    background: var(--while);
+    background: var(--white);
 
     @include media-breakpoint-down(lg) {
       position: relative;
@@ -105,7 +105,7 @@
     border-radius: 6px;
     border: 1px solid #676767;
     padding: 15px;
-    color: var(--while);
+    color: var(--white);
     font-size: 1.6rem;
     font-weight: 500;
   }
