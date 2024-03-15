@@ -17,6 +17,7 @@ function Button({
   leftIcon,
   rightIcon,
   onClick,
+  large,
   ...passProps
 }) {
   let Comp = 'button';
@@ -49,6 +50,7 @@ function Button({
     large,
     action,
     disabled,
+    large,
   });
   return (
     <Comp className={classes}>

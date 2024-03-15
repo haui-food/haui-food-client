@@ -3,6 +3,119 @@
 @import 'bootstrap/scss/mixins';
 
 .home {
-  height: 100vh;
-  background-image: url('../../assets/images/home/background-top.jpg');
+  &__title {
+    margin-top: 80px;
+    font-size: 3.6rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 60px;
+
+    &--highlight {
+      color: var(--primary-color);
+    }
+
+    &--no-margin {
+      margin: 0;
+    }
+
+    &--margin {
+      margin-top: 30px;
+      margin-bottom: 40px;
+    }
+  }
+
+  &__sub-title {
+    font-size: 2.4rem;
+    color: var(--text-color);
+    font-weight: 700;
+  }
+
+  &__faq-text {
+    margin-top: 15px;
+    margin-bottom: 40px;
+    font-size: 1.4rem;
+  }
 }
+
+.sparate {
+  margin-top: 80px;
+  margin-bottom: 16px;
+  border: 1px solid #e5e9f0;
+  gap: 10px;
+}
+
+.reason-container {
+  display: flex;
+  margin-top: 30px;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.reason-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  text-align: left;
+
+  &__check-icon {
+    width: 12px;
+    height: 12px;
+    margin-top: 2px;
+    color: var(--primary-color);
+  }
+
+  &__keyword {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--text-color);
+  }
+
+  &__text {
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--text-color);
+  }
+}
+
+// footer banner
+
+.banner-footer {
+  padding: 108px 0;
+  background-color: #f7f7f7;
+  margin-top: 30px;
+  &__left,
+  &__right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 0;
+    &-img {
+      width: 150px;
+      height: 150px;
+      margin: 0 auto;
+      padding-bottom: 25px;
+    }
+  }
+
+  &__title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  &__desc {
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin-bottom: 24px;
+  }
+
+  &__right {
+  }
+
+  &__logo-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 10px;
+  }

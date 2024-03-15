@@ -1,0 +1,112 @@
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
+
+.banner {
+  width: 100%;
+  height: 52vh;
+  background-size: cover;
+  background-position: 50%;
+
+  @include media-breakpoint-down(lg) {
+    // display: none;
+    background-image: none;
+
+    height: 0;
+  }
+
+  &__content-wrapper {
+    position: relative;
+  }
+
+  &__content {
+    position: absolute;
+    top: 16vh;
+    left: 0;
+    border: 1px solid #e5e9f0;
+    z-index: 2;
+    width: 360px;
+    padding: 47px 24px;
+    border-radius: 5px;
+    background: var(--while);
+
+    @include media-breakpoint-down(lg) {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__greeting {
+    font-size: 2rem;
+  }
+
+  &__caption {
+    font-size: 3.6rem;
+    font-weight: 600;
+  }
+
+  &__search-container {
+    position: relative;
+    color: #9a9aa7;
+
+    &::after {
+      content: '';
+      width: 1px;
+      display: block;
+      height: calc(100% - 16px);
+      background-color: rgb(154, 154, 167, 0.6);
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 45px;
+    }
+
+    & .search-icon {
+      width: 24px;
+      height: 24px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 10px;
+    }
+  }
+
+  &__input-search {
+    width: 100%;
+    border: 1px solid #c5c5c5;
+    display: block;
+    font-size: 1.4rem;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-right: 50px;
+    text-indent: 15px;
+    height: 48px;
+    background-color: transparent;
+    border-radius: 4px;
+
+    &:not(:placeholder-shown) ~ .banner__search-label {
+      display: none;
+    }
+  }
+
+  &__search-label {
+    position: absolute;
+    top: 50%;
+    left: 17px;
+    transform: translateY(-50%);
+  }
+
+  &__search-btn {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    background-color: var(--primary-color) !important;
+    border-radius: 6px;
+    border: 1px solid #676767;
+    padding: 15px;
+    color: var(--while);
+    font-size: 1.6rem;
+    font-weight: 500;
+  }
+}
