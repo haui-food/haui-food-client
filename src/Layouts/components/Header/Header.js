@@ -53,7 +53,7 @@ function Header() {
 
   useEffect(() => {
     window.onscroll = () => {
-      if (window.innerWidth >= 992) {
+      if (window.innerWidth >= 768) {
         if (window.scrollY > 1) {
           headerRef.current.style.backgroundColor = '#fff';
         } else {
