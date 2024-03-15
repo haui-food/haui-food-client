@@ -11,6 +11,7 @@ function Button({
   outline = false,
   large = false,
   action = false,
+  checkout = false,
   disabled = false,
   className,
   children,
@@ -48,6 +49,7 @@ function Button({
     outline,
     large,
     action,
+    checkout,
     disabled,
   });
   return (

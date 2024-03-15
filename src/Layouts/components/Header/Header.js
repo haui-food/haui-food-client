@@ -233,7 +233,7 @@ function Header() {
                 <span className={cx('cart__bottom-price')}>{t('cart.desc03')}</span>
                 <span className={cx('cart__bottom-price')}>510.000 ₫</span>
               </div>
-              <Button large primary>
+              <Button checkout primary>
                 {/* {t('button.btn01')} */}
                 {t('button.btn03')}
               </Button>
