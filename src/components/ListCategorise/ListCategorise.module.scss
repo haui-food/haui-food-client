@@ -8,6 +8,9 @@
     height: 100%;
     padding: 0 5px;
     margin-bottom: 50px;
+    @include media-breakpoint-down(md) {
+      margin-bottom: 25px;
+    }
   }
 }
 
@@ -18,10 +21,13 @@
   overflow: hidden;
   border-radius: 8px;
   margin-bottom: 10px;
+  @include media-breakpoint-down(md) {
+    margin-bottom: 5px;
+  }
 }
 
 .category-name {
   color: var(--text-color);
   font-size: 1.8rem;
-  font-weight: 700;
+  font-weight: 600;
 }

@@ -9,58 +9,62 @@ import Button from '~/components/Button/Button';
 import ListCategorise from '~/components/ListCategorise/ListCategorise';
 import { CheckIcon } from '~/components/Icons';
 import images from '~/assets/images';
-const cx = classNames.bind(styles);
 
-const listReasons = [
-  {
-    icon: CheckIcon,
-    keyword: 'Nhanh nhất',
-    text: 'GrabFood cung cấp dịch vụ giao đồ ăn nhanh nhất thị trường.',
-  },
-  {
-    icon: CheckIcon,
-    keyword: 'Dễ dàng nhất',
-    text: 'Giờ đây, bạn chỉ cần thực hiện vài cú nhấp chuột hoặc chạm nhẹ là đã có thể đặt đồ ăn. Hãy đặt đồ ăn trực tuyến hoặc tải xuống siêu ứng dụng Grab của chúng tôi để có trải nghiệm nhanh hơn và thú vị hơn.',
-  },
-  {
-    icon: CheckIcon,
-    keyword: 'Đáp ứng mọi nhu cầu',
-    text: 'Từ món ăn đặc sản địa phương đến các nhà hàng được ưa thích, nhiều lựa chọn đa dạng chắc chắn sẽ luôn làm hài lòng khẩu vị của bạn.',
-  },
-  {
-    icon: CheckIcon,
-    keyword: 'Thanh toán dễ dàng',
-    text: 'Giao và nhận đồ ăn thật dễ dàng. Thanh toán bằng GrabPay thậm chí còn dễ dàng hơn nữa.',
-  },
-  {
-    icon: CheckIcon,
-    keyword: 'Nhiều quà tặng hơn ',
-    text: 'Tích điểm GrabRewards cho mỗi đơn hàng của bạn và sử dụng điểm thưởng để đổi lấy nhiều ưu đãi hơn.',
-  },
-];
+const cx = classNames.bind(styles);
 
 function Home() {
   const { t } = useTranslation();
+  const listReasons = [
+    {
+      icon: CheckIcon,
+      keyword: t('home.reasonKeyword01'),
+      text: t('home.reasonText01'),
+    },
+    {
+      icon: CheckIcon,
+      keyword: t('home.reasonKeyword02'),
+      text: t('home.reasonText02'),
+    },
+    {
+      icon: CheckIcon,
+      keyword: t('home.reasonKeyword03'),
+      text: t('home.reasonText03'),
+    },
+    {
+      icon: CheckIcon,
+      keyword: t('home.reasonKeyword04'),
+      text: t('home.reasonText04'),
+    },
+    {
+      icon: CheckIcon,
+      keyword: t('home.reasonKeyword05'),
+      text: t('home.reasonText05'),
+    },
+  ];
   return (
     <div className={cx('home')}>
-      <Banner />
+      <div>
+        <Banner />
+      </div>
       <div className={cx('sparate')}></div>
       <div className={cx('container')}>
-        <h1 className={cx('home__title')}>
-          Ưu đãi HauiFood tại <span className={cx('home__title--highlight')}>Haui</span>
+        <h1 className={cx('home__title-1')}>
+          {t('home.title01')} <span className={cx('home__title-1--highlight')}>Haui</span>
         </h1>
 
-        <ListPromo />
+        <div>
+          <ListPromo />
+        </div>
 
         <Button large className={cx('home__btn')}>
           See All promotions
         </Button>
 
-        <div className={cx('home__title', 'home__title--margin')}>There's something for everyone!</div>
+        <div className={cx('home__title-2', 'home__title--margin')}>{t('home.title02')}</div>
 
         <ListCategorise />
 
-        <div className={cx('home__title', 'home__title--no-margin')}>Vì sao bạn nên Order trên GrabFood?</div>
+        <div className={cx('home__title-3', 'home__title--no-margin')}>{t('home.title03')}</div>
 
         <div className={cx('reason-container')}>
           {listReasons.map((reason, index) => {
@@ -77,17 +81,9 @@ function Home() {
           })}
         </div>
 
-        <div className={cx('home__title', 'home__title--margin')}>Những câu hỏi thường gặp</div>
-        <div className={cx('home__sub-title')}>HauiFood là gì?</div>
-        <p className={cx('home__faq-text')}>
-          Lunch, Bún Cá Chấm Gốc Đa - Vũ Thạnh for Dinner! We are here to satisfy your hunger with a wide selection of
-          merchant partners in Vietnam. GrabFood là dịch vụ Giao đồ ăn nhanh nhất tại Việt Nam. Chúng tôi đã sắp xếp tất
-          cả các món ăn, nhà hàng và thực phẩm yêu thích của bạn một cách hợp lý để giúp bạn tìm được đồ ăn dễ dàng và
-          nhanh chóng nhất có thể. Tìm và đặt món ăn yêu thích trên khắp Việt Nam - đặt đồ ăn trực tuyến chỉ bằng vài
-          thao tác, từ món Lifted Coffee & Brunch cho bữa sáng, đến Maazi Indian – Nhà Hàng Ấn Độ cho bữa trưa, đến Bún
-          Cá Chấm Gốc Đa – Vũ Thạnh cho bữa tối! Hãy để chúng tôi xua tan cơn đói của bạn nhờ một loạt đối tác bán đồ ăn
-          ở Việt Nam.
-        </p>
+        <div className={cx('home__title-4')}>{t('home.title04')}</div>
+        <div className={cx('home__sub-title')}>{t('home.subtitle')}</div>
+        <p className={cx('home__faq-text')}>{t('home.desc01')}</p>
 
         <Button large className={cx('home__btn')}>
           Read More
@@ -96,7 +92,7 @@ function Home() {
       <div className={cx('banner-footer')}>
         <div className={cx('container')}>
           <div className={cx('row')}>
-            <div className={cx('col-xl-6 col-12')}>
+            <div className={cx('col-md-6 col-12')}>
               <div className={cx('banner-footer__left')}>
                 <img
                   src="https://food.grab.com/static/page-home/bottom-food-options.svg"
@@ -110,7 +106,7 @@ function Home() {
                 </p>
               </div>
             </div>
-            <div className={cx('col-xl-6 col-12')}>
+            <div className={cx('col-md-6 col-12')}>
               <div className={cx('banner-footer__right')}>
                 <img
                   src="https://food.grab.com/static/images/ilus-cool-features-app.svg"

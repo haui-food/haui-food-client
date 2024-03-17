@@ -4,7 +4,7 @@ import styles from './Banner.module.scss';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useState, useEffect } from 'react';
-import Button from '../Button';
+import { useTranslation } from 'react-i18next';
 import { SearchIcon } from '../Icons';
 const cx = classNames.bind(styles);
 
@@ -16,6 +16,7 @@ const listBanner = [
 function Banner({ className }) {
   const [bannerPath, setBannerPath] = useState(1);
   const [greeting, setGreeting] = useState('');
+  const { t } = useTranslation();
 
   useEffect(() => {
     const date = new Date();
@@ -42,7 +43,7 @@ function Banner({ className }) {
         <div className={cx('banner__content-wrapper')}>
           <div className={cx('banner__content')}>
             <div className={cx('banner__greeting')}>{greeting}</div>
-            <div className={cx('banner__caption')}>HauiFood Absolutely Good for You! </div>
+            <div className={cx('banner__caption')}>HauiFood Absolutely Good for You!</div>
             <div className={cx('banner__search-container')}>
               <input
                 id="banner-search"
@@ -52,11 +53,11 @@ function Banner({ className }) {
                 className={cx('banner__input-search')}
               />
               <label className={cx('banner__search-label')} htmlFor="banner-search">
-                Nhập món bạn muốn tìm kiếm
+                {t('home-banner.placeholder')}
               </label>
               <SearchIcon className={cx('search-icon')} />
             </div>
-            <button className={cx('banner__search-btn')}>Tìm Kiếm</button>
+            <button className={cx('banner__search-btn')}>{t('home-banner.btn01')}</button>
           </div>
         </div>
       </div>

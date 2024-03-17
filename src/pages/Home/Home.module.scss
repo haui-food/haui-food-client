@@ -3,25 +3,58 @@
 @import 'bootstrap/scss/mixins';
 
 .home {
-  &__title {
-    margin-top: 80px;
+  &__title-1,
+  &__title-2,
+  &__title-3,
+  &__title-4 {
     font-size: 3.6rem;
     font-weight: 600;
     color: var(--text-color);
-    margin-bottom: 60px;
 
     &--highlight {
       color: var(--primary-color);
     }
 
-    &--no-margin {
-      margin: 0;
+    @include media-breakpoint-down(md) {
+      font-size: 2rem;
+      font-weight: 600;
     }
+    &--highlight {
+      color: var(--primary-color);
+    }
+  }
 
-    &--margin {
-      margin-top: 30px;
-      margin-bottom: 40px;
+  &__title-1 {
+    margin-top: 64px;
+    margin-bottom: 48px;
+    @include media-breakpoint-down(md) {
+      margin-top: 48px;
+      margin-bottom: 20px;
     }
+  }
+
+  &__title-2 {
+    margin-bottom: 50px;
+    margin-top: 60px;
+    @include media-breakpoint-down(md) {
+      margin-top: 48px;
+      margin-bottom: 10px;
+    }
+  }
+
+  &__title-3 {
+    margin-top: 50px;
+    font-size: 3.6rem;
+    font-weight: 600;
+    @include media-breakpoint-down(md) {
+      margin-top: 15px;
+    }
+  }
+
+  &__title-4 {
+    // margin-top: 50px;
+    font-size: 3.6rem;
+    margin: 40px 0;
   }
 
   &__sub-title {
@@ -42,6 +75,12 @@
   margin-bottom: 16px;
   border: 1px solid #e5e9f0;
   gap: 10px;
+  @include media-breakpoint-down(md) {
+    height: 8px;
+    background-color: #f7f7f7;
+    border: none;
+    margin: 0;
+  }
 }
 
 .reason-container {
@@ -66,7 +105,7 @@
 
   &__keyword {
     font-size: 1.4rem;
-    font-weight: 800;
+    font-weight: 600;
     color: var(--text-color);
   }
 
@@ -83,18 +122,29 @@
   padding: 108px 0;
   background-color: #f7f7f7;
   margin-top: 30px;
+
+  @include media-breakpoint-down(md) {
+    padding: 48px 0;
+  }
   &__left,
   &__right {
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    padding: 0;
+    margin: 0 14px;
+
     &-img {
       width: 150px;
       height: 150px;
       margin: 0 auto;
       padding-bottom: 25px;
+    }
+  }
+
+  &__left {
+    @include media-breakpoint-down(md) {
+      margin-bottom: 48px;
     }
   }
 
@@ -105,12 +155,9 @@
   }
 
   &__desc {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     font-weight: 400;
     margin-bottom: 24px;
-  }
-
-  &__right {
   }
 
   &__logo-container {

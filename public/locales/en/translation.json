@@ -1,31 +1,53 @@
 {
-    "header": {
-        "na01": "Home",
-        "na02": "Login/Sign Up"
-    },
-    "footer": {
-        "title01": "About HaUIFood",
-        "title02": "About HaUI",
-        "title03": "Blog",
-        "title04": "Open a restaurant on HaUIFood",
-        "title05": "Become a HaUIFood shipper",
-        "title06": "Support Center",
-        "title07": "Frequently Asked Questions",
-        "title08": "Contact Us",
-        "title09": "Privacy Policy"
-    },
-    "button": {
-        "btn01": "Checkout",
-        "btn02": "Continue Shopping",
-        "btn03": "Log in to place order"
-    },
-    "cart": {
-        "title01": "Food Basket",
-        "title02": "Empty Cart",
-        "desc01": "Delivery Time:",
-        "desc02": "Add products to your cart and place your order here.",
-        "desc03": "Total",
-        "desc04": "Delivery fee will be automatically calculated after you place the order.",
-        "desc05": "minutes"
-    }
+  "header": {
+    "na01": "Home",
+    "na02": "Login/Sign Up"
+  },
+  "footer": {
+    "title01": "About HaUIFood",
+    "title02": "About HaUI",
+    "title03": "Blog",
+    "title04": "Open a restaurant on HaUIFood",
+    "title05": "Become a HaUIFood shipper",
+    "title06": "Support Center",
+    "title07": "Frequently Asked Questions",
+    "title08": "Contact Us",
+    "title09": "Privacy Policy"
+  },
+  "button": {
+    "btn01": "Checkout",
+    "btn02": "Continue Shopping",
+    "btn03": "Log in to place order"
+  },
+  "cart": {
+    "title01": "Food Basket",
+    "title02": "Empty Cart",
+    "desc01": "Delivery Time:",
+    "desc02": "Add products to your cart and place your order here.",
+    "desc03": "Total",
+    "desc04": "Delivery fee will be automatically calculated after you place the order.",
+    "desc05": "minutes"
+  },
+  "home": {
+    "title01": "HauiFood Promo in",
+    "title02": "There's something for everyone!",
+    "title03": "Why HauiFood?",
+    "title04": "Frequently Asked Questions",
+    "reasonKeyword01": "Quickest",
+    "reasonKeyword02": "Easiest",
+    "reasonKeyword03": "Food for all cravings",
+    "reasonKeyword04": "Pay with ease",
+    "reasonKeyword05": "More Rewarding",
+    "reasonText01": "HauiFood provides the fastest food delivery in the market.",
+    "reasonText02": "Now grabbing your food is just a few clicks or taps away. Order online or download our Grab super app for a faster and more rewarding experience.",
+    "reasonText03": "From local fare to restaurant favourites, our wide selection of food will definitely satisfy all your cravings.",
+    "reasonText04": " It’s easy to get your meals delivered to you. It’s even easier to pay for it with HauiFoodPay.",
+    "reasonText05": "Earn HauiFoodRewards points for every order you make and use them to redeem more goodies.",
+    "subtitle": "What is GrabFood?",
+    "desc01": "HauiFood is the fastest Food Delivery service in Vietnam. We have curated all your favorite dishes, restaurants, and cuisines to help you grab your food in the easiest & quickest way possible. Find and order your favorite cuisines across Vietnam - order food online in just a few taps, from Lifted Coffee & Brunch - Hàng Gà for Breakfast, Maazi Indian - Nhà Hàng Ấn Độ for Lunch, Bún Cá Chấm Gốc Đa - Vũ Thạnh for Dinner! We are here to satisfy your hunger with a wide selection of merchant partners in Vietnam."
+  },
+  "home-banner": {
+    "placeholder": "Type your food here",
+    "btn01": "Search"
+  }
 }

@@ -2,13 +2,12 @@
 @import 'bootstrap/scss/variables';
 @import 'bootstrap/scss/mixins';
 
-.star-icon {
-}
-
 .product-card {
   width: 100%;
-  padding: 0 10px;
+  padding-left: 10px;
+  padding-right: 10px;
   height: 100%;
+
   &__img {
     width: 100%;
     height: auto;

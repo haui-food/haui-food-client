@@ -4,22 +4,30 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import ProductCard from '~/components/ProductCard/ProductCard';
 import Slider from 'react-slick';
+
 const cx = classNames.bind(styles);
 
-const settings = {
-  speed: 500,
-  slidesToShow: 4,
-  slidesToScroll: 1,
-  responsive: [
-    {
-      breakpoint: 992,
-      settings: {
-        slidesToShow: 2,
-        slidesToScroll: 1,
-      },
-    },
-  ],
-};
+function SampleNextArrow(props) {
+  const { className, style, onClick, customClass } = props;
+  return (
+    <div
+      className={`${className} ${customClass}`}
+      style={{ ...style, display: 'block', color: 'rgb(103, 103, 103)' }}
+      onClick={onClick}
+    ></div>
+  );
+}
+
+function SamplePrevArrow(props) {
+  const { className, style, onClick, customClass } = props;
+  return (
+    <div
+      className={`${className} ${customClass}`}
+      style={{ ...style, display: 'block', color: 'rgb(103, 103, 103)' }}
+      onClick={onClick}
+    ></div>
+  );
+}
 
 const data = [
   {
@@ -68,6 +76,26 @@ const data = [
 ];
 
 function ListPromo() {
+  const settings = {
+    speed: 500,
+    className: cx('list-slider'),
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    infinite: false,
+    nextArrow: <SampleNextArrow customClass={cx('next-arrow')} />,
+    prevArrow: <SamplePrevArrow customClass={cx('prev-arrow')} />,
+    responsive: [
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          nextArrow: <></>,
+          prevArrow: <></>,
+        },
+      },
+    ],
+  };
   return (
     <div className={cx('list-promo')}>
       <div className={cx('container')}>
@@ -75,8 +103,11 @@ function ListPromo() {
           <Slider {...settings}>
             {data.map((item, index) => {
               return (
-                <div key={index} className={cx()}>
-                  <ProductCard data={item} />
+                <div key={index} className={cx('item')}>
+                  <ProductCard
+                    className={cx({ 'first-item': index === 0 }, { 'last-item': index === data.length })}
+                    data={item}
+                  />
                 </div>
               );
             })}

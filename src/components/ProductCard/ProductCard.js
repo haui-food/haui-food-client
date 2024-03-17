@@ -5,7 +5,7 @@ import { EmptyStarIcon, HaftStarIcon, StarIcon } from '../Icons';
 
 const cx = classNames.bind(styles);
 
-function ProductCard({ data }) {
+function ProductCard({ data, className }) {
   const rating = data.rating || 0;
   const fullStars = Math.floor(rating);
   const halfStars = rating - fullStars !== 0;
@@ -17,7 +17,7 @@ function ProductCard({ data }) {
   }
 
   return (
-    <div className={cx('product-card')}>
+    <div className={cx('product-card', className)}>
       <img src={data.image} className={cx('product-card__img')} alt="" />
       <div className={cx('product-card__content')}>
         <div className={cx('product-card__name')}>{data.name}</div>
