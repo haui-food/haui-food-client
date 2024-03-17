@@ -119,42 +119,40 @@ function CartItem({ data }) {
         )}
       </div>
 
-      {openChange && (
-        <div className={cx('change-quantity', openChange ? 'change-quantity--show' : '')}>
-          <button onClick={() => setOpenChange(false)} className={cx('change-quantity__close')}>
-            <CloseIcon className={cx('change-quantity__icon')} />
-          </button>
-          <img src={data.image} className={cx('change-quantity__img')} alt="" />
-          <div className={cx('change-quantity__first')}>
-            <h1 className={cx('change-quantity__name')}>{data.name}</h1>
-            <p className={cx('change-quantity__desc')}>{data.name}</p>
-          </div>
-          <div className={cx('change-quantity__last')}>
-            <h2 className={cx('change-quantity__title')}>Thay đổi số lượng</h2>
-            <div className={cx('change-quantity__btn-group')}>
-              <button onClick={temporaryReducedQuantity} className={cx('change-quantity__quantity-btn')}>
-                <MinusIcon />
-              </button>
-              <span className={cx('change-quantity__quantity-number')}>{changeQuantity}</span>
-              <button onClick={temporaryIncreasedQuantity} className={cx('change-quantity__quantity-btn')}>
-                <PlusIcon />
-              </button>
-            </div>
-          </div>
-          <div className={cx('change-quantity__footer')}>
-            <div
-              onClick={() => {
-                handleUpdateQuantity();
-                setOpenChange(false);
-              }}
-            >
-              <Button checkout primary>
-                Cập nhật
-              </Button>
-            </div>
+      <div className={cx('change-quantity', openChange ? 'change-quantity--show' : '')}>
+        <button onClick={() => setOpenChange(false)} className={cx('change-quantity__close')}>
+          <CloseIcon className={cx('change-quantity__icon')} />
+        </button>
+        <img src={data.image} className={cx('change-quantity__img')} alt="" />
+        <div className={cx('change-quantity__first')}>
+          <h1 className={cx('change-quantity__name')}>{data.name}</h1>
+          <p className={cx('change-quantity__desc')}>{data.name}</p>
+        </div>
+        <div className={cx('change-quantity__last')}>
+          <h2 className={cx('change-quantity__title')}>Thay đổi số lượng</h2>
+          <div className={cx('change-quantity__btn-group')}>
+            <button onClick={temporaryReducedQuantity} className={cx('change-quantity__quantity-btn')}>
+              <MinusIcon />
+            </button>
+            <span className={cx('change-quantity__quantity-number')}>{changeQuantity}</span>
+            <button onClick={temporaryIncreasedQuantity} className={cx('change-quantity__quantity-btn')}>
+              <PlusIcon />
+            </button>
           </div>
         </div>
-      )}
+        <div className={cx('change-quantity__footer')}>
+          <div
+            onClick={() => {
+              handleUpdateQuantity();
+              setOpenChange(false);
+            }}
+          >
+            <Button checkout primary>
+              Cập nhật
+            </Button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
