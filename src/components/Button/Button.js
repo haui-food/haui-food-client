@@ -12,6 +12,7 @@ function Button({
   large = false,
   action = false,
   checkout = false,
+  haveProducts = false,
   disabled = false,
   className,
   children,
@@ -50,6 +51,7 @@ function Button({
     large,
     action,
     checkout,
+    haveProducts,
     disabled,
   });
   return (
