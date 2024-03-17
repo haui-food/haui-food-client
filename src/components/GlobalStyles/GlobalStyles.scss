@@ -4,8 +4,9 @@
 :root {
   --primary-color: #00ba51;
   --primary-bg: #00b14f;
-  --font-family: 'Lato', sans-serif;
+  --font-family: 'Inter', sans-serif;
   --text-color: #1c1c1c;
+  --secondary-text-color: #676767;
   --white: #fff;
   --icon-color: brightness(0) saturate(100%) invert(39%) sepia(4%) saturate(0%) hue-rotate(138deg) brightness(100%)
     contrast(91%);
@@ -28,6 +29,11 @@ body {
   line-height: 1.5;
   text-rendering: optimizeSpeed;
   color: var(--text-color);
+}
+
+::selection {
+  background: var(--primary-bg);
+  color: var(--white);
 }
 
 // Scrollbar CSS
@@ -89,4 +95,18 @@ ul {
 
 .icon {
   filter: var(--icon-color);
+}
+
+.overlay {
+  position: fixed;
+  width: 100%;
+  height: 200vh;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.65);
+  z-index: 999;
+  transition: opacity 0.5s;
+
+  &--show {
+    opacity: 0.4;
+  }
 }

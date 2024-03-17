@@ -9,7 +9,9 @@ function Button({
   href,
   primary = false,
   outline = false,
+  large = false,
   action = false,
+  checkout = false,
   disabled = false,
   className,
   children,
@@ -45,7 +47,9 @@ function Button({
     [className]: className,
     primary,
     outline,
+    large,
     action,
+    checkout,
     disabled,
   });
   return (
