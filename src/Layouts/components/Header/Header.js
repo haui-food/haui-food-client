@@ -20,6 +20,7 @@ function Header() {
 
   const { cartItems, addToCart, clearCart } = useBasket();
 
+  const [logo, setLogo] = useState(images.logoVip1);
   const [showLanguages, setShowLanguages] = useState(false);
   const [showCart, setShowCart] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
@@ -27,6 +28,7 @@ function Header() {
   const [displayQuantity, setDisplayQuantity] = useState(cartItems.quantity);
   const isProduct = cartItems.items.length > 0 ? true : false;
   const isCarts = cartItems.items.length > 0 ? true : false;
+  const isLogin = false;
 
   const headerRef = useRef(null);
   const languagesRef = useRef(null);
@@ -63,8 +65,10 @@ function Header() {
       if (window.innerWidth >= 768) {
         if (window.scrollY > 1) {
           headerRef.current.style.backgroundColor = '#fff';
+          setLogo(images.logoVip2);
         } else {
           headerRef.current.style.backgroundColor = 'transparent';
+          setLogo(images.logoVip1);
         }
       }
     };
@@ -123,7 +127,7 @@ function Header() {
 
           {/* Logo */}
           <Link to={routes.home}>
-            <img src={images.logo} alt="logo" className={cx('header__logo')} />
+            <img src={logo} alt="logo" className={cx('header__logo')} />
           </Link>
 
           {/* Actions */}
@@ -134,43 +138,52 @@ function Header() {
               </Button>
               {isCarts && <span className={cx('header__actions-quantity')}>{displayQuantity}</span>}
             </div>
-            <div
-              onClick={() => {
-                addToCart({
-                  id: 1,
-                  name: 'Bánh Tiêu Cade Sầu Riêng',
-                  image: images.banhtieusr,
-                  price: '10000',
-                  quantity: 1,
-                });
-                addToCart({
-                  id: 2,
-                  name: 'Bánh Tiêu Cade Sầu Riêng',
-                  image: images.banhtieusr,
-                  price: '10000',
-                  quantity: 1,
-                });
-                addToCart({
-                  id: 3,
-                  name: 'Bánh Tiêu Cade Sầu Riêng',
-                  image: images.banhtieusr,
-                  price: '10000',
-                  quantity: 1,
-                });
-                addToCart({
-                  id: 4,
-                  name: 'Bánh Tiêu Cade Sầu Riêng',
-                  image: images.banhtieusr,
-                  price: '10000',
-                  quantity: 1,
-                });
-              }}
-              className={cx('header__actions-group')}
-            >
-              <Button action outline>
-                {t('header.na02')}
-              </Button>
-            </div>
+            {!isLogin && (
+              <div
+                onClick={() => {
+                  addToCart({
+                    id: 1,
+                    name: 'Bánh Tiêu Cade Sầu Riêng',
+                    image: images.banhtieusr,
+                    price: '10000',
+                    quantity: 1,
+                  });
+                  addToCart({
+                    id: 2,
+                    name: 'Bánh Tiêu Cade Sầu Riêng',
+                    image: images.banhtieusr,
+                    price: '10000',
+                    quantity: 1,
+                  });
+                  addToCart({
+                    id: 3,
+                    name: 'Bánh Tiêu Cade Sầu Riêng',
+                    image: images.banhtieusr,
+                    price: '10000',
+                    quantity: 1,
+                  });
+                  addToCart({
+                    id: 4,
+                    name: 'Bánh Tiêu Cade Sầu Riêng',
+                    image: images.banhtieusr,
+                    price: '10000',
+                    quantity: 1,
+                  });
+                }}
+                className={cx('header__actions-group')}
+              >
+                <Button action outline>
+                  {t('header.na02')}
+                </Button>
+              </div>
+            )}
+            {isLogin && (
+              <div className={cx('header__actions-group')}>
+                <Link to={'#!'}>
+                  <img className={cx('header__actions-avatar')} src={images.avatarDefault} alt="avatar" />
+                </Link>
+              </div>
+            )}
             <div
               className={cx('header__actions-group')}
               ref={languageBtnRef}
