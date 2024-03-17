@@ -16,7 +16,7 @@ function Footer() {
     <div className={cx('footer')}>
       <div className={cx('container gx-5')}>
         <Link to={routes.home}>
-          <img src={images.logo1} alt="logo" className={cx('footer__logo')} />
+          <img src={images.logoVip1} alt="logo" className={cx('footer__logo')} />
         </Link>
 
         <div className={cx('separate')}></div>
