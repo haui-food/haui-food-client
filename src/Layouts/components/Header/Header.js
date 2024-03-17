@@ -18,7 +18,7 @@ const cx = classNames.bind(styles);
 function Header() {
   const { t } = useTranslation();
 
-  const { cartItems, addToCart } = useBasket();
+  const { cartItems, addToCart, clearCart } = useBasket();
 
   const [showLanguages, setShowLanguages] = useState(false);
   const [showCart, setShowCart] = useState(false);
@@ -135,15 +135,36 @@ function Header() {
               {isCarts && <span className={cx('header__actions-quantity')}>{displayQuantity}</span>}
             </div>
             <div
-              onClick={() =>
+              onClick={() => {
                 addToCart({
                   id: 1,
                   name: 'Bánh Tiêu Cade Sầu Riêng',
                   image: images.banhtieusr,
                   price: '10000',
                   quantity: 1,
-                })
-              }
+                });
+                addToCart({
+                  id: 2,
+                  name: 'Bánh Tiêu Cade Sầu Riêng',
+                  image: images.banhtieusr,
+                  price: '10000',
+                  quantity: 1,
+                });
+                addToCart({
+                  id: 3,
+                  name: 'Bánh Tiêu Cade Sầu Riêng',
+                  image: images.banhtieusr,
+                  price: '10000',
+                  quantity: 1,
+                });
+                addToCart({
+                  id: 4,
+                  name: 'Bánh Tiêu Cade Sầu Riêng',
+                  image: images.banhtieusr,
+                  price: '10000',
+                  quantity: 1,
+                });
+              }}
               className={cx('header__actions-group')}
             >
               <Button action outline>
@@ -233,9 +254,14 @@ function Header() {
               <div ref={cartRef} onWheel={handleWheel} className={cx('cart__scroll')}>
                 <div className={cx('cart__content')}>
                   <div className={cx('cart__products')}>
-                    <Link to={'#!'}>
-                      <h5 className={cx('cart__products-heading')}>HaUI Food</h5>
-                    </Link>
+                    <div className={cx('cart__products-top')}>
+                      <Link to={'#!'}>
+                        <h5 className={cx('cart__products-heading')}>HaUI Food</h5>
+                      </Link>
+                      <button onClick={() => clearCart()} className={cx('cart__products-delete-all')}>
+                        Xóa tất cả
+                      </button>
+                    </div>
                     <div className={cx('cart__products-list')}>
                       {cartItems.items.map((cartItem) => (
                         <CartItem key={cartItem.id} data={cartItem} />

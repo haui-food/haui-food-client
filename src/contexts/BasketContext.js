@@ -65,11 +65,17 @@ const BasketProvider = ({ children }) => {
     });
   };
 
+  const clearCart = () => {
+    setCartItems({ items: [], quantity: 0, totalPrice: 0 });
+    localStorage.removeItem('basket');
+  };
+
   const value = {
     cartItems,
     addToCart,
     removeFromCart,
     updateCartItems,
+    clearCart,
   };
 
   return <BasketContext.Provider value={value}>{children}</BasketContext.Provider>;
