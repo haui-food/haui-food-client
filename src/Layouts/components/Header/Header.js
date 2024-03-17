@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 
 import styles from './Header.module.scss';
 
+import { useBasket } from '~/contexts/BasketContext';
 import routes from '~/config/routes';
 import images from '~/assets/images';
 import Button from '~/components/Button';
@@ -16,10 +17,16 @@ const cx = classNames.bind(styles);
 
 function Header() {
   const { t } = useTranslation();
+
+  const { cartItems, addToCart } = useBasket();
+
   const [showLanguages, setShowLanguages] = useState(false);
   const [showCart, setShowCart] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
-  const isProduct = true;
+  const [displayPrice, setDisplayPrice] = useState(cartItems.totalPrice);
+  const [displayQuantity, setDisplayQuantity] = useState(cartItems.quantity);
+  const isProduct = cartItems.items.length > 0 ? true : false;
+  const isCarts = cartItems.items.length > 0 ? true : false;
 
   const headerRef = useRef(null);
   const languagesRef = useRef(null);
@@ -87,6 +94,11 @@ function Header() {
     };
   }, [showCart]);
 
+  useEffect(() => {
+    setDisplayPrice(cartItems.totalPrice);
+    setDisplayQuantity(cartItems.quantity);
+  }, [cartItems.totalPrice, cartItems.quantity]);
+
   return (
     <div ref={headerRef} className={cx('wrapper')}>
       <div className={cx('container gx-5')}>
@@ -117,11 +129,23 @@ function Header() {
           {/* Actions */}
           <nav className={cx('header__actions')}>
             <div onClick={() => setShowCart(!showCart)} className={cx('header__actions-group', 'header__actions-cart')}>
-              <Button action outline>
-                <CartIcon className={cx('icon')} />
+              <Button haveProducts={isCarts} action outline leftIcon={<CartIcon className={cx('icon')} />}>
+                {displayPrice !== 0 ? `${displayPrice.toLocaleString('vi-VN')} ₫` : ''}
               </Button>
+              {isCarts && <span className={cx('header__actions-quantity')}>{displayQuantity}</span>}
             </div>
-            <div className={cx('header__actions-group')}>
+            <div
+              onClick={() =>
+                addToCart({
+                  id: 1,
+                  name: 'Bánh Tiêu Cade Sầu Riêng',
+                  image: images.banhtieusr,
+                  price: '10000',
+                  quantity: 1,
+                })
+              }
+              className={cx('header__actions-group')}
+            >
               <Button action outline>
                 {t('header.na02')}
               </Button>
@@ -213,13 +237,17 @@ function Header() {
                       <h5 className={cx('cart__products-heading')}>HaUI Food</h5>
                     </Link>
                     <div className={cx('cart__products-list')}>
-                      <CartItem />
+                      {cartItems.items.map((cartItem) => (
+                        <CartItem key={cartItem.id} data={cartItem} />
+                      ))}
                     </div>
                   </div>
                   <div className={cx('cart__summary')}>
                     <div className={cx('cart__summary-info')}>
                       <span className={cx('cart__summary-price')}>{t('cart.desc03')}</span>
-                      <span className={cx('cart__summary-price')}>510.000 ₫</span>
+                      <span className={cx('cart__summary-price')}>
+                        {cartItems.totalPrice.toLocaleString('vi-VN')} ₫
+                      </span>
                     </div>
                     <p className={cx('cart__summary-desc')}>{t('cart.desc04')}</p>
                   </div>
@@ -231,7 +259,7 @@ function Header() {
             <div className={cx('cart__bottom')}>
               <div className={cx('cart__bottom-info')}>
                 <span className={cx('cart__bottom-price')}>{t('cart.desc03')}</span>
-                <span className={cx('cart__bottom-price')}>510.000 ₫</span>
+                <span className={cx('cart__bottom-price')}>{cartItems.totalPrice.toLocaleString('vi-VN')} ₫</span>
               </div>
               <Button checkout primary>
                 {/* {t('button.btn01')} */}

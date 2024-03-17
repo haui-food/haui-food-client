@@ -1,25 +1,65 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 
 import styles from './CartItem.module.scss';
 import { MinusIcon, PlusIcon } from '../Icons';
-import images from '~/assets/images';
+import { useBasket } from '~/contexts/BasketContext';
 
 const cx = classNames.bind(styles);
 
-function CartItem() {
-  const [quantity, setQuantity] = useState(1);
+function CartItem({ data }) {
+  const { cartItems, removeFromCart, updateCartItems } = useBasket();
+  const [quantity, setQuantity] = useState(data.quantity);
   const [openChange, setOpenChange] = useState(false);
 
-  const handleIncreasedQuantities = () => {
-    setQuantity((preQuantity) => preQuantity + 1);
-  };
+  const totalProductPrice = data.price * quantity;
+
+  const handleIncreasedQuantities = useCallback(() => {
+    setQuantity((preQuantity) => {
+      const newQuantity = preQuantity + 1;
+
+      const newCartItems = cartItems.items.map((cartItem) => {
+        if (cartItem.id === data.id) {
+          return { ...cartItem, quantity: newQuantity };
+        }
+        return cartItem;
+      });
+
+      updateCartItems(newCartItems);
+
+      return newQuantity;
+    });
+  }, [cartItems, data.id, updateCartItems]);
 
   const handleReducedQuantities = () => {
-    if (quantity > 0) {
+    if (quantity > 1) {
+      setQuantity((preQuantity) => {
+        const newQuantity = preQuantity - 1;
+
+        const newCartItems = cartItems.items.map((cartItem) => {
+          if (cartItem.id === data.id) {
+            return { ...cartItem, quantity: newQuantity };
+          }
+          return cartItem;
+        });
+
+        updateCartItems(newCartItems);
+
+        return newQuantity;
+      });
+    }
+
+    if (quantity === 1) {
       setQuantity((preQuantity) => preQuantity - 1);
     }
   };
+
+  useEffect(() => {
+    const matchingItem = cartItems.items.find((item) => item.id === data.id);
+    if (matchingItem) {
+      setQuantity(matchingItem.quantity);
+    }
+  }, [cartItems, data.id]);
 
   return (
     <div className={cx('product')}>
@@ -39,13 +79,19 @@ function CartItem() {
       </div>
 
       <div className={cx('product__img-wrap')}>
-        <img src={images.banhtieusr} alt="" className={cx('product__thumb')} />
+        <img src={data.image} alt="" className={cx('product__thumb')} />
       </div>
 
       <div className={cx('product__detail')}>
-        <p className={cx('product__detail-name')}>Bánh Tiêu Cade Sầu Riêng</p>
-        {quantity !== 0 && <span className={cx('product__detail-price')}>10.000</span>}
-        {quantity === 0 && <button className={cx('product__detail-delete')}>Xóa</button>}
+        <p className={cx('product__detail-name')}>{data.name}</p>
+        {quantity !== 0 && (
+          <span className={cx('product__detail-price')}>{totalProductPrice.toLocaleString('vi-VN')} ₫</span>
+        )}
+        {quantity === 0 && (
+          <button onClick={() => removeFromCart(data.id)} className={cx('product__detail-delete')}>
+            Xóa
+          </button>
+        )}
       </div>
 
       <div className={cx('change-quantity', openChange ? 'change-quantity--show' : '')}></div>

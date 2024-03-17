@@ -8,13 +8,16 @@ import { I18nextProvider } from 'react-i18next';
 import i18n from './i18n';
 
 import GlobalStyles from '~/components/GlobalStyles';
+import BasketProvider from './contexts/BasketContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <I18nextProvider i18n={i18n}>
       <GlobalStyles>
-        <App />
+        <BasketProvider>
+          <App />
+        </BasketProvider>
       </GlobalStyles>
     </I18nextProvider>
   </React.StrictMode>,

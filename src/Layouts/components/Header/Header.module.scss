@@ -102,6 +102,22 @@
         display: none;
       }
     }
+
+    &-quantity {
+      position: absolute;
+      top: -12px;
+      left: -10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 25px;
+      height: 25px;
+      font-size: 1.2rem;
+      color: var(--primary-bg);
+      border-radius: 50%;
+      background-color: var(--white);
+      border: 1px solid var(--primary-bg);
+    }
   }
 
   &__languages {

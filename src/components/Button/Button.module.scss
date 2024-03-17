@@ -57,6 +57,31 @@
   &:hover {
     border-color: #f0efef;
   }
+
+  .icon + .title,
+  .title + .icon {
+    margin-left: 0px;
+  }
+}
+
+.haveProducts {
+  color: var(--white);
+  border-color: var(--primary-bg);
+  background-color: var(--primary-bg);
+
+  &:hover {
+    border-color: var(--primary-bg);
+  }
+
+  .icon + .title,
+  .title + .icon {
+    margin-left: 8px;
+  }
+
+  .icon {
+    filter: brightness(0) saturate(100%) invert(98%) sepia(2%) saturate(0%) hue-rotate(266deg) brightness(101%)
+      contrast(102%);
+  }
 }
 
 .checkout {
