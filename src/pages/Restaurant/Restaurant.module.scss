@@ -1,0 +1,14 @@
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 88px;
+}
+
+.restaurant {
+  width: 1320px;
+  padding: 0 15px;
+}

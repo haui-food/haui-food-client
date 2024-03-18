@@ -1,0 +1,29 @@
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
+
+.container {
+  .bread-scrum {
+    height: 24px;
+    color: #676767;
+    grid-area: auto;
+    letter-spacing: -0.64px;
+    line-height: 22px;
+
+    a {
+      color: #00a5cf;
+    }
+  }
+
+  .name {
+    color: #1c1c1c;
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 48px;
+    margin: 0 0 2px;
+  }
+}
+
+// a {
+//   color: #00a5cf;
+// }

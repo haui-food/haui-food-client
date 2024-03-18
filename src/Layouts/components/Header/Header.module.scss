@@ -25,6 +25,10 @@
   align-items: center;
   justify-content: space-between;
 
+  @include media-breakpoint-down(md) {
+    flex-direction: column;
+  }
+
   &__menu {
     display: none;
     padding: 11px 14px;
@@ -85,6 +89,30 @@
 
     @include media-breakpoint-down(md) {
       display: none;
+    }
+  }
+
+  &__search {
+    width: 798px;
+    height: 40px;
+    padding-left: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+    @include media-breakpoint-down(md) {
+      width: 100%;
+      flex-basis: 100%;
+      order: 3;
+    }
+
+    &--search-bar {
+      width: 358px;
+      height: 38px;
+      border: 1px solid #c5c5c5;
+      border-radius: 5px;
+      background: #fff;
+      padding: 0 24px;
     }
   }
 

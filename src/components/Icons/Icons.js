@@ -57,6 +57,23 @@ export const ArrowDownIcon = ({ width = '1.2rem', height = '1.2rem', className }
   </svg>
 );
 
+export const ArrowRightIcon = ({ width = '1.6rem', height = '1.6rem', className }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth="1.5"
+      stroke="currentColor"
+      width={width}
+      height={height}
+      className={className}
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+    </svg>
+  );
+};
+
 export const CloseIcon = ({ width = '2.4rem', height = '2.4rem', className }) => (
   <svg xmlns="http://www.w3.org/2000/svg" className={className} width={width} height={height} viewBox="0 0 24 24">
     <g fill="none" fillRule="evenodd">
