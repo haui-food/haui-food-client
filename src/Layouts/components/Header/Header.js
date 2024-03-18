@@ -127,7 +127,7 @@ function Header() {
 
           {/* Logo */}
           <Link to={routes.home}>
-            <img src={logo} alt="logo" className={cx('header__logo')} />
+            <img loading="lazy" src={logo} alt="logo" className={cx('header__logo')} />
           </Link>
 
           {/* Actions */}
@@ -145,28 +145,7 @@ function Header() {
                     id: 1,
                     name: 'Bánh Tiêu Cade Sầu Riêng',
                     image: images.banhtieusr,
-                    price: '10000',
-                    quantity: 1,
-                  });
-                  addToCart({
-                    id: 2,
-                    name: 'Bánh Tiêu Cade Sầu Riêng',
-                    image: images.banhtieusr,
-                    price: '10000',
-                    quantity: 1,
-                  });
-                  addToCart({
-                    id: 3,
-                    name: 'Bánh Tiêu Cade Sầu Riêng',
-                    image: images.banhtieusr,
-                    price: '10000',
-                    quantity: 1,
-                  });
-                  addToCart({
-                    id: 4,
-                    name: 'Bánh Tiêu Cade Sầu Riêng',
-                    image: images.banhtieusr,
-                    price: '10000',
+                    price: '30000',
                     quantity: 1,
                   });
                 }}
@@ -177,10 +156,16 @@ function Header() {
                 </Button>
               </div>
             )}
+            {/* Avatar */}
             {isLogin && (
               <div className={cx('header__actions-group')}>
                 <Link to={'#!'}>
-                  <img className={cx('header__actions-avatar')} src={images.avatarDefault} alt="avatar" />
+                  <img
+                    loading="lazy"
+                    className={cx('header__actions-avatar')}
+                    src={images.avatarDefault}
+                    alt="avatar"
+                  />
                 </Link>
               </div>
             )}
@@ -254,7 +239,7 @@ function Header() {
           <div className={cx('cart__container', !isProduct ? 'cart__container--center' : '')}>
             {!isProduct && (
               <div className={cx('cart__empty')}>
-                <img className={cx('cart__empty-img')} src={images.cart} alt="cart" />
+                <img loading="lazy" className={cx('cart__empty-img')} src={images.cart} alt="cart" />
                 <h5 className={cx('cart__empty-title')}>{t('cart.title02')}</h5>
                 <p className={cx('cart__empty-desc')}>{t('cart.desc02')}</p>
                 <button onClick={handleCloseCart} className={cx('cart__empty-btn')}>

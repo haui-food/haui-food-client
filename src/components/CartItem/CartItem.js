@@ -15,6 +15,7 @@ function CartItem({ data }) {
   const [changeQuantity, setChangeQuantity] = useState(data.quantity);
 
   const totalProductPrice = data.price * quantity;
+  const newTotalPrice = cartItems.totalPrice + totalProductPrice;
 
   const handleIncreasedQuantities = useCallback(() => {
     setQuantity((preQuantity) => {
@@ -27,11 +28,14 @@ function CartItem({ data }) {
         return cartItem;
       });
 
+      if (newTotalPrice < 2000000) {
+        updateCartItems(newCartItems);
+        return newQuantity;
+      }
       updateCartItems(newCartItems);
-
-      return newQuantity;
+      return preQuantity;
     });
-  }, [cartItems, data.id, updateCartItems]);
+  }, [cartItems, data.id, updateCartItems, newTotalPrice]);
 
   const handleReducedQuantities = () => {
     if (quantity > 1) {
@@ -65,14 +69,16 @@ function CartItem({ data }) {
   };
 
   const handleUpdateQuantity = () => {
-    setQuantity(changeQuantity);
-    const newCartItems = cartItems.items.map((cartItem) => {
-      if (cartItem.id === data.id) {
-        return { ...cartItem, quantity: changeQuantity };
-      }
-      return cartItem;
-    });
-    updateCartItems(newCartItems);
+    if (newTotalPrice < 2000000) {
+      setQuantity(changeQuantity);
+      const newCartItems = cartItems.items.map((cartItem) => {
+        if (cartItem.id === data.id) {
+          return { ...cartItem, quantity: changeQuantity };
+        }
+        return cartItem;
+      });
+      updateCartItems(newCartItems);
+    }
   };
 
   useEffect(() => {

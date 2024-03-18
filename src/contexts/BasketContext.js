@@ -1,4 +1,5 @@
-import { createContext, useState, useEffect, useContext } from 'react';
+import { createContext, useState, useEffect, useContext, useCallback } from 'react';
+import { toast } from 'react-toastify';
 
 const BasketContext = createContext();
 
@@ -33,13 +34,24 @@ const BasketProvider = ({ children }) => {
           item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item,
         );
         const newQuantity = prevItems.items.reduce((total, item) => total + item.quantity, 0) + 1;
-        const newTotalPrice = prevItems.totalPrice + product.price;
+        const newTotalPrice = +(Number(prevItems.totalPrice) + Number(product.price));
+
+        console.log(newTotalPrice);
+        if (newTotalPrice >= 2000000) {
+          toast.warning('Giỏ hàng đã đầy, vui lòng thanh toán');
+          return prevItems;
+        }
         return { items: newItems, quantity: newQuantity, totalPrice: newTotalPrice };
       } else {
         // Nếu sản phẩm chưa tồn tại, thêm vào giỏ hàng
         const newItems = [...prevItems.items, { ...product, quantity: 1 }];
         const newQuantity = prevItems.items.reduce((total, item) => total + item.quantity, 0) + 1;
-        const newTotalPrice = prevItems.totalPrice + product.price;
+        const newTotalPrice = +(Number(prevItems.totalPrice) + Number(product.price));
+
+        if (newTotalPrice >= 2000000) {
+          toast.warning('Giỏ hàng đã đầy, vui lòng thanh toán');
+          return prevItems;
+        }
         return { items: newItems, quantity: newQuantity, totalPrice: newTotalPrice };
       }
     });
@@ -48,6 +60,13 @@ const BasketProvider = ({ children }) => {
   const updateCartItems = (newCartItems) => {
     const totalPrice = newCartItems.reduce((total, product) => total + product.price * product.quantity, 0);
     const totalQuantity = newCartItems.reduce((total, product) => total + product.quantity, 0);
+
+    if (totalPrice >= 2000000) {
+      toast.warning('Giỏ hàng đã đầy, vui lòng thanh toán');
+      return;
+    }
+
+    // Cập nhật trạng thái cartItems chỉ khi giá trị tổng không vượt quá 2000000
     setCartItems({ items: newCartItems, quantity: totalQuantity, totalPrice: totalPrice });
   };
 
