@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, useContext, useCallback } from 'react';
+import { createContext, useState, useEffect, useContext } from 'react';
 import { toast } from 'react-toastify';
 
 const BasketContext = createContext();
