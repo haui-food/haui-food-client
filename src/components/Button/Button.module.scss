@@ -80,7 +80,9 @@
   color: var(--secondary-text-color);
   width: 100%;
   height: 48px;
+  font-weight: 600;
   border: 1px solid var(--secondary-text-color);
+  transition: all 0.5s;
   &:hover {
     border-color: var(--primary-color);
     color: var(--primary-color);
