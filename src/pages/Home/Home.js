@@ -7,12 +7,30 @@ import Banner from '~/components/Banner/Banner';
 import ListPromo from '~/components/ListPromo/ListPromo';
 import Button from '~/components/Button/Button';
 import ListCategorise from '~/components/ListCategorise/ListCategorise';
-import { CheckIcon } from '~/components/Icons';
+import { CheckIcon, LoadingIcon, TrashIcon } from '~/components/Icons';
 import images from '~/assets/images';
+import { useState, useRef, useEffect } from 'react';
+import ListResutl from '~/components/ListResult/ListResult';
 
 const cx = classNames.bind(styles);
 
 function Home() {
+  const [isSearch, setIsSearch] = useState('false');
+  const [searchResult, setSearchResult] = useState([]);
+  const [page, setPage] = useState(1);
+  const loadingRef = useRef();
+  const handleToggleSearch = (type) => {
+    setIsSearch(type);
+  };
+
+  const hanldeSearchResult = (searchResult) => {
+    setSearchResult(searchResult);
+  };
+
+  const handleChangePage = (value) => {
+    setPage(value);
+  };
+  // console.log(page);
   const { t } = useTranslation();
   const listReasons = [
     {
@@ -41,13 +59,51 @@ function Home() {
       text: t('home.reasonText05'),
     },
   ];
+
+  useEffect(() => {
+    console.log('loading ref', loadingRef);
+    if (loadingRef.current) {
+      loadingRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }, [page]);
+
   return (
     <div className={cx('home')}>
       <div>
-        <Banner />
+        <Banner onSearch={handleToggleSearch} onSearchResult={hanldeSearchResult} onPage={page} />
       </div>
       <div className={cx('sparate')}></div>
       <div className={cx('container')}>
+        {isSearch === 'loading' && (
+          <div className={cx('home__search-loading-container')}>
+            <LoadingIcon className={cx('home__loading-icon')} />
+          </div>
+        )}
+        {/* {isSearch === 'loading' && ( */}
+        <div
+          ref={loadingRef}
+          className={cx(
+            { 'home__search-result-loading': isSearch === 'loading' },
+            'home__search-result-container',
+            { 'home__search-result-show': isSearch === 'true' },
+            { 'home__search-result-hidden': isSearch === 'false' },
+          )}
+        >
+          <div className={cx('home__search-title')}>
+            <div className={cx('home__title-1')}>Search Result</div>
+            <div
+              className={cx('home__title-1')}
+              onClick={() => {
+                handleToggleSearch('false');
+              }}
+            >
+              <TrashIcon className={cx('home__trash-icon')} />
+            </div>
+          </div>
+          <ListResutl data={searchResult} onChangePage={handleChangePage} />
+        </div>
+        {/* )} */}
+
         <h1 className={cx('home__title-1')}>
           {t('home.title01')} <span className={cx('home__title-1--highlight')}>Haui</span>
         </h1>
@@ -100,10 +156,8 @@ function Home() {
                   className={cx('banner-footer__left-img')}
                 />
 
-                <div className={cx('banner-footer__title')}>Curated restaurants</div>
-                <p className={cx('banner-footer__desc')}>
-                  From small bites to big meals, we won't limit your appetite. Go ahead and order all you want.
-                </p>
+                <div className={cx('banner-footer__title')}>{t('home.title05')}</div>
+                <p className={cx('banner-footer__desc')}>{t('home.desc02')}</p>
               </div>
             </div>
             <div className={cx('col-md-6 col-12')}>
@@ -113,10 +167,8 @@ function Home() {
                   alt="HauiFood"
                   className={cx('banner-footer__right-img')}
                 />
-                <div className={cx('banner-footer__title')}>More cool features available on the app</div>
-                <p className={cx('banner-footer__desc')}>
-                  Download Grab app to use other payment methods and enjoy seamless communication with your driver.
-                </p>
+                <div className={cx('banner-footer__title')}>{t('home.title06')}</div>
+                <p className={cx('banner-footer__desc')}>{t('home.desc03')}</p>
 
                 <div className={cx('banner-footer__logo-container')}>
                   <img src={images.appStore} className={cx('banner-footer__logo')} alt="" />

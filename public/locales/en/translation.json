@@ -34,6 +34,8 @@
     "title02": "There's something for everyone!",
     "title03": "Why HauiFood?",
     "title04": "Frequently Asked Questions",
+    "title05": "Curated restaurants",
+    "title06": "More cool features available on the app",
     "reasonKeyword01": "Quickest",
     "reasonKeyword02": "Easiest",
     "reasonKeyword03": "Food for all cravings",
@@ -45,7 +47,9 @@
     "reasonText04": " It’s easy to get your meals delivered to you. It’s even easier to pay for it with HauiFoodPay.",
     "reasonText05": "Earn HauiFoodRewards points for every order you make and use them to redeem more goodies.",
     "subtitle": "What is GrabFood?",
-    "desc01": "HauiFood is the fastest Food Delivery service in Vietnam. We have curated all your favorite dishes, restaurants, and cuisines to help you grab your food in the easiest & quickest way possible. Find and order your favorite cuisines across Vietnam - order food online in just a few taps, from Lifted Coffee & Brunch - Hàng Gà for Breakfast, Maazi Indian - Nhà Hàng Ấn Độ for Lunch, Bún Cá Chấm Gốc Đa - Vũ Thạnh for Dinner! We are here to satisfy your hunger with a wide selection of merchant partners in Vietnam."
+    "desc01": "HauiFood is the fastest Food Delivery service in Vietnam. We have curated all your favorite dishes, restaurants, and cuisines to help you grab your food in the easiest & quickest way possible. Find and order your favorite cuisines across Vietnam - order food online in just a few taps, from Lifted Coffee & Brunch - Hàng Gà for Breakfast, Maazi Indian - Nhà Hàng Ấn Độ for Lunch, Bún Cá Chấm Gốc Đa - Vũ Thạnh for Dinner! We are here to satisfy your hunger with a wide selection of merchant partners in Vietnam.",
+    "desc02": "From small bites to big meals, we won't limit your appetite. Go ahead and order all you want.",
+    "desc03": "Download Grab app to use other payment methods and enjoy seamless communication with your driver."
   },
   "home-banner": {
     "placeholder": "Type your food here",

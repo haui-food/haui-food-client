@@ -1,11 +1,13 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import classNames from 'classnames/bind';
 import styles from './Banner.module.scss';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { SearchIcon } from '../Icons';
+import { LoadingIcon, SearchIcon, CircleCloseIcon } from '../Icons';
+// import { useDebounce } from '~/hooks';
 const cx = classNames.bind(styles);
 
 const listBanner = [
@@ -13,10 +15,51 @@ const listBanner = [
   'https://food.grab.com/static/page-home/VN-new-2.jpg',
   'https://food.grab.com/static/page-home/VN-new-3.jpg',
 ];
-function Banner({ className }) {
+function Banner({ className, onSearch, onSearchResult, onPage }) {
+  const { t } = useTranslation();
   const [bannerPath, setBannerPath] = useState(1);
   const [greeting, setGreeting] = useState('');
-  const { t } = useTranslation();
+  const [searchValue, setSearchValue] = useState('');
+  const [searchResult, setSearchResult] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+  const inputRef = useRef();
+
+  // console.log('banner', onPage);
+
+  const fetchApi = async () => {
+    setIsLoading(true);
+    onSearch('loading');
+    onSearchResult(searchResult);
+    // const url = `https://api.mockfly.dev/mocks/b4cb85f6-7fe5-4258-85f4-1a73d7eef7f1/product${onPage}`;
+    const url = `https://testapi.io/api/lenghia0183/product${onPage}`;
+    const result = await fetch(url)
+      .then((respone) => {
+        return respone.json();
+      })
+      .catch((err) => {
+        alert(err);
+      });
+
+    console.log(result);
+    onSearchResult(result);
+    onSearch('true');
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    console.log(isMounted);
+    if (isMounted) {
+      fetchApi();
+    }
+  }, [onPage]);
+
+  const handleClick = () => {
+    if (!searchValue.trim()) {
+      return setSearchResult([]);
+    }
+    fetchApi();
+  };
 
   useEffect(() => {
     const date = new Date();
@@ -33,8 +76,31 @@ function Banner({ className }) {
 
   useEffect(() => {
     const randomPath = Math.floor(Math.random() * 3);
-    // console.log(randomPath);
+
     setBannerPath(randomPath);
+  }, []);
+
+  const handleChange = (e) => {
+    const searchValue = e.target.value;
+
+    if (!searchValue.startsWith(' ')) {
+      setSearchValue(searchValue);
+    }
+  };
+
+  const handleClear = () => {
+    if (isLoading) {
+      return;
+    }
+    setSearchValue('');
+    inputRef.current.focus();
+  };
+
+  useEffect(() => {
+    setIsMounted(true); // Thiết lập mounted là true khi component mount
+    return () => {
+      setIsMounted(false); // Reset mounted là false khi component unmount
+    };
   }, []);
 
   return (
@@ -46,18 +112,34 @@ function Banner({ className }) {
             <div className={cx('banner__caption')}>HauiFood Absolutely Good for You!</div>
             <div className={cx('banner__search-container')}>
               <input
+                ref={inputRef}
                 id="banner-search"
                 name="banner-search"
                 type="text"
                 placeholder=""
+                value={searchValue}
+                onChange={handleChange}
                 className={cx('banner__input-search')}
               />
               <label className={cx('banner__search-label')} htmlFor="banner-search">
                 {t('home-banner.placeholder')}
               </label>
-              <SearchIcon className={cx('search-icon')} />
+
+              {searchValue && (
+                <div onClick={handleClear}>
+                  <CircleCloseIcon className={cx('close-icon')} />
+                </div>
+              )}
+              {!isLoading && (
+                <div onClick={handleClick}>
+                  <SearchIcon className={cx('search-icon')} />
+                </div>
+              )}
+              {isLoading && <LoadingIcon className={cx('search-icon', 'banner__search-spinning-icon')} />}
             </div>
-            <button className={cx('banner__search-btn')}>{t('home-banner.btn01')}</button>
+            <button onClick={handleClick} className={cx('banner__search-btn')}>
+              {t('home-banner.btn01')}
+            </button>
           </div>
         </div>
       </div>
