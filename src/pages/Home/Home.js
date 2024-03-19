@@ -19,6 +19,7 @@ function Home() {
   const [searchResult, setSearchResult] = useState([]);
   const [page, setPage] = useState(1);
   const loadingRef = useRef();
+
   const handleToggleSearch = (type) => {
     setIsSearch(type);
   };
@@ -60,10 +61,15 @@ function Home() {
     },
   ];
 
+  // scroll lên đầu trang khi chọn trang khác
   useEffect(() => {
     console.log('loading ref', loadingRef);
+    const isMoblie = window.matchMedia('(max-width: 960px)');
     if (loadingRef.current) {
       loadingRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      if (isMoblie.matches) {
+        loadingRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }
   }, [page]);
 
@@ -127,7 +133,7 @@ function Home() {
             const Icon = reason.icon || <></>;
 
             return (
-              <div className={cx('reason-item')}>
+              <div className={cx('reason-item')} key={index}>
                 <Icon className={cx('reason-item__check-icon')} />
                 <p className={cx('reason-item__text')}>
                   <span className={cx('reason-item__keyword')}>{reason.keyword}</span> - {reason.text}

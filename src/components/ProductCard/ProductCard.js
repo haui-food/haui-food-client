@@ -32,7 +32,7 @@ function ProductCard({ data, className }) {
           <div className={cx('product-card__rating')}>{data.rating}</div>
           <div className={cx('star-container')}>
             {stars.map((star, index) => {
-              return star;
+              return <span key={index}>{star}</span>;
             })}
           </div>
           <div className={cx('product-card__rating')}>Reviews</div>

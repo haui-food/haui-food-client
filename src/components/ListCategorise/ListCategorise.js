@@ -57,7 +57,7 @@ function ListCategorise() {
   return (
     <div className={cx('list-categorise', 'row')}>
       {data.map((item, index) => (
-        <div className={cx('col-xl-3 col-6')}>
+        <div key={index} className={cx('col-xl-3 col-6')}>
           <div className={cx('list-categorise__item')} key={index}>
             <img className={cx('category-img')} src={item.image} alt={item.name} />
             <span className={cx('category-name')}>{item.name}</span>

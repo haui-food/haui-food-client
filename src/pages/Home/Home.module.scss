@@ -3,7 +3,7 @@
 @import 'bootstrap/scss/mixins';
 
 .home {
-  scroll-behavior: smooth scroll;
+  scroll-behavior: smooth;
 
   &__title-1,
   &__title-2,
@@ -135,6 +135,7 @@
     height: 40px;
     margin-right: 30px;
     color: var(--secondary-text-color);
+    cursor: pointer;
   }
 
   &__search-title {
