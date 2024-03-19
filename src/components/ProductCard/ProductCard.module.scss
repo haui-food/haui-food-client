@@ -7,6 +7,39 @@
   padding-left: 10px;
   padding-right: 10px;
   height: 100%;
+  position: relative;
+
+  &__label {
+    background-color: var(--primary-color);
+    position: absolute;
+    top: 15px;
+    // left: -1px;
+    color: var(--white);
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 3px 5px 3px 3px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+
+    &::before {
+      content: '';
+      width: 5px;
+      height: 100%;
+      top: 0;
+      left: -3px;
+      background-color: var(--primary-color);
+      position: absolute;
+    }
+
+    &-tail {
+      width: 0;
+      border-top: 3px solid #008c3f;
+      border-left: 3px solid transparent;
+      position: absolute;
+      bottom: -3px;
+      left: -3px;
+    }
+  }
 
   &__img {
     width: 100%;

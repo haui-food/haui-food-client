@@ -18,6 +18,11 @@ function ProductCard({ data, className }) {
 
   return (
     <div className={cx('product-card', className)}>
+      <div className={cx('product-card__label')}>
+        <span className={cx('product-card__label-text')}>HFood</span>
+        <div className={cx('product-card__label-tail')}></div>
+      </div>
+
       <img src={data.image} className={cx('product-card__img')} alt="" />
       <div className={cx('product-card__content')}>
         <div className={cx('product-card__name')}>{data.name}</div>

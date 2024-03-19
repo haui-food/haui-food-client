@@ -1,4 +1,5 @@
 {
+  "title": "HaUI Food | Ứng dụng đặt đồ ăn trực tuyến tại HaUI",
   "header": {
     "na01": "Trang chủ",
     "na02": "Đăng nhập/Đăng kí"
@@ -33,6 +34,8 @@
     "title02": "There's something for everyone!",
     "title03": "Vì sao bạn nên Order trên HauiFood?",
     "title04": "Những câu hỏi thường gặp",
+    "title05": "Nhà hàng tuyển chọn",
+    "title06": "Nhiều tính năng thú vị hơn có sẵn trên ứng dụng của chúng tôi",
     "reasonKeyword01": "Nhanh nhất",
     "reasonKeyword02": "Dễ dàng nhất",
     "reasonKeyword03": "Đáp ứng mọi nhu cầu",
@@ -44,7 +47,9 @@
     "reasonText04": "HauiFood cung cấp dịch vụ giao đồ ăn nhanh nhất thị trườngGiao và nhận đồ ăn thật dễ dàng. Thanh toán bằng GrabPay thậm chí còn dễ dàng hơn nữa.",
     "reasonText05": "Tích điểm HauiFoodRewards cho mỗi đơn hàng của bạn và sử dụng điểm thưởng để đổi lấy nhiều ưu đãi hơn.",
     "subtitle": "HauiFood là gì?",
-    "desc01": "Lunch, Bún Cá Chấm Gốc Đa - Vũ Thạnh for Dinner! We are here to satisfy your hunger with a wide selection of merchant partners in Vietnam. HauiFood là dịch vụ Giao đồ ăn nhanh nhất tại Việt Nam. Chúng tôi đã sắp xếp tất cả các món ăn, nhà hàng và thực phẩm yêu thích của bạn một cách hợp lý để giúp bạn tìm được đồ ăn dễ dàng và nhanh chóng nhất có thể. Tìm và đặt món ăn yêu thích trên khắp Việt Nam - đặt đồ ăn trực tuyến chỉ bằng vài thao tác, từ món Lifted Coffee & Brunch cho bữa sáng, đến Maazi Indian – Nhà Hàng Ấn Độ cho bữa trưa, đến Bún Cá Chấm Gốc Đa – Vũ Thạnh cho bữa tối! Hãy để chúng tôi xua tan cơn đói của bạn nhờ một loạt đối tác bán đồ ăn ở Việt Nam."
+    "desc01": "Lunch, Bún Cá Chấm Gốc Đa - Vũ Thạnh for Dinner! We are here to satisfy your hunger with a wide selection of merchant partners in Vietnam. HauiFood là dịch vụ Giao đồ ăn nhanh nhất tại Việt Nam. Chúng tôi đã sắp xếp tất cả các món ăn, nhà hàng và thực phẩm yêu thích của bạn một cách hợp lý để giúp bạn tìm được đồ ăn dễ dàng và nhanh chóng nhất có thể. Tìm và đặt món ăn yêu thích trên khắp Việt Nam - đặt đồ ăn trực tuyến chỉ bằng vài thao tác, từ món Lifted Coffee & Brunch cho bữa sáng, đến Maazi Indian – Nhà Hàng Ấn Độ cho bữa trưa, đến Bún Cá Chấm Gốc Đa – Vũ Thạnh cho bữa tối! Hãy để chúng tôi xua tan cơn đói của bạn nhờ một loạt đối tác bán đồ ăn ở Việt Nam.",
+    "desc02": "Từ những bứa ăn nhỏ đến những bữa ăn to lớn, chúng tôi không giới hạn sự thèm muốn của bạn. Hãy yên tâm và đặt tất cả những gì bạn muốn.",
+    "desc03": "Tải xuống ứng dụng của chúng tôi để sử dụng các phương thức thanh toán khác và tận hưởng khả năng liên lạc liền mạch với tài xế của bạn."
   },
   "home-banner": {
     "placeholder": "Nhập món bạn muốn tìm kiếm",

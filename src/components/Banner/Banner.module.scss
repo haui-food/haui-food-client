@@ -80,13 +80,22 @@
       transform: translateY(-50%);
       right: 10px;
     }
+
+    & .close-icon {
+      width: 16px;
+      height: 16px;
+      position: absolute;
+      top: 50%;
+      right: 55px;
+      transform: translateY(-50%);
+    }
   }
 
   &__input-search {
     width: 100%;
     border: 1px solid #c5c5c5;
     display: block;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     padding-top: 6px;
     padding-bottom: 6px;
     padding-right: 50px;
@@ -94,7 +103,7 @@
     height: 48px;
     background-color: transparent;
     border-radius: 4px;
-
+    color: var(--text-color);
     &:not(:placeholder-shown) ~ .banner__search-label {
       display: none;
     }
@@ -105,6 +114,19 @@
     top: 50%;
     left: 17px;
     transform: translateY(-50%);
+  }
+
+  &__search-spinning-icon {
+    animation: spin 1s linear infinite;
+
+    @keyframes spin {
+      from {
+        transform: translateY(-50%) rotate(0deg);
+      }
+      to {
+        transform: translateY(-50%) rotate(360deg);
+      }
+    }
   }
 
   &__search-btn {
