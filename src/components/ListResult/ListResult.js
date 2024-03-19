@@ -10,8 +10,6 @@ function ListResutl({ data, className, onChangePage }) {
   }
 
   const handlePageChange = (event) => {
-    // window.scrollTo(0, 0); // Cuộn lên đầu trang
-
     onChangePage(event.selected + 1);
   };
 

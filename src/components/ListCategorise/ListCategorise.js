@@ -1,6 +1,7 @@
 import classNames from 'classnames/bind';
 
 import styles from './ListCategorise.module.scss';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -57,12 +58,14 @@ function ListCategorise() {
   return (
     <div className={cx('list-categorise', 'row')}>
       {data.map((item, index) => (
-        <div key={index} className={cx('col-xl-3 col-6')}>
-          <div className={cx('list-categorise__item')} key={index}>
-            <img className={cx('category-img')} src={item.image} alt={item.name} />
-            <span className={cx('category-name')}>{item.name}</span>
+        <Link to={`category/${item.name}`} key={index} className={cx('col-xl-3 col-6')}>
+          <div>
+            <div className={cx('list-categorise__item')} key={index}>
+              <img className={cx('category-img')} src={item.image} alt={item.name} />
+              <span className={cx('category-name')}>{item.name}</span>
+            </div>
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   );
