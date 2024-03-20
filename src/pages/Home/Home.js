@@ -4,13 +4,14 @@ import { useTranslation } from 'react-i18next';
 import styles from './Home.module.scss';
 
 import Banner from '~/components/Banner/Banner';
-import ListPromo from '~/components/ListPromo/ListPromo';
+import ListSlider from '~/components/ListSlider/ListSlider';
 import Button from '~/components/Button/Button';
 import ListCategorise from '~/components/ListCategorise/ListCategorise';
-import { CheckIcon, LoadingIcon, TrashIcon } from '~/components/Icons';
+import { CheckIcon, TrashIcon } from '~/components/Icons';
 import images from '~/assets/images';
 import { useState, useRef, useEffect } from 'react';
 import ListResutl from '~/components/ListResult/ListResult';
+import Loader from '~/components/Loader';
 
 const cx = classNames.bind(styles);
 
@@ -82,7 +83,7 @@ function Home() {
       <div className={cx('container')}>
         {isSearch === 'loading' && (
           <div className={cx('home__search-loading-container')}>
-            <LoadingIcon className={cx('home__loading-icon')} />
+            <Loader className={cx('home__loading-icon')} />
           </div>
         )}
         {/* {isSearch === 'loading' && ( */}
@@ -115,7 +116,7 @@ function Home() {
         </h1>
 
         <div>
-          <ListPromo />
+          <ListSlider />
         </div>
 
         <Button large className={cx('home__btn')}>

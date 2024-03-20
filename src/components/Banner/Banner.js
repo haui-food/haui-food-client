@@ -30,7 +30,7 @@ function Banner({ className, onSearch, onSearchResult, onPage }) {
     onSearch('loading');
     onSearchResult(searchResult);
     // const url = `https://api.mockfly.dev/mocks/b4cb85f6-7fe5-4258-85f4-1a73d7eef7f1/product${onPage}`;
-    const url = `https://testapi.io/api/lenghia0183/product${onPage}`;
+    const url = `https://testapi.io/api/lenghia0108/product${onPage}`;
     const result = await fetch(url)
       .then((respone) => {
         return respone.json();

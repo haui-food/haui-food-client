@@ -27,7 +27,7 @@ function ProductCard({ data, className }) {
       <div className={cx('product-card__content')}>
         <div className={cx('product-card__name')}>{data.name}</div>
 
-        <div className={cx('product-card__categorise')}>{data.categorise}</div>
+        <div className={cx('product-card__categorise')}>{data.category}</div>
         <div className={cx('product-card__rating-container')}>
           <div className={cx('product-card__rating')}>{data.rating}</div>
           <div className={cx('star-container')}>

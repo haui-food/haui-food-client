@@ -5,6 +5,12 @@ import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
+function nomalizeString(str) {
+  return str
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase();
+}
 const data = [
   {
     image:
@@ -58,7 +64,7 @@ function ListCategorise() {
   return (
     <div className={cx('list-categorise', 'row')}>
       {data.map((item, index) => (
-        <Link to={`category/${item.name}`} key={index} className={cx('col-xl-3 col-6')}>
+        <Link to={`category/${nomalizeString(item.name)}`} key={index} className={cx('col-xl-3 col-6')}>
           <div>
             <div className={cx('list-categorise__item')} key={index}>
               <img className={cx('category-img')} src={item.image} alt={item.name} />
