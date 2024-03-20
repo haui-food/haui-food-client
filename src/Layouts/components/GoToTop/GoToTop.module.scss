@@ -1,0 +1,30 @@
+.go-top {
+  position: fixed;
+  top: 90vh;
+  right: 2vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--primary-bg);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity, visibility;
+  transition-duration: 0.2s;
+
+  &__icon {
+    width: 2.2rem;
+    height: 2.2rem;
+    rotate: 180deg;
+    filter: brightness(0) saturate(100%) invert(93%) sepia(0%) saturate(0%) hue-rotate(212deg) brightness(106%)
+      contrast(106%);
+  }
+
+  &--show {
+    opacity: 1;
+    visibility: visible;
+  }
+}
