@@ -108,7 +108,9 @@
   font-weight: 600;
   border: 1px solid var(--secondary-text-color);
   transition: all 0.5s;
+  cursor: pointer;
   &:hover {
+    cursor: pointer;
     border-color: var(--primary-color);
     color: var(--primary-color);
   }

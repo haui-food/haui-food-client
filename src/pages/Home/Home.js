@@ -4,13 +4,14 @@ import { useTranslation } from 'react-i18next';
 import styles from './Home.module.scss';
 
 import Banner from '~/components/Banner/Banner';
-import ListPromo from '~/components/ListPromo/ListPromo';
+import ListSlider from '~/components/ListSlider/ListSlider';
 import Button from '~/components/Button/Button';
 import ListCategorise from '~/components/ListCategorise/ListCategorise';
-import { CheckIcon, LoadingIcon, TrashIcon } from '~/components/Icons';
+import { CheckIcon, TrashIcon } from '~/components/Icons';
 import images from '~/assets/images';
 import { useState, useRef, useEffect } from 'react';
 import ListResutl from '~/components/ListResult/ListResult';
+import Loader from '~/components/Loader';
 
 const cx = classNames.bind(styles);
 
@@ -19,6 +20,7 @@ function Home() {
   const [searchResult, setSearchResult] = useState([]);
   const [page, setPage] = useState(1);
   const loadingRef = useRef();
+
   const handleToggleSearch = (type) => {
     setIsSearch(type);
   };
@@ -60,10 +62,15 @@ function Home() {
     },
   ];
 
+  // scroll lên đầu trang khi chọn trang khác
   useEffect(() => {
     console.log('loading ref', loadingRef);
+    const isMoblie = window.matchMedia('(max-width: 960px)');
     if (loadingRef.current) {
       loadingRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      if (isMoblie.matches) {
+        loadingRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }
   }, [page]);
 
@@ -76,7 +83,7 @@ function Home() {
       <div className={cx('container')}>
         {isSearch === 'loading' && (
           <div className={cx('home__search-loading-container')}>
-            <LoadingIcon className={cx('home__loading-icon')} />
+            <Loader className={cx('home__loading-icon')} />
           </div>
         )}
         {/* {isSearch === 'loading' && ( */}
@@ -109,7 +116,7 @@ function Home() {
         </h1>
 
         <div>
-          <ListPromo />
+          <ListSlider />
         </div>
 
         <Button large className={cx('home__btn')}>
@@ -127,7 +134,7 @@ function Home() {
             const Icon = reason.icon || <></>;
 
             return (
-              <div className={cx('reason-item')}>
+              <div className={cx('reason-item')} key={index}>
                 <Icon className={cx('reason-item__check-icon')} />
                 <p className={cx('reason-item__text')}>
                   <span className={cx('reason-item__keyword')}>{reason.keyword}</span> - {reason.text}

@@ -5,29 +5,31 @@ import ReactPaginate from 'react-paginate';
 const cx = classNames.bind(style);
 
 function ListResutl({ data, className, onChangePage }) {
-  if (!Array.isArray(data.data)) {
+  // console.log('data list', data);
+
+  if (data === undefined || !Array.isArray(data.data) || data.length === 0) {
     return <h1>Khong co ket qua</h1>;
   }
 
   const handlePageChange = (event) => {
-    // window.scrollTo(0, 0); // Cuộn lên đầu trang
-
     onChangePage(event.selected + 1);
   };
 
   return (
     <div className={cx('list')}>
-      <div className={cx('list-container')}>
-        <div className={cx('row gy-5')}>
-          {data.data.map((item, index) => {
-            return (
-              <div key={index} className={cx('col-xl-3 col-6')}>
-                <ProductCard data={item} />
-              </div>
-            );
-          })}
+      {data && (
+        <div className={cx('list-container')}>
+          <div className={cx('row gy-5')}>
+            {data.data.map((item, index) => {
+              return (
+                <div key={index} className={cx('col-xl-3 col-6')}>
+                  <ProductCard data={item} />
+                </div>
+              );
+            })}
+          </div>
         </div>
-      </div>
+      )}
       <div className={cx('pagination-container')}>
         <ReactPaginate
           previousLabel="Previous"
