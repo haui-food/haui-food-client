@@ -52,14 +52,16 @@ function Header() {
   };
 
   useEffect(() => {
+    console.log(headerRef);
     window.onscroll = () => {
       if (window.innerWidth >= 768) {
         if (window.scrollY > 1) {
-          headerRef.current.style.backgroundColor = '#fff';
-          headerRef.current.style.boxShadow = 'rgba(0, 0, 0, 0.1) 0px 2px 4px 0px';
+          console.log(headerRef);
+          // headerRef.current.style.backgroundColor = '#fff';
+          // headerRef.current.style.boxShadow = 'rgba(0, 0, 0, 0.1) 0px 2px 4px 0px';
         } else {
-          headerRef.current.style.backgroundColor = 'transparent';
-          headerRef.current.style.boxShadow = 'none';
+          // headerRef.current.style.backgroundColor = 'transparent';
+          // headerRef.current.style.boxShadow = 'none';
         }
       }
     };

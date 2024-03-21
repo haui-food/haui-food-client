@@ -2,13 +2,99 @@
 @import 'bootstrap/scss/variables';
 @import 'bootstrap/scss/mixins';
 
-.wrapper {
+.container {
+  margin-top: 88px;
   display: flex;
   justify-content: center;
-  margin-top: 88px;
+  width: 100%;
+  padding: 0 10rem;
+  background-color: #f7f7f7;
+
+  @include media-breakpoint-down(md) {
+    padding: 1rem;
+    margin: 0;
+  }
+
+  .restaurant {
+    width: 100%;
+    background-color: #f7f7f7;
+
+    &__footer {
+      text-align: center;
+      font-size: 12px;
+      margin: 73px 0 26px 0;
+
+      @include media-breakpoint-down(md) {
+        margin: 25px 0 26px 0;
+      }
+      a {
+        color: #00a5cf;
+      }
+    }
+  }
 }
 
-.restaurant {
-  width: 1320px;
-  padding: 0 15px;
+.productCard {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+
+  h2 {
+    grid-column: span 3;
+    font-size: 36px;
+    font-weight: 600;
+    margin: 71px 0 24px 0;
+  }
+  @include media-breakpoint-down(md) {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+
+    h2 {
+      grid-column: span 1;
+      font-size: 24px;
+      margin: 32px 0 24px 0;
+    }
+  }
+
+  &__detail {
+    background-color: white;
+    border-radius: 6px;
+    padding: 15px;
+    display: flex;
+
+    &--img {
+      width: 316px;
+      padding: 0 15px 0 0;
+      img {
+        width: 120px;
+        height: 120px;
+        border-radius: 5px;
+
+        @include media-breakpoint-down(md) {
+          width: 97px;
+          height: 97px;
+          border-radius: 5px;
+        }
+      }
+    }
+
+    &--description {
+      &--content {
+        &--title {
+          color: 14px;
+        }
+
+        &--describe {
+          color: #9a9a9a;
+          font-size: 14px;
+          margin: 6px 0 0 0;
+
+          @include media-breakpoint-down(md) {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
 }

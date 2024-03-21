@@ -1,6 +1,6 @@
 const routes = {
   home: '/',
-  restaurant: '/restaurant',
+  restaurant: '/restaurants/:restaurantid',
 };
 
 export default routes;

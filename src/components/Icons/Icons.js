@@ -1,3 +1,27 @@
+export const TrashIcon = ({ className }) => {
+  return (
+    <svg fill="currentColor" className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+      <path d="M170.5 51.6L151.5 80h145l-19-28.4c-1.5-2.2-4-3.6-6.7-3.6H177.1c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80H368h48 8c13.3 0 24 10.7 24 24s-10.7 24-24 24h-8V432c0 44.2-35.8 80-80 80H112c-44.2 0-80-35.8-80-80V128H24c-13.3 0-24-10.7-24-24S10.7 80 24 80h8H80 93.8l36.7-55.1C140.9 9.4 158.4 0 177.1 0h93.7c18.7 0 36.2 9.4 46.6 24.9zM80 128V432c0 17.7 14.3 32 32 32H336c17.7 0 32-14.3 32-32V128H80zm80 64V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16z" />
+    </svg>
+  );
+};
+
+export const CircleCloseIcon = ({ className }) => {
+  return (
+    <svg fill="currentColor" className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+      <path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c-9.4 9.4-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0z" />
+    </svg>
+  );
+};
+
+export const LoadingIcon = ({ className }) => {
+  return (
+    <svg fill="currentColor" className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+      <path d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z" />
+    </svg>
+  );
+};
+
 export const CheckIcon = ({ className }) => {
   return (
     <svg fill="currentColor" className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -57,19 +81,20 @@ export const ArrowDownIcon = ({ width = '1.2rem', height = '1.2rem', className }
   </svg>
 );
 
-export const ArrowRightIcon = ({ width = '1.6rem', height = '1.6rem', className }) => {
+export const ArrowRightIcon = ({ width = '2.2rem', height = '2.2rem', color = '#676767', className }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
-      strokeWidth="1.5"
+      stroke-width="1.5"
       stroke="currentColor"
       width={width}
       height={height}
-      className={className}
+      color={color}
+      class={className}
     >
-      <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+      <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
     </svg>
   );
 };
@@ -97,7 +122,7 @@ export const CartIcon = ({ width = '2rem', height = '2.2rem', className }) => (
               <g transform="translate(1.900000, 2.000000)" stroke="#676767">
                 <path
                   d="M2.90254295,5.1 C2.63489801,5.1 2.40361713,5.33408857 2.3731717,5.63375376 L1.0022275,19.1989712 C0.975727288,19.4611854 1.22142963,19.7 1.53159875,19.7 L18.6684012,19.7 C18.9779724,19.7 19.2242542,19.4604066 19.1977725,19.1989712 L17.8268617,5.63408331 C17.7963817,5.33447347 17.5648285,5.1 17.297457,5.1 L15.2410407,5.1 C14.7921216,5.1 14.7921216,5.1 13.5081923,5.1 C11.9459262,5.1 11.9459262,5.1 10.1053234,5.1 C8.22927512,5.1 8.22927512,5.1 6.64795548,5.1 C5.36136445,5.1 5.36136445,5.1 4.95895925,5.1 L2.90254295,5.1 Z"
-                  fill-rule="nonzero"
+                  fillRule="nonzero"
                 ></path>
                 <path
                   d="M10.1,7.73326896 L10.1,5.18518519 C10.1139408,1.72839506 11.5139408,-1.77635684e-14 14.3,-1.77635684e-14"
@@ -115,11 +140,11 @@ export const CartIcon = ({ width = '2rem', height = '2.2rem', className }) => (
   </svg>
 );
 
-export const ClockIcon = ({ width = '2.4rem', height = '2.4rem', className }) => (
+export const ClockIcon = ({ width = '2rem', height = '2rem', className }) => (
   <svg xmlns="http://www.w3.org/2000/svg" className={className} width={width} height={height} viewBox="0 0 24 24">
     <g fill="none" fillRule="evenodd">
       <path d="M0 0h24v24H0z" />
-      <circle cx="12" cy="12" r="9" stroke="#676767" stroke-linecap="square" />
+      <circle cx="12" cy="12" r="9" stroke="#676767" strokeLinecap="square" />
       <path fill="#676767" fillRule="nonzero" d="M17.41 11.5v1H11.5V6.59h1v4.91z" />
     </g>
   </svg>
@@ -259,3 +284,46 @@ export const GoogleIcon = ({ width = '2.4rem', height = '2.4rem', className }) =
     </defs>
   </svg>
 );
+
+export const tagIcon = ({ width = '1.6rem', height = '1.6rem', className }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      className={className}
+      width={width}
+      height={height}
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 0 0 5.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 0 0 9.568 3Z"
+      />
+      <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6Z" />
+    </svg>
+  );
+};
+
+export const CalendarIcon = ({ width = '2rem', height = '2rem', className }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      width={width}
+      height={height}
+      className={className}
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5"
+      />
+    </svg>
+  );
+};
