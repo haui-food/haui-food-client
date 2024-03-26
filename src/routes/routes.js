@@ -1,17 +1,17 @@
 import config from '~/config';
 
 import Home from '~/pages/Home';
-import Restaurent from '~/pages/Restaurant';
+import Restaurants from '~/pages/Restaurants';
 
 const publicRoutes = [
   { path: config.routes.home, component: Home },
   {
     path: config.routes.category,
-    component: Restaurent,
+    component: Restaurants,
   },
   {
-    path: config.routes.restaurent,
-    component: Restaurent,
+    path: config.routes.restaurents,
+    component: Restaurants,
   },
 ];
 

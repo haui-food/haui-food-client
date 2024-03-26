@@ -1,12 +1,12 @@
 import classNames from 'classnames/bind';
-import styles from './Restaurant.module.scss';
+import styles from './Restaurants.module.scss';
 import { useParams, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import ListSlider from '~/components/ListSlider/ListSlider';
 import RestaurantList from '~/components/RestaurantList';
 const cx = classNames.bind(styles);
 
-function Restaurant() {
+function Restaurants() {
   const { category } = useParams();
   const url = useLocation();
   const [currentPageType, setCurrentPageType] = useState(null);
@@ -54,4 +54,4 @@ function Restaurant() {
   );
 }
 
-export default Restaurant;
+export default Restaurants;
