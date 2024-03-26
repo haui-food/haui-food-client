@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
-import styles from './Restaurant.module.scss';
-import { useParams, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import styles from './Restaurants.module.scss';
+import { useParams, useLocation,useNavigate,useSearchParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -11,7 +11,7 @@ import { SearchIcon } from '~/components/Icons';
 
 const cx = classNames.bind(styles);
 
-function Restaurant() {
+function Restaurants() {
   const { t } = useTranslation();
   const { category } = useParams();
   const url = useLocation();
@@ -115,4 +115,4 @@ function Restaurant() {
   );
 }
 
-export default Restaurant;
+export default Restaurants;

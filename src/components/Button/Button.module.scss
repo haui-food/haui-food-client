@@ -20,6 +20,10 @@
     margin-left: 8px;
   }
 
+  &.authGoogle {
+    margin-left: 0;
+  }
+
   // Disabled
   &.disabled {
     pointer-events: none;
@@ -115,4 +119,19 @@
     color: var(--primary-color);
   }
  
+}
+
+.auth,
+.authGoogle {
+  font-weight: 600;
+}
+
+.auth {
+  padding: 13px 20px;
+  border-radius: 22px;
+}
+
+.authGoogle {
+  border-radius: 22px;
+  border: 1px solid #dadce0;
 }

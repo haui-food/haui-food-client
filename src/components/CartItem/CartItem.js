@@ -61,7 +61,9 @@ function CartItem({ data }) {
   };
 
   const temporaryReducedQuantity = () => {
-    setChangeQuantity((preQuantity) => preQuantity - 1);
+    if (changeQuantity > 0) {
+      setChangeQuantity((preQuantity) => preQuantity - 1);
+    }
   };
 
   const handleUpdateQuantity = () => {

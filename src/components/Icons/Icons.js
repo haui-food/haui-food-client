@@ -271,19 +271,108 @@ export const GoogleIcon = ({ width = '2.4rem', height = '2.4rem', className }) =
     className={className}
     width={width}
     height={height}
-    viewBox="0 0 24 24"
+    xmlnsXlink="http://www.w3.org/1999/xlink"
+    viewBox="0 0 48 48"
+  >
+    <defs>
+      <path
+        id="a"
+        d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"
+      />
+    </defs>
+    <clipPath id="b">
+      <use xlinkHref="#a" overflow="visible" />
+    </clipPath>
+    <path clipPath="url(#b)" fill="#FBBC05" d="M0 37V11l17 13z" />
+    <path clipPath="url(#b)" fill="#EA4335" d="M0 11l17 13 7-6.1L48 14V0H0z" />
+    <path clipPath="url(#b)" fill="#34A853" d="M0 37l30-23 7.9 1L48 0v48H0z" />
+    <path clipPath="url(#b)" fill="#4285F4" d="M48 48L17 24l-4-3 35-10z" />
+  </svg>
+);
+
+export const EmailIcon = ({ width = '2.2rem', height = '2rem', className }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+    width={width}
+    height={height}
+    viewBox="0 0 22 20"
     fill="none"
   >
-    <g clipPath="url(#clip0_52266_234)">
-      <path
-        d="M12.2045 11.0183H20.9315C20.9765 11.4041 21 11.8 21 12.205C21 14.9452 19.9977 17.2525 18.2611 18.82C16.7424 20.1942 14.6632 21 12.1841 21C10.978 21.0005 9.78353 20.7681 8.66909 20.316C7.55465 19.864 6.54204 19.2011 5.68912 18.3653C4.83621 17.5296 4.15971 16.5373 3.6983 15.4452C3.23688 14.353 2.9996 13.1825 3 12.0005C2.99946 10.8184 3.23665 9.64776 3.698 8.55554C4.15936 7.46331 4.83583 6.47089 5.68876 5.63501C6.54169 4.79913 7.55435 4.13618 8.66886 3.68405C9.78336 3.23192 10.9779 2.99947 12.1841 3C14.6591 3 16.7383 3.89203 18.3286 5.34434L16.8334 6.80868C15.6491 5.68712 14.0485 5.00457 12.2045 5.00457C11.2644 5.00457 10.3335 5.18604 9.46488 5.53863C8.5963 5.89121 7.80709 6.40801 7.1423 7.0595C6.47752 7.71099 5.95019 8.48443 5.59041 9.33565C5.23063 10.1869 5.04546 11.0992 5.04546 12.0205C5.04546 12.9419 5.23063 13.8542 5.59041 14.7054C5.95019 15.5567 6.47752 16.3301 7.1423 16.9816C7.80709 17.6331 8.5963 18.1499 9.46488 18.5025C10.3335 18.8551 11.2644 19.0365 12.2045 19.0365C15.8107 19.0365 18.4882 16.4226 18.931 13.0228H12.2045V11.0183Z"
-        fill="#1A162E"
-      />
-    </g>
-    <defs>
-      <clipPath id="clip0_52266_234">
-        <rect width="24" height="24" fill="white" />
-      </clipPath>
-    </defs>
+    <path
+      d="M16.9024 6.85156L12.4591 10.4646C11.6196 11.1306 10.4384 11.1306 9.59895 10.4646L5.11816 6.85156"
+      stroke="#9E9DA8"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M15.9089 19C18.9502 19.0084 21 16.5095 21 13.4384V6.57001C21 3.49883 18.9502 1 15.9089 1H6.09114C3.04979 1 1 3.49883 1 6.57001V13.4384C1 16.5095 3.04979 19.0084 6.09114 19H15.9089Z"
+      stroke="#9E9DA8"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+export const PasswordIcon = ({ width = '1.8rem', height = '2rem', className }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+    width={width}
+    height={height}
+    viewBox="0 0 18 20"
+    fill="none"
+  >
+    <path
+      d="M13.4228 7.44804V5.30104C13.4228 2.78804 11.3848 0.750045 8.87176 0.750045C6.35876 0.739045 4.31276 2.76704 4.30176 5.28104V5.30104V7.44804"
+      stroke="#9E9DA8"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M12.683 19.2498H5.042C2.948 19.2498 1.25 17.5528 1.25 15.4578V11.1688C1.25 9.07383 2.948 7.37683 5.042 7.37683H12.683C14.777 7.37683 16.475 9.07383 16.475 11.1688V15.4578C16.475 17.5528 14.777 19.2498 12.683 19.2498Z"
+      stroke="#9E9DA8"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path d="M8.8623 12.2031V14.4241" stroke="#9E9DA8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+export const UserIcon = ({ width = '1.6rem', height = '2rem', className }) => (
+  <svg
+    className={className}
+    width={width}
+    height={height}
+    viewBox="0 0 16 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M7.98468 13.3457C4.11707 13.3457 0.814209 13.9305 0.814209 16.2724C0.814209 18.6143 4.09611 19.22 7.98468 19.22C11.8523 19.22 15.1542 18.6343 15.1542 16.2933C15.1542 13.9524 11.8733 13.3457 7.98468 13.3457Z"
+      stroke="#9E9DA8"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M7.98464 10.0059C10.5227 10.0059 12.5799 7.94779 12.5799 5.40969C12.5799 2.8716 10.5227 0.814453 7.98464 0.814453C5.44655 0.814453 3.38845 2.8716 3.38845 5.40969C3.37988 7.93922 5.42369 9.99731 7.95226 10.0059H7.98464Z"
+      stroke="#9E9DA8"
+      strokeWidth="1.42857"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   </svg>
 );

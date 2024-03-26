@@ -78,6 +78,8 @@
   }
 
   &__logo {
+    position: relative;
+    top: 4px;
     width: 150px;
     height: 65px;
     object-fit: cover;
@@ -269,6 +271,7 @@
     text-align: center;
 
     &-img {
+      visibility: visible;
       width: 100%;
       height: auto;
     }

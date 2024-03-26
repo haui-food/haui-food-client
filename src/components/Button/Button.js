@@ -14,6 +14,8 @@ function Button({
   checkout = false,
   haveProducts = false,
   disabled = false,
+  auth = false,
+  authGoogle = false,
   className,
   children,
   leftIcon,
@@ -53,6 +55,8 @@ function Button({
     checkout,
     haveProducts,
     disabled,
+    auth,
+    authGoogle,
   });
   return (
     <Comp className={classes}>

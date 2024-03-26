@@ -12,7 +12,7 @@ function BreadCrumb({ className }) {
   const language = Cookies.get('lang');
   // console.log(language);
 
-  let resString = 'restaurant';
+  let resString = 'restaurants';
   let cuisinesString = 'cuisines';
   if (language === 'vi') {
     cuisinesString = 'Ẩm thực';
@@ -29,7 +29,7 @@ function BreadCrumb({ className }) {
     if (path === 'cuisines') {
       path = cuisinesString;
     }
-    if (path === 'restaurant') {
+    if (path === 'restaurants') {
       path = resString;
     }
     if (path.includes('-')) {
@@ -53,7 +53,7 @@ function BreadCrumb({ className }) {
           ) : (
             <Link
               className={cx('breadcrumb__item')}
-              to={index === 0 ? '/' : `/${path === routes.category.split('/')[0] ? `restaurant` : path}`}
+              to={index === 0 ? '/' : `/${path === routes.category.split('/')[0] ? `restaurants` : path}`}
             >
               {index === 0 ? (language === 'vi' ? 'Trang chủ' : 'Home') : upperFirstCase(path)}
             </Link>

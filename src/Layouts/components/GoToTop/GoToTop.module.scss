@@ -1,0 +1,33 @@
+.go-top {
+  position: fixed;
+  top: 90vh;
+  right: 2vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid var(--primary-bg);
+  background-color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity, visibility;
+  transition-duration: 0.2s;
+
+  &__icon {
+    width: 2rem;
+    height: 2rem;
+    rotate: 180deg;
+    // filter: brightness(0) saturate(100%) invert(93%) sepia(0%) saturate(0%) hue-rotate(212deg) brightness(106%)
+    //   contrast(106%);
+    filter: brightness(0) saturate(100%) invert(46%) sepia(51%) saturate(3252%) hue-rotate(120deg) brightness(94%)
+      contrast(104%);
+  }
+
+  &--show {
+    opacity: 1;
+    visibility: visible;
+  }
+}
