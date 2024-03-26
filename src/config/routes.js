@@ -1,7 +1,8 @@
 const routes = {
   home: '/',
   category: 'category/:category',
-  restaurent: '/restaurant',
+  restaurants: '/restaurants ',
+  restaurant: '/restaurant/:restaurant',
 };
 
 export default routes;
