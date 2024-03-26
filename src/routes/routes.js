@@ -18,7 +18,7 @@ const publicRoutes = [
     component: Restaurants,
   },
   {
-    path: config.routes.restaurent,
+    path: config.routes.restaurants,
     component: Restaurants,
   },
   { path: config.routes.login, component: SignIn, layout: AuthLayout },
