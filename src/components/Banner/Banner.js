@@ -1,8 +1,8 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 import styles from './Banner.module.scss';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+// import 'slick-carousel/slick/slick.css';
+// import 'slick-carousel/slick/slick-theme.css';
 import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LoadingIcon, SearchIcon, CircleCloseIcon } from '../Icons';
@@ -14,7 +14,7 @@ const listBanner = [
   'https://food.grab.com/static/page-home/VN-new-2.jpg',
   'https://food.grab.com/static/page-home/VN-new-3.jpg',
 ];
-function Banner({ className, onSearch, onSearchResult, onPage }) {
+function Banner({ className, onSearch, onSearchResult, onPage, onRemove, onHandleRemove }) {
   const { t } = useTranslation();
   const [bannerPath, setBannerPath] = useState(1);
   const [greeting, setGreeting] = useState('');
@@ -50,6 +50,7 @@ function Banner({ className, onSearch, onSearchResult, onPage }) {
     if (isMounted) {
       fetchApi();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [onPage]);
 
   // call api khi nhấn tìm kiếm
@@ -57,6 +58,8 @@ function Banner({ className, onSearch, onSearchResult, onPage }) {
     if (!searchValue.trim()) {
       return setSearchResult([]);
     }
+    onHandleRemove();
+
     fetchApi();
   };
 
@@ -77,7 +80,6 @@ function Banner({ className, onSearch, onSearchResult, onPage }) {
   // random ảnh của banner khi tải lại trang
   useEffect(() => {
     const randomPath = Math.floor(Math.random() * 3);
-
     setBannerPath(randomPath);
   }, []);
 
@@ -90,14 +92,25 @@ function Banner({ className, onSearch, onSearchResult, onPage }) {
     }
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleClick();
+    }
+  };
+
   //clear input khi bấm nút close
   const handleClear = () => {
     if (isLoading) {
       return;
     }
     setSearchValue('');
-    inputRef.current.focus();
+    // inputRef.current.focus();
   };
+
+  useEffect(() => {
+    handleClear();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [onRemove]);
 
   useEffect(() => {
     setIsMounted(true); // Thiết lập mounted là true khi component mount
@@ -121,6 +134,7 @@ function Banner({ className, onSearch, onSearchResult, onPage }) {
                 type="text"
                 placeholder=""
                 value={searchValue}
+                onKeyPress={handleKeyPress}
                 onChange={handleChange}
                 className={cx('banner__input-search')}
               />

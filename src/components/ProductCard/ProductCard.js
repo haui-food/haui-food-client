@@ -15,7 +15,7 @@ function ProductCard({ data, className }) {
     else if (i === fullStars + 1 && halfStars) stars.push(<HaftStarIcon className={cx('star-icon')} />);
     else stars.push(<EmptyStarIcon className={cx('star-icon')} />);
   }
-
+  // console.log(data);
   return (
     <div className={cx('product-card', className)}>
       <div className={cx('product-card__label')}>
@@ -27,7 +27,7 @@ function ProductCard({ data, className }) {
       <div className={cx('product-card__content')}>
         <div className={cx('product-card__name')}>{data.name}</div>
 
-        <div className={cx('product-card__categorise')}>{data.category}</div>
+        <div className={cx('product-card__categorise')}>{data.categorise}</div>
         <div className={cx('product-card__rating-container')}>
           <div className={cx('product-card__rating')}>{data.rating}</div>
           <div className={cx('star-container')}>

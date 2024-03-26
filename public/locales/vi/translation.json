@@ -54,5 +54,15 @@
   "home-banner": {
     "placeholder": "Nhập món bạn muốn tìm kiếm",
     "btn01": "Tìm kiếm"
+  },
+  "restaurant": {
+    "title01": "Các nhà hàng nổi tiếng trên",
+    "title02": "Các nhà hàng trên",
+    "at": "tại",
+    "placeholder": "Tìm món ăn hoặc quán ăn"
+  },
+  "no-result": {
+    "title": "Rất tiếc, hiện không có nhà hàng nào",
+    "desc": "Vui lòng làm mới trang để giải quyết sự cố."
   }
 }

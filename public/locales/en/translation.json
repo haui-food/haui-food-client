@@ -54,5 +54,15 @@
   "home-banner": {
     "placeholder": "Type your food here",
     "btn01": "Search"
+  },
+  "restaurant": {
+    "title01": "Popular Restaurants On",
+    "title02": "Restaurants On",
+    "at": "in",
+    "placeholder": "Find a dish or restaurant"
+  },
+  "no-result": {
+    "title": "Sorry, there are currently no restaurants",
+    "desc": "Please refresh the page to resolve the issue."
   }
 }

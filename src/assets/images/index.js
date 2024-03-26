@@ -10,6 +10,7 @@ const images = {
   googlePlay: require('~/assets/images/google-play.svg').default,
   cart: require('~/assets/images/cart.svg').default,
   banhtieusr: require('~/assets/images/products/bachtieusaurieng.jpg'),
+  chickenBowl: require('~/assets/images/chicken-bowl.svg').default,
 };
 
 export default images;

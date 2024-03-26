@@ -11,6 +11,7 @@
     cursor: pointer;
     @include media-breakpoint-down(md) {
       margin-bottom: 25px;
+      // padding: 0;
     }
   }
 }
