@@ -1,7 +1,14 @@
 const routes = {
   home: '/',
   category: 'category/:category',
-  restaurent: '/restaurant',
+  restaurants: '/restaurants ',
+  restaurant: '/restaurant/:restaurant',
+  login: '/auth/login',
+  signup: '/auth/signup',
+  forgotPassword: '/auth/forgot-password',
+  verifyOTP: '/auth/verify-otp',
+  resetPassword: '/auth/reset-password',
+  notFound: '*',
 };
 
 export default routes;
