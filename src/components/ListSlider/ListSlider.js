@@ -4,7 +4,11 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import ProductCard from '~/components/ProductCard/ProductCard';
 import Slider from 'react-slick';
+<<<<<<< HEAD
+import { Link } from 'react-router-dom';
+=======
 import { memo } from 'react';
+>>>>>>> 4202b7ca57c62d6abd6f11c1815b80b7bb8c3558
 
 const cx = classNames.bind(styles);
 
@@ -97,6 +101,31 @@ function ListPromo() {
       },
     ],
   };
+  function ChangeToSlug(title) {
+    let slug = title.toLowerCase();
+
+    slug = slug.replace(/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ/gi, 'a');
+    slug = slug.replace(/é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ/gi, 'e');
+    slug = slug.replace(/i|í|ì|ỉ|ĩ|ị/gi, 'i');
+    slug = slug.replace(/ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ/gi, 'o');
+    slug = slug.replace(/ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự/gi, 'u');
+    slug = slug.replace(/ý|ỳ|ỷ|ỹ|ỵ/gi, 'y');
+    slug = slug.replace(/đ/gi, 'd');
+
+    slug = slug.replace(/\`|\~|\!|\@|\#|\||\$|\%|\^|\&|\*|\(|\)|\+|\=|\,|\.|\/|\?|\>|\<|\'|\"|\:|\;|_/gi, '');
+
+    slug = slug.replace(/\s+/g, '-');
+
+    slug = slug.replace(/\-\-\-\-\-/gi, '-');
+    slug = slug.replace(/\-\-\-\-/gi, '-');
+    slug = slug.replace(/\-\-\-/gi, '-');
+    slug = slug.replace(/\-\-/gi, '-');
+    slug = '@' + slug + '@';
+    slug = slug.replace(/\@\-|\-\@|\@/gi, '');
+    slug += '-delivery';
+    return slug;
+  }
+
   return (
     <div className={cx('list-promo')}>
       <div className={cx()}>
@@ -104,12 +133,12 @@ function ListPromo() {
           <Slider {...settings}>
             {data.map((item, index) => {
               return (
-                <div key={index} className={cx('item')}>
+                <a href={`/restaurant/${ChangeToSlug(item.name)}`} key={index} className={cx('item')}>
                   <ProductCard
                     className={cx({ 'first-item': index === 0 }, { 'last-item': index === data.length - 1 })}
                     data={item}
                   />
-                </div>
+                </a>
               );
             })}
           </Slider>
