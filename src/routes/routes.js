@@ -2,6 +2,7 @@ import config from '~/config';
 
 import Home from '~/pages/Home';
 import Restaurants from '~/pages/Restaurants';
+import Restaurant from '../pages/Restaurant/Restaurant';
 
 const publicRoutes = [
   { path: config.routes.home, component: Home },
@@ -10,8 +11,12 @@ const publicRoutes = [
     component: Restaurants,
   },
   {
-    path: config.routes.restaurents,
+    path: config.routes.restaurants,
     component: Restaurants,
+  },
+  {
+    path: config.routes.restaurant,
+    component: Restaurant,
   },
 ];
 

@@ -1,0 +1,126 @@
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
+
+.restaurant {
+  margin-top: 88px;
+  &__content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #f6f6f6;
+    &--products {
+      width: 86%;
+      @include media-breakpoint-down(md) {
+        width: 100%;
+        padding: 0 1vh;
+      }
+    }
+  }
+
+  &__footer {
+    font-size: 12px;
+    text-align: center;
+    background-color: #f6f6f6;
+    padding: 73px 0 26px 0;
+    a {
+      color: #00a5cf;
+    }
+
+    @include media-breakpoint-down(md) {
+      padding: 26px 17px;
+    }
+  }
+}
+
+.productCard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+
+  @include media-breakpoint-down(md) {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 0;
+  }
+  h2 {
+    grid-column: span 3;
+    font-size: 36px;
+    font-weight: 600;
+    margin: 72px 0 24px 0;
+    @include media-breakpoint-down(md) {
+      grid-column: span 1;
+      font-size: calc(4vh - 2px);
+      margin: 24px 0 24px 0;
+    }
+  }
+
+  img {
+    width: 120px;
+    height: 120px;
+    border-radius: 6px;
+
+    @include media-breakpoint-down(md) {
+      width: 97px;
+      height: 97px;
+    }
+  }
+
+  &__detail {
+    border: 1px solid #fff;
+    background-color: #fff;
+    border-radius: 6px;
+    padding: 15px;
+    display: flex;
+
+    img {
+      margin-right: 15px;
+    }
+    &--description {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      &--content {
+        &--title {
+          font-size: 16px;
+          @include media-breakpoint-down(md) {
+            font-size: 14px;
+          }
+        }
+        &--describe {
+          font-size: 14px;
+          color: #9a9a9a;
+          margin: 22px 0 16px 0;
+          @include media-breakpoint-down(md) {
+            font-size: 12px;
+          }
+        }
+      }
+
+      &--price {
+        display: flex;
+        justify-content: space-between;
+
+        @include media-breakpoint-down(md) {
+          font-size: 14px;
+        }
+
+        button {
+          background-color: #00b14f;
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: #fff;
+          font-size: 20px;
+        }
+      }
+    }
+  }
+
+  &__detail:hover {
+    border: 1px solid #00b14f;
+    cursor: pointer;
+  }
+}
