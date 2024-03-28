@@ -1,9 +1,9 @@
 import classNames from 'classnames/bind';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import styles from './Footer.module.scss';
-import { FacebookIcon, InstagramIcon, LinkedinIcon } from '~/components/Icons';
+import { FacebookIcon, GithubIcon, InstagramIcon } from '~/components/Icons';
 import images from '~/assets/images';
 import routes from '~/config/routes';
 
@@ -11,11 +11,18 @@ const cx = classNames.bind(styles);
 
 function Footer() {
   const { t } = useTranslation();
+  const location = useLocation();
 
   return (
     <div className={cx('footer')}>
       <div className={cx('container gx-5')}>
-        <Link to={routes.home}>
+        <Link
+          to={routes.home}
+          onClick={(e) => {
+            location.pathname === '/' && e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+        >
           <img src={images.logoVip1} alt="logo" className={cx('footer__logo')} />
         </Link>
 
@@ -74,14 +81,24 @@ function Footer() {
 
           <div className={cx('col col-xxl-3 col-xl-3 col-12')}>
             <div className={cx('footer__socials')}>
-              <a href="#!" rel="noreferrer" target="_blank" className={cx('footer__social-link')}>
+              <a
+                href="https://www.facebook.com/profile.php?id=61557360312825"
+                rel="noreferrer"
+                target="_blank"
+                className={cx('footer__social-link')}
+              >
                 <FacebookIcon />
               </a>
               <a href="#!" rel="noreferrer" target="_blank" className={cx('footer__social-link')}>
                 <InstagramIcon />
               </a>
-              <a href="#!" rel="noreferrer" target="_blank" className={cx('footer__social-link')}>
-                <LinkedinIcon />
+              <a
+                href="https://github.com/haui-food"
+                rel="noreferrer"
+                target="_blank"
+                className={cx('footer__social-link')}
+              >
+                <GithubIcon />
               </a>
             </div>
           </div>
