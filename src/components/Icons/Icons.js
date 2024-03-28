@@ -1,3 +1,24 @@
+export const ChevronRight = ({ className }) => {
+  return (
+    <svg
+      className={className}
+      width="10"
+      height="16"
+      viewBox="0 0 10 16"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M1.5 1L8.5 8L1.5 15"
+        stroke="#9E9DA8"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+};
+
 export const TrashIcon = ({ className }) => {
   return (
     <svg fill="currentColor" className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">

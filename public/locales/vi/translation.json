@@ -81,6 +81,16 @@
     "placeholder": "Nhập món bạn muốn tìm kiếm",
     "btn01": "Tìm kiếm"
   },
+  "restaurant": {
+    "title01": "Các nhà hàng nổi tiếng trên",
+    "title02": "Các nhà hàng trên",
+    "at": "tại",
+    "placeholder": "Tìm món ăn hoặc quán ăn"
+  },
+  "no-result": {
+    "title": "Rất tiếc, hiện không có nhà hàng nào",
+    "desc": "Vui lòng làm mới trang để giải quyết sự cố."
+  },
   "login": {
     "heading": "Đăng nhập",
     "desc01": "Chào mừng bạn quay trở lại. Đăng nhập để tiếp tục mua hàng.",

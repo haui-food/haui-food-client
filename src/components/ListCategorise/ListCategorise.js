@@ -2,14 +2,17 @@ import classNames from 'classnames/bind';
 
 import styles from './ListCategorise.module.scss';
 import { Link } from 'react-router-dom';
-
+import routes from '~/config/routes';
 const cx = classNames.bind(styles);
 
 function nomalizeString(str) {
-  return str
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase();
+  return (
+    str
+      // .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+      .replace(/\s+/g, '-')
+  );
 }
 const data = [
   {
@@ -62,9 +65,13 @@ const data = [
 
 function ListCategorise() {
   return (
-    <div className={cx('list-categorise', 'row')}>
+    <div className={cx('list-categorise', 'row', 'gx-xl-2', 'g-0')}>
       {data.map((item, index) => (
-        <Link to={`category/${nomalizeString(item.name)}`} key={index} className={cx('col-xl-3 col-6')}>
+        <Link
+          to={`${routes.category.split('/')[0]}/${nomalizeString(item.name)}`}
+          key={index}
+          className={cx('col-xl-3 col-6')}
+        >
           <div>
             <div className={cx('list-categorise__item')} key={index}>
               <img className={cx('category-img')} src={item.image} alt={item.name} />

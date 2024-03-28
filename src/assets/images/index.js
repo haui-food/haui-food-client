@@ -14,6 +14,7 @@ const images = {
   earth: require('~/assets/images/not-found/earth.svg').default,
   moon: require('~/assets/images/not-found/moon.png'),
   banhtieusr: require('~/assets/images/products/bachtieusaurieng.jpg'),
+  chickenBowl: require('~/assets/images/chicken-bowl.svg').default,
 };
 
 export default images;

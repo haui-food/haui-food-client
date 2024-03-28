@@ -4,16 +4,21 @@
 
 .product-card {
   width: 100%;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 7px;
+  padding-right: 7px;
   height: 100%;
   position: relative;
+
+  @include media-breakpoint-down(md) {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
 
   &__label {
     background-color: var(--primary-color);
     position: absolute;
     top: 15px;
-    // left: -1px;
+
     color: var(--white);
     font-size: 1.2rem;
     font-weight: 600;
@@ -33,10 +38,11 @@
 
     &-tail {
       width: 0;
+      z-index: -1;
       border-top: 3px solid #008c3f;
       border-left: 3px solid transparent;
       position: absolute;
-      bottom: -3px;
+      bottom: -2px;
       left: -3px;
     }
   }
@@ -53,6 +59,10 @@
     color: var(--text-color);
     font-weight: 600;
     margin-top: 10px;
+
+    @include media-breakpoint-down(md) {
+      font-size: 1.6rem;
+    }
   }
 
   &__categorise {
@@ -71,6 +81,9 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    @include media-breakpoint-down(md) {
+      gap: 5px;
+    }
   }
 
   &__discount-container {
@@ -88,6 +101,16 @@
     height: 24px;
     background-size: contain;
     background-position: center;
+    @include media-breakpoint-down(md) {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &__discount-text {
+    @include media-breakpoint-down(md) {
+      font-size: 1.4rem;
+    }
   }
 }
 
@@ -100,4 +123,8 @@
   color: #f7c942;
   width: 18px;
   height: 18px;
+  @include media-breakpoint-down(md) {
+    width: 14px;
+    height: 14px;
+  }
 }
