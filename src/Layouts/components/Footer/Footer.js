@@ -13,16 +13,15 @@ function Footer() {
   const { t } = useTranslation();
   const location = useLocation();
 
+  const handleClick = (e) => {
+    location.pathname === '/' || (location.pathname === '/#!' && e.preventDefault());
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div className={cx('footer')}>
       <div className={cx('container gx-5')}>
-        <Link
-          to={routes.home}
-          onClick={(e) => {
-            location.pathname === '/' && e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }}
-        >
+        <Link to={routes.home} onClick={(e) => handleClick(e)}>
           <img src={images.logoVip1} alt="logo" className={cx('footer__logo')} />
         </Link>
 
@@ -32,17 +31,17 @@ function Footer() {
           <div className={cx('col col-xxl-3 col-xl-3 col-12')}>
             <ul>
               <li>
-                <Link to={'#!'} className={cx('footer__item')}>
+                <Link to={'#!'} onClick={(e) => handleClick(e)} className={cx('footer__item')}>
                   {t('footer.title01')}
                 </Link>
               </li>
               <li>
-                <Link to={'#!'} className={cx('footer__item')}>
+                <Link to={'#!'} onClick={(e) => handleClick(e)} className={cx('footer__item')}>
                   {t('footer.title02')}
                 </Link>
               </li>
               <li>
-                <Link to={'#!'} className={cx('footer__item')}>
+                <Link to={'#!'} onClick={(e) => handleClick(e)} className={cx('footer__item')}>
                   {t('footer.title03')}
                 </Link>
               </li>
@@ -52,12 +51,12 @@ function Footer() {
           <div className={cx('col col-xxl-3 col-xl-3 col-12')}>
             <ul>
               <li>
-                <Link to={'#!'} className={cx('footer__item')}>
+                <Link to={'#!'} onClick={(e) => handleClick(e)} className={cx('footer__item')}>
                   {t('footer.title04')}
                 </Link>
               </li>
               <li>
-                <Link to={'#!'} className={cx('footer__item')}>
+                <Link to={'#!'} onClick={(e) => handleClick(e)} className={cx('footer__item')}>
                   {t('footer.title05')}
                 </Link>
               </li>
@@ -67,12 +66,12 @@ function Footer() {
           <div className={cx('col col-xxl-3 col-xl-3 col-12')}>
             <ul>
               <li>
-                <Link to={'#!'} className={cx('footer__item')}>
+                <Link to={'#!'} onClick={(e) => handleClick(e)} className={cx('footer__item')}>
                   {t('footer.title06')}
                 </Link>
               </li>
               <li>
-                <Link to={'#!'} className={cx('footer__item')}>
+                <Link to={'#!'} onClick={(e) => handleClick(e)} className={cx('footer__item')}>
                   {t('footer.title07')}
                 </Link>
               </li>
