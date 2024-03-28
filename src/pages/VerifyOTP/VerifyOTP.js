@@ -39,15 +39,18 @@ function VerifyOTP() {
     const pasteArray = pasteData.split('');
     if (pasteArray.length === 6) {
       setInputs(pasteArray);
+      inputRefs.current[5].current.focus();
     }
   };
 
   const handleChange = (e, index) => {
+    const numericValue = e.target.value.replace(/[^0-9]/g, ''); // Chỉ cho phép nhập số
     const newInputs = [...inputs];
-    newInputs[index] = e.target.value;
+    newInputs[index] = numericValue.slice(0, 1); // Giới hạn giá trị nhập vào
     setInputs(newInputs);
 
-    if (e.target.value && index < 5) {
+    // Không chuyển sang ô nhập khác nếu giá trị không phải số
+    if (numericValue && index < 5) {
       inputRefs.current[index + 1].current.focus();
     }
   };

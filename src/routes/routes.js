@@ -4,6 +4,7 @@ import { AuthLayout, NotFoundLayout } from '~/Layouts';
 
 import Home from '~/pages/Home';
 import Restaurants from '~/pages/Restaurants';
+import Restaurant from '../pages/Restaurant/Restaurant';
 import SignIn from '~/pages/SignIn';
 import SignUp from '~/pages/SignUp';
 import ForgotPassword from '~/pages/ForgotPassword';
@@ -20,6 +21,10 @@ const publicRoutes = [
   {
     path: config.routes.restaurants,
     component: Restaurants,
+  },
+  {
+    path: config.routes.restaurant,
+    component: Restaurant,
   },
   { path: config.routes.login, component: SignIn, layout: AuthLayout },
   { path: config.routes.signup, component: SignUp, layout: AuthLayout },

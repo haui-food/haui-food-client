@@ -1,5 +1,6 @@
 const routes = {
   home: '/',
+  category: 'category/:category',
   category: 'cuisines/:category',
   restaurants: '/restaurants',
   restaurant: '/restaurant/:restaurant',
