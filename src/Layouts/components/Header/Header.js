@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import classNames from 'classnames/bind';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { useTranslation } from 'react-i18next';
 
@@ -17,6 +17,7 @@ const cx = classNames.bind(styles);
 
 function Header() {
   const { t } = useTranslation();
+  const location = useLocation();
 
   const { cartItems, clearCart } = useBasket();
 
@@ -63,14 +64,19 @@ function Header() {
   useEffect(() => {
     const onScroll = () => {
       if (window.innerWidth >= 768) {
-        if (window.scrollY > 1) {
+        if (window.scrollY > 0) {
           headerRef.current.style.backgroundColor = '#fff';
           headerRef.current.style.boxShadow = '0 1px 1px rgba(0, 0, 0, 0.12)';
+
           setLogo(images.logoVip2);
         } else {
           headerRef.current.style.backgroundColor = 'transparent';
           headerRef.current.style.boxShadow = '0 1px 1px transparent';
-          setLogo(images.logoVip1);
+          if (location.pathname !== '/') {
+            setLogo(images.logoVip2);
+          } else {
+            setLogo(images.logoVip1);
+          }
         }
       }
     };
@@ -80,7 +86,15 @@ function Header() {
     return () => {
       window.removeEventListener('scroll', onScroll);
     };
-  }, []);
+  }, [location]);
+
+  useEffect(() => {
+    if (location.pathname !== '/') {
+      setLogo(images.logoVip2);
+    } else {
+      setLogo(images.logoVip1);
+    }
+  }, [location]);
 
   useEffect(() => {
     document.addEventListener('click', handleClickOutside);
@@ -134,7 +148,13 @@ function Header() {
           </ul>
 
           {/* Logo */}
-          <Link to={routes.home}>
+          <Link
+            to={routes.home}
+            onClick={(e) => {
+              location.pathname === '/' && e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+          >
             <img src={logo} alt="logo" className={cx('header__logo')} />
           </Link>
 

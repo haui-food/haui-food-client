@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './Restaurants.module.scss';
-import { useParams, useLocation,useNavigate,useSearchParams } from 'react-router-dom';
+import { useParams, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -23,15 +23,9 @@ function Restaurants() {
   // console.log(category);
   // console.log(searchParams);
   // kiểm tra xem đang là page restaurant hay restaurant by category
+
   useEffect(() => {
-    window.scrollTo(2, 2);
-    const scrollElement = document.documentElement;
-    window.addEventListener('scroll', function () {
-      console.log(scrollElement.scrollTop);
-      if (scrollElement.scrollTop <= 0) {
-        scrollElement.scrollTop = 2;
-      }
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
   useEffect(() => {

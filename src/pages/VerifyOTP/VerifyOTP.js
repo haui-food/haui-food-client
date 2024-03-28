@@ -22,8 +22,6 @@ function VerifyOTP() {
       .map(() => createRef()),
   );
 
-  console.log(inputRefs);
-
   const handleKeyDown = (e, index) => {
     if (e.key === 'Backspace' && index === 5 && !inputs[index]) {
       setInputs(Array(6).fill(''));
