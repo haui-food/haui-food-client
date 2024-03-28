@@ -4,11 +4,15 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import ProductCard from '~/components/ProductCard/ProductCard';
 import Slider from 'react-slick';
+<<<<<<< HEAD
 import { Link } from 'react-router-dom';
+=======
+import { memo } from 'react';
+>>>>>>> 4202b7ca57c62d6abd6f11c1815b80b7bb8c3558
 
 const cx = classNames.bind(styles);
 
-function SampleNextArrow(props) {
+function NextArrow(props) {
   const { className, style, onClick, customClass } = props;
   return (
     <div
@@ -19,7 +23,7 @@ function SampleNextArrow(props) {
   );
 }
 
-function SamplePrevArrow(props) {
+function PrevArrow(props) {
   const { className, style, onClick, customClass } = props;
   return (
     <div
@@ -83,8 +87,8 @@ function ListPromo() {
     slidesToShow: 4,
     slidesToScroll: 1,
     infinite: false,
-    nextArrow: <SampleNextArrow customClass={cx('next-arrow')} />,
-    prevArrow: <SamplePrevArrow customClass={cx('prev-arrow')} />,
+    nextArrow: <NextArrow customClass={cx('next-arrow')} />,
+    prevArrow: <PrevArrow customClass={cx('prev-arrow')} />,
     responsive: [
       {
         breakpoint: 992,
@@ -124,14 +128,14 @@ function ListPromo() {
 
   return (
     <div className={cx('list-promo')}>
-      <div className={cx('container')}>
-        <div className={cx('row')}>
+      <div className={cx()}>
+        <div className={cx()}>
           <Slider {...settings}>
             {data.map((item, index) => {
               return (
                 <a href={`/restaurant/${ChangeToSlug(item.name)}`} key={index} className={cx('item')}>
                   <ProductCard
-                    className={cx({ 'first-item': index === 0 }, { 'last-item': index === data.length })}
+                    className={cx({ 'first-item': index === 0 }, { 'last-item': index === data.length - 1 })}
                     data={item}
                   />
                 </a>
@@ -144,4 +148,4 @@ function ListPromo() {
   );
 }
 
-export default ListPromo;
+export default memo(ListPromo);

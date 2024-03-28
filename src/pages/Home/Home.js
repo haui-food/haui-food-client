@@ -7,7 +7,7 @@ import Banner from '~/components/Banner/Banner';
 import ListSlider from '~/components/ListSlider/ListSlider';
 import Button from '~/components/Button/Button';
 import ListCategorise from '~/components/ListCategorise/ListCategorise';
-import { CheckIcon, TrashIcon } from '~/components/Icons';
+import { CheckIcon, CircleCloseIcon } from '~/components/Icons';
 import images from '~/assets/images';
 import { useState, useRef, useEffect } from 'react';
 import ListResutl from '~/components/ListResult/ListResult';
@@ -19,7 +19,17 @@ function Home() {
   const [isSearch, setIsSearch] = useState('false');
   const [searchResult, setSearchResult] = useState([]);
   const [page, setPage] = useState(1);
+  const [isRemove, setIsRemove] = useState(false);
+  const [isFirstMount, setFirstMount] = useState(true);
   const loadingRef = useRef();
+
+  useEffect(() => {
+    setFirstMount(false);
+  }, []);
+
+  const handleRemove = () => {
+    setIsRemove(false);
+  };
 
   const handleToggleSearch = (type) => {
     setIsSearch(type);
@@ -64,7 +74,10 @@ function Home() {
 
   // scroll lên đầu trang khi chọn trang khác
   useEffect(() => {
-    console.log('loading ref', loadingRef);
+    // console.log('loading ref', loadingRef);
+    if (isFirstMount) {
+      return;
+    }
     const isMoblie = window.matchMedia('(max-width: 960px)');
     if (loadingRef.current) {
       loadingRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -72,12 +85,23 @@ function Home() {
         loadingRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
   return (
     <div className={cx('home')}>
       <div>
-        <Banner onSearch={handleToggleSearch} onSearchResult={hanldeSearchResult} onPage={page} />
+        <Banner
+          onSearch={handleToggleSearch}
+          onSearchResult={hanldeSearchResult}
+          onPage={page}
+          onHandleRemove={handleRemove}
+          onRemove={isRemove}
+        />
       </div>
       <div className={cx('sparate')}></div>
       <div className={cx('container')}>
@@ -96,15 +120,20 @@ function Home() {
             { 'home__search-result-hidden': isSearch === 'false' },
           )}
         >
-          <div className={cx('home__search-title')}>
-            <div className={cx('home__title-1')}>Search Result</div>
+          <div className={cx('home__search-title-container')}>
+            <div className={cx('home__search-title')}>Search Result</div>
             <div
-              className={cx('home__title-1')}
+              // className={cx('home__title-1')}
               onClick={() => {
+                setIsRemove(true);
                 handleToggleSearch('false');
               }}
             >
-              <TrashIcon className={cx('home__trash-icon')} />
+              <div className={cx('home__close-container')}>
+                <div className={cx('home__remove-tilte')}>Remove</div>
+                <CircleCloseIcon className={cx('home__close-icon')} />
+              </div>
+              {/* <TrashIcon className={cx('home__trash-icon')} /> */}
             </div>
           </div>
           <ListResutl data={searchResult} onChangePage={handleChangePage} />

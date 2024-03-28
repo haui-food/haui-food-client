@@ -2,7 +2,7 @@
   "title": "HaUI Food | Online food ordering application at HaUI",
   "header": {
     "na01": "Home",
-    "na02": "Login/Sign Up"
+    "na02": "Sign In/Sign Up"
   },
   "footer": {
     "title01": "About HaUIFood",
@@ -18,7 +18,33 @@
   "button": {
     "btn01": "Checkout",
     "btn02": "Continue Shopping",
-    "btn03": "Log in to place order"
+    "btn03": "Sign in to place order",
+    "btn04": "Delete all",
+    "btn05": "Sign in",
+    "btn06": "Sign in with Google",
+    "btn07": "Sign up",
+    "btn08": "Send verification code",
+    "btn09": "Sending verification code...",
+    "btn10": "Verify",
+    "btn11": "Verifying...",
+    "btn12": "Reset",
+    "btn13": "Go to home page"
+  },
+  "form": {
+    "tp01": "Email",
+    "tp02": "Password",
+    "tp03": "Full name",
+    "tp04": "Re-enter password",
+    "lb01": "Show password"
+  },
+  "errors": {
+    "err01": "Please enter email.",
+    "err02": "Email is incorrect, please re-enter.",
+    "err03": "Please enter password.",
+    "err04": "Password must contain at least 8 characters and 1 special character @-_",
+    "err05": "Please enter full name",
+    "err06": "Incorrect password, please re-enter",
+    "err07": "Please re-enter password"
   },
   "cart": {
     "title01": "Food Basket",
@@ -54,5 +80,38 @@
   "home-banner": {
     "placeholder": "Type your food here",
     "btn01": "Search"
+  },
+  "restaurant": {
+    "title01": "Popular Restaurants On",
+    "title02": "Restaurants On",
+    "at": "in",
+    "placeholder": "Find a dish or restaurant"
+  },
+  "no-result": {
+    "title": "Sorry, there are currently no restaurants",
+    "desc": "Please refresh the page to resolve the issue."
+  },
+  "login": {
+    "heading": "Sign in",
+    "desc01": "Welcome back. Sign in to continue shopping.",
+    "desc02": "You don't have an account"
+  },
+  "sign-up": {
+    "heading": "Sign up",
+    "desc01": "Let's start creating a new account to fully experience our features and services.",
+    "desc02": "You already have an account"
+  },
+  "forgot-password": {
+    "heading": "Recover password",
+    "desc01": "Send a forgotten password verification code via email.",
+    "desc02": "You remembered the password"
+  },
+  "verify-otp": {
+    "heading": "Verify OTP",
+    "desc01": "Enter the OTP sent to your email."
+  },
+  "reset-password": {
+    "heading": "Reset Password",
+    "desc01": "Please enter your new password in the box below."
   }
 }

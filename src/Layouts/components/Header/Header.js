@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import classNames from 'classnames/bind';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { useTranslation } from 'react-i18next';
 
@@ -17,8 +17,9 @@ const cx = classNames.bind(styles);
 
 function Header() {
   const { t } = useTranslation();
+  const location = useLocation();
 
-  const { cartItems, addToCart, clearCart } = useBasket();
+  const { cartItems, clearCart } = useBasket();
 
   const [logo, setLogo] = useState(images.logoVip1);
   const [showLanguages, setShowLanguages] = useState(false);
@@ -61,18 +62,39 @@ function Header() {
   };
 
   useEffect(() => {
-    window.onscroll = () => {
+    const onScroll = () => {
       if (window.innerWidth >= 768) {
-        if (window.scrollY > 1) {
+        if (window.scrollY > 0) {
           headerRef.current.style.backgroundColor = '#fff';
+          headerRef.current.style.boxShadow = '0 1px 1px rgba(0, 0, 0, 0.12)';
+
           setLogo(images.logoVip2);
         } else {
           headerRef.current.style.backgroundColor = 'transparent';
-          setLogo(images.logoVip1);
+          headerRef.current.style.boxShadow = '0 1px 1px transparent';
+          if (location.pathname !== '/') {
+            setLogo(images.logoVip2);
+          } else {
+            setLogo(images.logoVip1);
+          }
         }
       }
     };
-  }, []);
+
+    window.addEventListener('scroll', onScroll);
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+    };
+  }, [location]);
+
+  useEffect(() => {
+    if (location.pathname !== '/') {
+      setLogo(images.logoVip2);
+    } else {
+      setLogo(images.logoVip1);
+    }
+  }, [location]);
 
   useEffect(() => {
     document.addEventListener('click', handleClickOutside);
@@ -126,7 +148,13 @@ function Header() {
           </ul>
 
           {/* Logo */}
-          <Link to={routes.home}>
+          <Link
+            to={routes.home}
+            onClick={(e) => {
+              location.pathname === '/' && e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+          >
             <img src={logo} alt="logo" className={cx('header__logo')} />
           </Link>
 
@@ -139,42 +167,12 @@ function Header() {
               {isCarts && <span className={cx('header__actions-quantity')}>{displayQuantity}</span>}
             </div>
             {!isLogin && (
-              <div
-                onClick={() => {
-                  addToCart({
-                    id: 1,
-                    name: 'Bánh Tiêu Cade Sầu Riêng',
-                    image: images.banhtieusr,
-                    price: '10000',
-                    quantity: 1,
-                  });
-                  addToCart({
-                    id: 2,
-                    name: 'Bánh Tiêu Cade Sầu Riêng',
-                    image: images.banhtieusr,
-                    price: '10000',
-                    quantity: 1,
-                  });
-                  addToCart({
-                    id: 3,
-                    name: 'Bánh Tiêu Cade Sầu Riêng',
-                    image: images.banhtieusr,
-                    price: '10000',
-                    quantity: 1,
-                  });
-                  addToCart({
-                    id: 4,
-                    name: 'Bánh Tiêu Cade Sầu Riêng',
-                    image: images.banhtieusr,
-                    price: '10000',
-                    quantity: 1,
-                  });
-                }}
-                className={cx('header__actions-group')}
-              >
-                <Button action outline>
-                  {t('header.na02')}
-                </Button>
+              <div className={cx('header__actions-group')}>
+                <Link to={routes.login}>
+                  <Button action outline>
+                    {t('header.na02')}
+                  </Button>
+                </Link>
               </div>
             )}
             {isLogin && (
@@ -272,7 +270,7 @@ function Header() {
                         <h5 className={cx('cart__products-heading')}>HaUI Food</h5>
                       </Link>
                       <button onClick={() => clearCart()} className={cx('cart__products-delete-all')}>
-                        Xóa tất cả
+                        {t('button.btn04')}
                       </button>
                     </div>
                     <div className={cx('cart__products-list')}>

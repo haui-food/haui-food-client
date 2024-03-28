@@ -1,0 +1,28 @@
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
+
+.no-result {
+  margin-top: 30px;
+  margin-bottom: 50px;
+  &__container {
+    width: fit-content;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__img {
+    margin: 0 auto;
+    @include media-breakpoint-down(md) {
+      width: 300px;
+      height: 300px;
+    }
+  }
+
+  &__content {
+    text-align: center;
+  }
+}

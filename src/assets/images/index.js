@@ -9,7 +9,12 @@ const images = {
   appStore: require('~/assets/images/app-store.svg').default,
   googlePlay: require('~/assets/images/google-play.svg').default,
   cart: require('~/assets/images/cart.svg').default,
+  notFound: require('~/assets/images/not-found/404.png'),
+  rocket: require('~/assets/images/not-found/rocket.svg').default,
+  earth: require('~/assets/images/not-found/earth.svg').default,
+  moon: require('~/assets/images/not-found/moon.png'),
   banhtieusr: require('~/assets/images/products/bachtieusaurieng.jpg'),
+  chickenBowl: require('~/assets/images/chicken-bowl.svg').default,
 };
 
 export default images;
