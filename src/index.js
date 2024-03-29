@@ -16,7 +16,7 @@ import BasketProvider from './contexts/BasketContext';
 
 AOS.init({
   once: true,
-  duration: 600,
+  duration: 1000,
 });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

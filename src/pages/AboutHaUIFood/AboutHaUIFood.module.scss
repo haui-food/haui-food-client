@@ -94,7 +94,7 @@
       text-align: center;
       border-radius: 8px;
       background-color: var(--white);
-      box-shadow: rgba(0, 0, 0, 0.25) 0px 2px 4px 1px;
+      box-shadow: rgba(95, 95, 95, 0.1) 0px 2px 4px 1px;
 
       &--xl {
         max-width: 100%;
@@ -164,6 +164,7 @@
     &-title {
       margin: 28px 0 8px;
       font-size: 2.2rem;
+      font-weight: 500;
       line-height: 1.4;
       text-align: center;
       color: #202325;
