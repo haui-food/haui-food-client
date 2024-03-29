@@ -189,7 +189,7 @@ const RestaurantHeader = ({ restaurant }) => {
   return (
     <div className={cx('container')}>
       <div className={cx('banner')}>
-        <img src={restaurant.banner} />
+        <img src={restaurant.banner} alt='' />
       </div>
       <div className={cx('header')}>
         <div className={cx('header__breadcrumb')}>
