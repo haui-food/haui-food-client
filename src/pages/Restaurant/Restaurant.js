@@ -283,11 +283,11 @@ const Restaurant = () => {
 
   const menuItems = restaurantInfor?.productsList.map((directory, index) => {
     return (
-      <div className={cx('productCard')}>
+      <div key={index} className={cx('productCard')}>
         <h2>{directory.directory}</h2>
         {directory.products.map((product, idx) => {
           return (
-            <div className={cx('productCard__detail')}>
+            <div key={idx} className={cx('productCard__detail')}>
               <div className={cx('productCard__detail--img')}>
                 <img alt="ảnh" src={product.productImage} />
               </div>
