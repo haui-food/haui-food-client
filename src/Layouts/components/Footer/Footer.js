@@ -31,7 +31,7 @@ function Footer() {
           <div className={cx('col col-xxl-3 col-xl-3 col-12')}>
             <ul>
               <li>
-                <Link to={'#!'} onClick={(e) => handleClick(e)} className={cx('footer__item')}>
+                <Link to={routes.aboutHaUIFood} onClick={(e) => handleClick(e)} className={cx('footer__item')}>
                   {t('footer.title01')}
                 </Link>
               </li>

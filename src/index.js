@@ -8,9 +8,16 @@ import { Helmet } from 'react-helmet';
 import 'bootstrap/dist/css/bootstrap-grid.min.css';
 import { I18nextProvider } from 'react-i18next';
 import i18n from './i18n';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 import GlobalStyles from '~/components/GlobalStyles';
 import BasketProvider from './contexts/BasketContext';
+
+AOS.init({
+  once: true,
+  duration: 600,
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 

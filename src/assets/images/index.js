@@ -13,6 +13,10 @@ const images = {
   rocket: require('~/assets/images/not-found/rocket.svg').default,
   earth: require('~/assets/images/not-found/earth.svg').default,
   moon: require('~/assets/images/not-found/moon.png'),
+  aboutOffice: require('~/assets/images/about/van-phong.jpg'),
+  simple: require('~/assets/images/about/simple.png'),
+  happy: require('~/assets/images/about/happy.png'),
+  together: require('~/assets/images/about/together.png'),
   banhtieusr: require('~/assets/images/products/bachtieusaurieng.jpg'),
   chickenBowl: require('~/assets/images/chicken-bowl.svg').default,
 };
