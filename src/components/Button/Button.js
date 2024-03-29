@@ -16,6 +16,7 @@ function Button({
   disabled = false,
   auth = false,
   authGoogle = false,
+  more = false,
   className,
   children,
   leftIcon,
@@ -57,6 +58,7 @@ function Button({
     disabled,
     auth,
     authGoogle,
+    more,
   });
   return (
     <Comp className={classes}>

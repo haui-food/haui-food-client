@@ -118,7 +118,6 @@
     border-color: var(--primary-color);
     color: var(--primary-color);
   }
- 
 }
 
 .auth,
@@ -134,4 +133,15 @@
 .authGoogle {
   border-radius: 22px;
   border: 1px solid #dadce0;
+}
+
+.more {
+  padding: 14px 30px;
+  font-weight: 600;
+  border-radius: 25px;
+
+  @include media-breakpoint-down(md) {
+    padding: 12px 30px;
+    width: 100%;
+  }
 }

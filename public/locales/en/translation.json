@@ -49,6 +49,7 @@
   "cart": {
     "title01": "Food Basket",
     "title02": "Empty Cart",
+    "title03": "Cart",
     "desc01": "Delivery Time:",
     "desc02": "Add products to your cart and place your order here.",
     "desc03": "Total",

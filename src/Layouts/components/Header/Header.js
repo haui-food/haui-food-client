@@ -10,7 +10,7 @@ import { useBasket } from '~/contexts/BasketContext';
 import routes from '~/config/routes';
 import images from '~/assets/images';
 import Button from '~/components/Button';
-import { ArrowDownIcon, CartIcon, ClockIcon, CloseIcon, MenuIcon } from '~/components/Icons';
+import { ArrowDownIcon, CartIcon, ClockIcon, CloseIcon, HomeIcon, MenuIcon } from '~/components/Icons';
 import CartItem from '~/components/CartItem';
 
 const cx = classNames.bind(styles);
@@ -134,6 +134,17 @@ function Header() {
             <MenuIcon />
           </button>
           <ul className={cx('header__menu-options', showMenu ? 'header__menu-options--show' : '')}>
+            <Link
+              to={routes.home}
+              onClick={() => {
+                setShowCart(false);
+                setShowMenu(false);
+              }}
+              className={cx('header__menu-option')}
+            >
+              <HomeIcon className={cx('icon')} />
+              {t('header.na01')}
+            </Link>
             <li
               onClick={() => {
                 setShowCart(false);
@@ -142,7 +153,7 @@ function Header() {
               className={cx('header__menu-option')}
             >
               <CartIcon className={cx('icon')} />
-              Giỏ hàng
+              {t('cart.title03')}
             </li>
             <li className={cx('header__menu-bottom')}></li>
           </ul>

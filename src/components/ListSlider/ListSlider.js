@@ -4,7 +4,6 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import ProductCard from '~/components/ProductCard/ProductCard';
 import Slider from 'react-slick';
-import { Link } from 'react-router-dom';
 import { memo } from 'react';
 
 const cx = classNames.bind(styles);
