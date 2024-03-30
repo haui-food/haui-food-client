@@ -148,7 +148,7 @@ function Home() {
           <ListSlider />
         </div>
 
-        <Button large className={cx('home__btn')}>
+        <Button large className={cx('home__btn')} to={'restaurants'}>
           See All promotions
         </Button>
 
@@ -177,7 +177,7 @@ function Home() {
         <div className={cx('home__sub-title')}>{t('home.subtitle')}</div>
         <p className={cx('home__faq-text')}>{t('home.desc01')}</p>
 
-        <Button large className={cx('home__btn')}>
+        <Button large className={cx('home__btn')} to={'about/haui-food'}>
           Read More
         </Button>
       </div>
