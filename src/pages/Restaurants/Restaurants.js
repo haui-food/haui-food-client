@@ -25,21 +25,21 @@ function Restaurants() {
   // kiểm tra xem đang là page restaurant hay restaurant by category
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo(0, 0);
   }, []);
 
   useEffect(() => {
-    if (url.pathname.includes('restaurant')) {
-      setCurrentPageType('restaurant');
+    if (url.pathname.includes('restaurants')) {
+      setCurrentPageType('restaurants');
     }
     if (category) {
-      setCurrentPageType('restaurantBycategory');
+      setCurrentPageType('restaurantsBycategory');
     }
   }, [category, currentPageType, url.pathname, query]);
 
   const handleClick = (e) => {
     if (searchValue.trim()) {
-      navigate(`/restaurant?q=${searchValue}`);
+      navigate(`/restaurants?q=${searchValue}`);
     }
     e.target.blur();
   };
@@ -73,7 +73,7 @@ function Restaurants() {
       <div className={cx('container')}>
         <div className={cx('restaurant')}>
           <BreadCrumb className={cx('restaurant__breadcrumb')} />
-          {currentPageType === 'restaurant' && !query && (
+          {currentPageType === 'restaurants' && !query && (
             <div className={cx('restaurant__popular-list')}>
               <div className={cx('restaurant__popular-title')}>
                 {t('restaurant.title01')} <span className={cx('restaurant__popular-title--highlight')}>HauiFood</span>
@@ -86,9 +86,8 @@ function Restaurants() {
             </div>
           )}
 
-          {currentPageType === 'restaurantBycategory' && (
+          {currentPageType === 'restaurantsBycategory' && (
             <div className={cx('restaurant__popular-list')}>
-              {/* <BreadCrumb className={cx('restaurant__breadcrumb')} /> */}
               <div className={cx('restaurant__popular-title')}>
                 {t('restaurant.title02')}
                 <span className={cx('restaurant__popular-title--highlight')}>HauiFood</span>
