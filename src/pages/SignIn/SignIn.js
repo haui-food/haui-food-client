@@ -110,7 +110,15 @@ function SignIn() {
         </div>
 
         <div style={submit ? { cursor: 'no-drop' } : {}} className={cx('form__group', 'login__btn-group')}>
-          <Button primary auth disabled={submit}>
+          <Button
+            primary
+            auth
+            disabled={submit}
+            onClick={(e) => {
+              e.preventDefault();
+              alert('Submit from');
+            }}
+          >
             {t('button.btn05')}
           </Button>
           <Button authGoogle leftIcon={<GoogleIcon className={cx('icon-google')} />}>

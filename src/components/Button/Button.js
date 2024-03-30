@@ -31,20 +31,20 @@ function Button({
     ...passProps,
   };
 
-  if (to) {
-    props.to = to;
-    Comp = Link;
-  } else if (href) {
-    props.href = href;
-    Comp = 'a';
-  }
-
   if (disabled) {
     Object.keys(props).forEach((key) => {
       if (key.startsWith('on') && typeof props[key] === 'function') {
         delete props[key];
       }
     });
+  }
+
+  if (to) {
+    props.to = to;
+    Comp = Link;
+  } else if (href) {
+    props.href = href;
+    Comp = 'a';
   }
 
   const classes = cx('wrapper', {
@@ -61,7 +61,7 @@ function Button({
     more,
   });
   return (
-    <Comp className={classes}>
+    <Comp className={classes} {...props}>
       {leftIcon && <span className={cx('icon')}>{leftIcon}</span>}
       <p className={cx('title')}>{children}</p>
       {rightIcon && <span className={cx('icon')}>{rightIcon}</span>}
