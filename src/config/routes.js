@@ -9,7 +9,7 @@ const routes = {
   forgotPassword: '/auth/forgot-password',
   verifyOTP: '/auth/verify-otp',
   resetPassword: '/auth/reset-password',
-  aboutHaUIFood: '/about/HaUIFood',
+  aboutHaUIFood: '/about/haui-food',
   notFound: '*',
 };
 

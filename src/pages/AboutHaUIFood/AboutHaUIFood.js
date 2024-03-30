@@ -103,6 +103,24 @@ function AboutHaUIFood() {
               </div>
             </div>
           </div>
+
+          <div className={cx('about__main')}>
+            <h3 className={cx('about__main-title')}>Hành trình của HaUIFood</h3>
+
+            <div className={cx('journey-list')}>
+              <div className={cx('journey-item')}>
+                <div className={cx('journey-item__wrap')}>
+                  <img src={images.trip1} alt="" className={cx('journey-item__img')} />
+                  <div className={cx('journey-item__dot')}></div>
+                  <div className={cx('journey-item__line')}></div>
+                </div>
+                <div className={cx('journey-item__desc')}>
+                  <h4 className={cx('title')}>Ra mắt tại HaNoi, Vietnam</h4>
+                  <p className={cx('text')}>Năm 2024, HaUIFood ra mắt tại cơ sở 1 của HaUI</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
