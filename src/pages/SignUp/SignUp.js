@@ -4,14 +4,18 @@ import { useTranslation } from 'react-i18next';
 
 import styles from './SignUp.module.scss';
 import { EmailIcon, PasswordIcon, UserIcon } from '~/components/Icons';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from '~/components/Button';
 import routes from '~/config/routes';
+import { useDispatch } from 'react-redux';
+import { registerUser } from '~/apiService/authService';
 
 const cx = classNames.bind(styles);
 
 function SignUp() {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [fullname, setFullName] = useState('');
   const [email, setEmail] = useState('');
@@ -71,6 +75,18 @@ function SignUp() {
 
   const handleShowPassword = () => {
     setShowPassword(showPassword === 'password' ? 'text' : 'password');
+  };
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+    dispatch(registerUser({ fullname, email, password })).then((result) => {
+      if (result.payload) {
+        setTimeout(() => {
+          alert('Đăng ký thành công');
+        }, 2000);
+        navigate('/auth/login');
+      }
+    });
   };
 
   return (
@@ -135,7 +151,7 @@ function SignUp() {
         </div>
 
         <div style={submit ? { cursor: 'no-drop' } : {}} className={cx('form__group', 'signup__btn-group')}>
-          <Button primary auth disabled={submit}>
+          <Button primary auth disabled={submit} onClick={(e) => handleRegister(e)}>
             {t('button.btn07')}
           </Button>
         </div>
