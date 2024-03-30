@@ -18,6 +18,7 @@ const images = {
   happy: require('~/assets/images/about/happy.png'),
   together: require('~/assets/images/about/together.png'),
   trip1: require('~/assets/images/about/trip1.png'),
+  trip2: require('~/assets/images/about/trip2.jpg'),
   banhtieusr: require('~/assets/images/products/bachtieusaurieng.jpg'),
   chickenBowl: require('~/assets/images/chicken-bowl.svg').default,
 };

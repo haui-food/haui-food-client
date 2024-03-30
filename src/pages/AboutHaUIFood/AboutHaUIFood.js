@@ -7,6 +7,7 @@ import images from '~/assets/images';
 import { Link } from 'react-router-dom';
 import Button from '~/components/Button';
 import routes from '~/config/routes';
+import { QuotesIcon } from '~/components/Icons';
 
 const cx = classNames.bind(styles);
 
@@ -109,19 +110,37 @@ function AboutHaUIFood() {
 
             <div className={cx('journey-list')}>
               <div className={cx('journey-item')}>
-                <div className={cx('journey-item__wrap')}>
-                  <img src={images.trip1} alt="" className={cx('journey-item__img')} />
-                  <div className={cx('journey-item__dot')}></div>
-                  <div className={cx('journey-item__line')}></div>
+                <img data-aos="fade-right" src={images.trip2} alt="" className={cx('journey-item__img')} />
+                <div className={cx('journey-item__dot')}></div>
+                <div className={cx('journey-item__line')}></div>
+                <div data-aos="fade-up-left" className={cx('journey-item__desc')}>
+                  <h4 className={cx('title')}>Khởi tạo dự án</h4>
+                  <p className={cx('text')}>Ngày 10/03/2024 khởi tạo dự án.</p>
                 </div>
-                <div className={cx('journey-item__desc')}>
-                  <h4 className={cx('title')}>Ra mắt tại HaNoi, Vietnam</h4>
-                  <p className={cx('text')}>Năm 2024, HaUIFood ra mắt tại cơ sở 1 của HaUI</p>
+              </div>
+              <div className={cx('journey-item')}>
+                <img data-aos="fade-right" src={images.trip1} alt="" className={cx('journey-item__img')} />
+                <div className={cx('journey-item__dot')}></div>
+                <div className={cx('journey-item__line')}></div>
+                <div data-aos="fade-up-left" className={cx('journey-item__desc')}>
+                  <h4 className={cx('title')}>Đang trong quá trình phát triển</h4>
+                  <p className={cx('text')}>Dự kiến hoàn thành trong 2 tháng tới.</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+
+      <div className={cx('about__footer')}>
+        <div data-aos="zoom-in-right" className={cx('about__footer-word')}>
+          <p className={cx('about__footer-text')}>
+            <QuotesIcon className={cx('about__footer-quotes')} />
+            Thấu hiểu người khác là chìa khóa để lãnh đạo thành công. Tại HaUIFood, mang lại trải nghiệm tốt nhất cho
+            nhân viên, đối tác và người dùng chính là mục tiêu mà chúng tôi hướng đến.
+          </p>
+        </div>
+        <div className={cx('about__footer-bg')}></div>
       </div>
     </div>
   );
