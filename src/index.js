@@ -4,6 +4,7 @@ import App from '~/App';
 import reportWebVitals from './reportWebVitals';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet';
+import { Provider } from 'react-redux';
 
 import 'bootstrap/dist/css/bootstrap-grid.min.css';
 import { I18nextProvider } from 'react-i18next';
@@ -13,6 +14,7 @@ import 'aos/dist/aos.css';
 
 import GlobalStyles from '~/components/GlobalStyles';
 import BasketProvider from './contexts/BasketContext';
+import store from './redux/store';
 
 AOS.init({
   once: true,
@@ -25,18 +27,20 @@ function Main() {
   const { t } = useTranslation();
 
   return (
-    <React.StrictMode>
-      <I18nextProvider i18n={i18n}>
-        <GlobalStyles>
-          <BasketProvider>
-            <Helmet>
-              <title>{t('title')}</title>
-            </Helmet>
-            <App />
-          </BasketProvider>
-        </GlobalStyles>
-      </I18nextProvider>
-    </React.StrictMode>
+    <Provider store={store}>
+      <React.StrictMode>
+        <I18nextProvider i18n={i18n}>
+          <GlobalStyles>
+            <BasketProvider>
+              <Helmet>
+                <title>{t('title')}</title>
+              </Helmet>
+              <App />
+            </BasketProvider>
+          </GlobalStyles>
+        </I18nextProvider>
+      </React.StrictMode>
+    </Provider>
   );
 }
 

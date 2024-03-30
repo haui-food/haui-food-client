@@ -4,10 +4,12 @@ import { useTranslation } from 'react-i18next';
 
 import styles from './SignIn.module.scss';
 import { EmailIcon, GoogleIcon, PasswordIcon } from '~/components/Icons';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from '~/components/Button';
 import routes from '~/config/routes';
+import { loginUser } from '~/apiService/authService';
 
+import { useDispatch, useSelector } from 'react-redux';
 const cx = classNames.bind(styles);
 
 function SignIn() {
@@ -17,6 +19,13 @@ function SignIn() {
   const [password, setPassword] = useState('');
   const [submit, setSubmit] = useState(true);
   const [showPassword, setShowPassword] = useState('password');
+  const [loginForm, setLoginForm] = useState({
+    email: '',
+    password: '',
+  });
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const emailRegex = useMemo(() => /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/, []);
   const passwordRegex = useMemo(() => /^(?=.*[@-_]).{8,}$/, []);
@@ -61,6 +70,26 @@ function SignIn() {
     setShowPassword(showPassword === 'password' ? 'text' : 'password');
   };
 
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setLoginForm((prevLoginForm) => ({
+      ...prevLoginForm,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(loginUser(loginForm)).then((result) => {
+      if (result.payload) {
+        alert('Đăng nhập thành công');
+        navigate('/');
+      } else {
+        alert('Thông tin tài khoản không chính xác');
+      }
+    });
+  };
+
   return (
     <div className={cx('login')}>
       <h1 className={cx('login__heading', 'shine')}>{t('login.heading')}</h1>
@@ -71,9 +100,12 @@ function SignIn() {
           <div className={cx('form__text-input')} style={errors.email !== '' ? { border: '1px solid #f44336' } : {}}>
             <input
               type="email"
-              name=""
+              name="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                handleInputChange(e);
+              }}
               onBlur={handleChangeEmail}
               placeholder={t('form.tp01')}
               className={cx('form__input')}
@@ -87,10 +119,13 @@ function SignIn() {
           <div className={cx('form__text-input')} style={errors.password !== '' ? { border: '1px solid #f44336' } : {}}>
             <input
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                handleInputChange(e);
+              }}
               onBlur={handleChangePassword}
               type={showPassword}
-              name=""
+              name="password"
               placeholder={t('form.tp02')}
               className={cx('form__input')}
             />
@@ -110,15 +145,7 @@ function SignIn() {
         </div>
 
         <div style={submit ? { cursor: 'no-drop' } : {}} className={cx('form__group', 'login__btn-group')}>
-          <Button
-            primary
-            auth
-            disabled={submit}
-            onClick={(e) => {
-              e.preventDefault();
-              alert('Submit from');
-            }}
-          >
+          <Button primary auth disabled={submit} onClick={handleSubmit}>
             {t('button.btn05')}
           </Button>
           <Button authGoogle leftIcon={<GoogleIcon className={cx('icon-google')} />}>
