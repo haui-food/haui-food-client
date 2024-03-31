@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import classNames from 'classnames/bind';
 import { useTranslation } from 'react-i18next';
 
@@ -23,6 +23,13 @@ function SignIn() {
     email: '',
     password: '',
   });
+
+  const error = useSelector((state) => state.auth.error);
+  useEffect(() => {
+    if (error) {
+      alert(error);
+    }
+  }, [error]);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -84,8 +91,6 @@ function SignIn() {
       if (result.payload) {
         alert('Đăng nhập thành công');
         navigate('/');
-      } else {
-        alert('Thông tin tài khoản không chính xác');
       }
     });
   };

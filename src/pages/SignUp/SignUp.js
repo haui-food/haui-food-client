@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import classNames from 'classnames/bind';
 import { useTranslation } from 'react-i18next';
 
@@ -7,7 +7,7 @@ import { EmailIcon, PasswordIcon, UserIcon } from '~/components/Icons';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from '~/components/Button';
 import routes from '~/config/routes';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { registerUser } from '~/apiService/authService';
 
 const cx = classNames.bind(styles);
@@ -16,6 +16,14 @@ function SignUp() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const error = useSelector((state) => state.auth.error);
+
+  useEffect(() => {
+    if (error) {
+      alert(error);
+    }
+  }, [error]);
 
   const [fullname, setFullName] = useState('');
   const [email, setEmail] = useState('');
@@ -82,9 +90,9 @@ function SignUp() {
     dispatch(registerUser({ fullname, email, password })).then((result) => {
       if (result.payload) {
         setTimeout(() => {
-          alert('Đăng ký thành công');
+          navigate('/auth/login');
         }, 2000);
-        navigate('/auth/login');
+        alert('Đăng ký thành công');
       }
     });
   };
