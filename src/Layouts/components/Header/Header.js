@@ -207,17 +207,6 @@ function Header() {
             <ul ref={languagesRef} className={cx('header__languages', showLanguages ? 'header__languages--show' : '')}>
               <li
                 onClick={() => {
-                  Cookies.set('lang', 'en');
-                  setShowLanguages(false);
-
-                  window.location.reload();
-                }}
-                className={cx('header__language')}
-              >
-                English
-              </li>
-              <li
-                onClick={() => {
                   Cookies.set('lang', 'vi');
                   setShowLanguages(false);
 
@@ -226,6 +215,17 @@ function Header() {
                 className={cx('header__language')}
               >
                 Tiếng Việt
+              </li>
+              <li
+                onClick={() => {
+                  Cookies.set('lang', 'en');
+                  setShowLanguages(false);
+
+                  window.location.reload();
+                }}
+                className={cx('header__language')}
+              >
+                English
               </li>
               <li
                 onClick={() => {

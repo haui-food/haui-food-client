@@ -28,7 +28,8 @@
     "btn10": "Verify",
     "btn11": "Verifying...",
     "btn12": "Reset",
-    "btn13": "Go to home page"
+    "btn13": "Go to home page",
+    "btn14": "Learn more"
   },
   "form": {
     "tp01": "Email",
@@ -114,5 +115,28 @@
   "reset-password": {
     "heading": "Reset Password",
     "desc01": "Please enter your new password in the box below."
+  },
+  "about-HaUIFood": {
+    "heading01": "HaUIFood is the leading e-commerce platform in HaUI.",
+    "heading02": "Our goal",
+    "heading03": "Our positioning",
+    "heading04": "Our motto",
+    "heading05": "Simple",
+    "heading06": "Happy",
+    "heading07": "Together",
+    "heading08": "The journey of HaUIFood",
+    "heading09": "Project initiation",
+    "heading10": "Under development",
+    "desc01": "Launched in 2024, HaUIFood provides users in the region with a simple, safe and fast online shopping experience through a strong payment support and operation system.",
+    "desc02": "We believe that online shopping experience needs to be simple, easy and bring joy to users. This mission is also the inspiration that drives us to develop every day.",
+    "desc03": "HaUIFood wants to contribute to making society better through the power of technology by connecting the community of buyers and sellers.",
+    "desc04": "Through HaUIFood, Internet users across the region can experience online shopping with a variety of products, connect with the community of sellers, and enjoy a seamless receiving process.",
+    "desc05": "The motto Simple, Happy and Together defines the brand personality of HaUIFood through words and actions. This motto is present anywhere in our development journey.",
+    "desc06": "We believe in simplicity and integrity, ensuring a life that is true and true to oneself.",
+    "desc07": "We are friendly, cheerful, and full of energy, spreading joy to everyone.",
+    "desc08": "We like to spend time together, when shopping online with friends and family - together doing the things we love.",
+    "desc09": "Project initiated on 10/03/2024.",
+    "desc10": "Expected to be completed in the next 2 months.",
+    "desc11": "Understanding others is the key to successful leadership. At HaUIFood, providing the best experience for employees, partners and users is the goal we aim for."
   }
 }
