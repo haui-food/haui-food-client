@@ -19,27 +19,30 @@ var loginUser = (0, _toolkit.createAsyncThunk)('auth/login', function _callee(us
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          _context.next = 2;
+          _context.prev = 0;
+          _context.next = 3;
           return regeneratorRuntime.awrap(_axios["default"].post("".concat(_http["default"], "/v1/auth/login"), userCredentials));
 
-        case 2:
+        case 3:
           req = _context.sent;
-          _context.next = 5;
-          return regeneratorRuntime.awrap(req.data.data);
+          res = req.data; // Không cần truy cập đến res.data.data nữa
 
-        case 5:
-          res = _context.sent;
           localStorage.setItem('accessToken', JSON.stringify(res.accessToken));
           localStorage.setItem('refreshToken', JSON.stringify(res.refreshToken));
-          console.log(res);
           return _context.abrupt("return", res);
 
         case 10:
+          _context.prev = 10;
+          _context.t0 = _context["catch"](0);
+          console.log(_context.t0);
+          throw _context.t0.response !== null ? new Error(_context.t0.response.data.message) : new Error('Đã xảy ra lỗi không mong đợi');
+
+        case 14:
         case "end":
           return _context.stop();
       }
     }
-  });
+  }, null, null, [[0, 10]]);
 });
 exports.loginUser = loginUser;
 var registerUser = (0, _toolkit.createAsyncThunk)('auth/signup', function _callee2(userCredentials) {
@@ -48,24 +51,29 @@ var registerUser = (0, _toolkit.createAsyncThunk)('auth/signup', function _calle
     while (1) {
       switch (_context2.prev = _context2.next) {
         case 0:
-          _context2.next = 2;
+          _context2.prev = 0;
+          _context2.next = 3;
           return regeneratorRuntime.awrap(_axios["default"].post("".concat(_http["default"], "/v1/auth/register"), userCredentials));
 
-        case 2:
+        case 3:
           req = _context2.sent;
-          _context2.next = 5;
+          _context2.next = 6;
           return regeneratorRuntime.awrap(req.data.data);
 
-        case 5:
+        case 6:
           res = _context2.sent;
-          console.log(res);
           return _context2.abrupt("return", res);
 
-        case 8:
+        case 10:
+          _context2.prev = 10;
+          _context2.t0 = _context2["catch"](0);
+          throw _context2.t0.response !== null ? new Error(_context2.t0.response.data.message) : new Error('Đã xảy ra lỗi không mong đợi');
+
+        case 13:
         case "end":
           return _context2.stop();
       }
     }
-  });
+  }, null, null, [[0, 10]]);
 });
 exports.registerUser = registerUser;

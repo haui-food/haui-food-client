@@ -23,7 +23,7 @@ const authSlice = createSlice({
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
         state.user = null;
-        state.error = action.error.message; // Set error message directly
+        state.error = action.error.message;
       })
       .addCase(registerUser.pending, (state) => {
         state.loading = true;
@@ -38,7 +38,7 @@ const authSlice = createSlice({
       .addCase(registerUser.rejected, (state, action) => {
         state.loading = false;
         state.user = null;
-        state.error = action.error.message; // Set error message directly
+        state.error = action.error.message;
       });
   },
 });

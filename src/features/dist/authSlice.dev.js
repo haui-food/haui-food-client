@@ -28,7 +28,7 @@ var authSlice = (0, _toolkit.createSlice)({
     }).addCase(_authService.loginUser.rejected, function (state, action) {
       state.loading = false;
       state.user = null;
-      state.error = action.error.message; // Set error message directly
+      state.error = action.error.message;
     }).addCase(_authService.registerUser.pending, function (state) {
       state.loading = true;
       state.user = null;
@@ -40,7 +40,7 @@ var authSlice = (0, _toolkit.createSlice)({
     }).addCase(_authService.registerUser.rejected, function (state, action) {
       state.loading = false;
       state.user = null;
-      state.error = action.error.message; // Set error message directly
+      state.error = action.error.message;
     });
   }
 });
