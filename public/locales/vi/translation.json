@@ -28,7 +28,8 @@
     "btn10": "Xác minh",
     "btn11": "Đang xác minh ...",
     "btn12": "Đặt lại",
-    "btn13": "Quay lại trang chủ"
+    "btn13": "Quay lại trang chủ",
+    "btn14": "Tìm hiểu thêm"
   },
   "form": {
     "tp01": "Email",
@@ -114,5 +115,28 @@
   "reset-password": {
     "heading": "Đặt lại mật khẩu",
     "desc01": "Vui lòng nhập mật khẩu mới của bạn vào ô bên dưới."
+  },
+  "about-HaUIFood": {
+    "heading01": "HaUIFood là nền tảng Thương mại Điện tử hàng đầu tại HaUI.",
+    "heading02": "Mục tiêu của chúng tôi",
+    "heading03": "Định vị của chúng tôi",
+    "heading04": "Phương châm của chúng tôi",
+    "heading05": "Simple",
+    "heading06": "Happy",
+    "heading07": "Together",
+    "heading08": "Hành trình của HaUIFood",
+    "heading09": "Khởi tạo dự án",
+    "heading10": "Đang trong quá trình phát triển",
+    "desc01": "Ra mắt vào năm 2024, HaUIFood mang đến cho người dùng trong khu vực trải nghiệm mua sắm trực tuyến đơn giản, an toàn và nhanh chóng thông qua hệ thống hỗ trợ thanh toán và vận hành vững mạnh.",
+    "desc02": "Chúng tôi tin rằng trải nghiệm mua sắm trực tuyến cần đơn giản, dễ dàng và mang lại niềm vui cho người dùng.Sứ mệnh này cũng là nguồn cảm hứng thúc đẩy chúng tôi phát triển từng ngày.",
+    "desc03": "HaUIFood mong muốn góp phần làm cho xã hội trở nên tốt đẹp hơn bằng sức mạnh công nghệ thông qua việc kết nối cộng đồng người mua và người bán.",
+    "desc04": "Thông qua HaUIFood, người dùng Internet trên toàn khu vực có thể trải nghiệm mua sắm trực tuyến với các sản phẩm đa dạng, kết nối với cộng đồng người bán, và tận hưởng quá trình nhận hàng liền mạch.",
+    "desc05": "Phương châm Simple, Happy and Together xác định tính cách thương hiệu HaUIFood thông qua lời nói và hành động. Phương châm này hiện hữu ở bất cứ đâu trong hành trình phát triển của chúng tôi.",
+    "desc06": "Chúng tôi tin vào sự đơn giản và toàn vẹn, đảm bảo một cuộc sống chân thật và đúng với bản thân mình.",
+    "desc07": "Chúng tôi thân thiện, vui vẻ, và tràn đầy năng lượng, lan tỏa niềm vui với mọi người.",
+    "desc08": "Chúng tôi thích dành thời gian cùng nhau, khi mua sắm trực tuyến với bạn bè và gia đình - cùng nhau làm những việc chúng tôi yêu thích.",
+    "desc09": "Ngày 10/03/2024 khởi tạo dự án.",
+    "desc10": "Dự kiến hoàn thành trong 2 tháng tới.",
+    "desc11": "Thấu hiểu người khác là chìa khóa để lãnh đạo thành công. Tại HaUIFood, mang lại trải nghiệm tốt nhất cho nhân viên, đối tác và người dùng chính là mục tiêu mà chúng tôi hướng đến."
   }
 }
