@@ -157,7 +157,7 @@ function AboutDevelopmentTeam() {
               </div>
             </div>
             <div className={cx('col-12 col-xxl-4 col-xl-4 col-lg-6 col-md-6 cod-sm-12')}>
-              <div data-aos="zoom-in-right" data-aos-anchor-placement="center-bottom" className={cx('developer')}>
+              <div data-aos="zoom-in-right" data-aos-anchor-placement="top-center" className={cx('developer')}>
                 <div className={cx('developer__top')}>
                   <img loading="lazy" src={images.developer2} className={cx('developer__avatar')} alt="avatar" />
                   <div className={cx('developer__socials')}>
@@ -199,7 +199,7 @@ function AboutDevelopmentTeam() {
               </div>
             </div>
             <div className={cx('col-12 col-xxl-4 col-xl-4 col-lg-6 col-md-6 cod-sm-12')}>
-              <div data-aos="zoom-in-left" data-aos-anchor-placement="center-bottom" className={cx('developer')}>
+              <div data-aos="zoom-in-left" data-aos-anchor-placement="top-center" className={cx('developer')}>
                 <div className={cx('developer__top')}>
                   <img loading="lazy" src={images.developer4} className={cx('developer__avatar')} alt="avatar" />
                   <div className={cx('developer__socials')}>
