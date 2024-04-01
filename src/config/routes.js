@@ -10,6 +10,7 @@ const routes = {
   verifyOTP: '/auth/verify-otp',
   resetPassword: '/auth/reset-password',
   aboutHaUIFood: '/about/haui-food',
+  aboutDevelopmentTeam: '/about/development-team',
   notFound: '*',
 };
 

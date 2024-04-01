@@ -138,5 +138,9 @@
     "desc09": "Project initiated on 10/03/2024.",
     "desc10": "Expected to be completed in the next 2 months.",
     "desc11": "Understanding others is the key to successful leadership. At HaUIFood, providing the best experience for employees, partners and users is the goal we aim for."
+  },
+  "aboutDevelopmentTeam": {
+    "heading": "Meet the website development team",
+    "desc": "We have many years of experience in the field of design, programming, and website deployment."
   }
 }

@@ -11,6 +11,7 @@ import ForgotPassword from '~/pages/ForgotPassword';
 import VerifyOTP from '~/pages/VerifyOTP';
 import ResetPassword from '~/pages/ResetPassword';
 import AboutHaUIFood from '~/pages/AboutHaUIFood';
+import AboutDevelopmentTeam from '~/pages/AboutDevelopmentTeam';
 import NotFound from '~/pages/NotFound';
 
 const publicRoutes = [
@@ -33,6 +34,7 @@ const publicRoutes = [
   { path: config.routes.verifyOTP, component: VerifyOTP, layout: AuthLayout },
   { path: config.routes.resetPassword, component: ResetPassword, layout: AuthLayout },
   { path: config.routes.aboutHaUIFood, component: AboutHaUIFood },
+  { path: config.routes.aboutDevelopmentTeam, component: AboutDevelopmentTeam },
   { path: config.routes.notFound, component: NotFound, layout: NotFoundLayout },
 ];
 

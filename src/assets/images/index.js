@@ -19,6 +19,13 @@ const images = {
   together: require('~/assets/images/about/together.png'),
   trip1: require('~/assets/images/about/trip1.png'),
   trip2: require('~/assets/images/about/trip2.jpg'),
+  devBg1: require('~/assets/images/about/developer-team.svg').default,
+  devBg2: require('~/assets/images/about/bg2.svg').default,
+  developer1: require('~/assets/images/about/avatar1.jpg'),
+  developer2: require('~/assets/images/about/avatar2.jpg'),
+  developer3: require('~/assets/images/about/avatar3.png'),
+  developer4: require('~/assets/images/about/avatar4.jpg'),
+  developer5: require('~/assets/images/about/avatar5.jpg'),
   banhtieusr: require('~/assets/images/products/bachtieusaurieng.jpg'),
   chickenBowl: require('~/assets/images/chicken-bowl.svg').default,
 };
