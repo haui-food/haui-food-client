@@ -36,11 +36,6 @@ function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to={'#!'} onClick={(e) => handleClick(e)} className={cx('footer__item')}>
-                  {t('footer.title02')}
-                </Link>
-              </li>
-              <li>
                 <Link to={routes.aboutDevelopmentTeam} onClick={(e) => handleClick(e)} className={cx('footer__item')}>
                   {t('footer.title03')}
                 </Link>
