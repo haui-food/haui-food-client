@@ -5,7 +5,7 @@ import axios from 'axios';
 export const loginUser = createAsyncThunk('auth/login', async (userCredentials) => {
   try {
     const req = await axios.post(`${hostname}/v1/auth/login`, userCredentials);
-    const res = req.data; // Không cần truy cập đến res.data.data nữa
+    const res = req.data.data;
     localStorage.setItem('accessToken', JSON.stringify(res.accessToken));
     localStorage.setItem('refreshToken', JSON.stringify(res.refreshToken));
     return res;

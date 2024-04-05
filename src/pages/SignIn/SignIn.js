@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import classNames from 'classnames/bind';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
+import { Oval } from '@agney/react-loading';
 
 import styles from './SignIn.module.scss';
 import { EmailIcon, GoogleIcon, PasswordIcon } from '~/components/Icons';
@@ -24,10 +26,13 @@ function SignIn() {
     password: '',
   });
 
+  const loading = useSelector((state) => state.auth.loading);
+  const auth = useSelector((state) => state.auth.user);
   const error = useSelector((state) => state.auth.error);
   useEffect(() => {
     if (error) {
-      alert(error);
+      toast.error(error);
+      setSubmit(false);
     }
   }, [error]);
 
@@ -66,7 +71,7 @@ function SignIn() {
     if (passwordRegex.test(password)) {
       setErrors({ ...errors, password: '' });
     }
-    if (!password) {
+    if (password === '') {
       setErrors({ ...errors, password: t('errors.err03') });
     }
     checkSubmit();
@@ -83,17 +88,36 @@ function SignIn() {
       ...prevLoginForm,
       [name]: value,
     }));
+    checkSubmit();
   };
 
   const handleSubmit = (e) => {
+    const token = localStorage.getItem('accessToken');
     e.preventDefault();
+    setSubmit(true);
+    if (token || auth) {
+      toast.warning('Bạn đã đăng nhập rồi');
+      navigate('/');
+      return;
+    }
     dispatch(loginUser(loginForm)).then((result) => {
       if (result.payload) {
-        alert('Đăng nhập thành công');
+        toast.success(t('login.notify'));
         navigate('/');
       }
     });
   };
+
+  useEffect(() => {
+    if (passwordRegex.test(password) && emailRegex.test(email)) {
+      setSubmit(false);
+    } else {
+      setSubmit(true);
+    }
+    if (passwordRegex.test(password)) {
+      setErrors({ ...errors, password: '' });
+    }
+  }, [password, passwordRegex, email, emailRegex, errors]);
 
   return (
     <div className={cx('login')}>
@@ -150,7 +174,13 @@ function SignIn() {
         </div>
 
         <div style={submit ? { cursor: 'no-drop' } : {}} className={cx('form__group', 'login__btn-group')}>
-          <Button primary auth disabled={submit} onClick={handleSubmit}>
+          <Button
+            primary
+            auth
+            disabled={submit || loading}
+            onClick={handleSubmit}
+            leftIcon={loading && <Oval width="20" color="#fff" />}
+          >
             {t('button.btn05')}
           </Button>
           <Button authGoogle leftIcon={<GoogleIcon className={cx('icon-google')} />}>
