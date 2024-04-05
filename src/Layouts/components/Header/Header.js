@@ -12,6 +12,7 @@ import images from '~/assets/images';
 import Button from '~/components/Button';
 import { ArrowDownIcon, CartIcon, ClockIcon, CloseIcon, HomeIcon, MenuIcon } from '~/components/Icons';
 import CartItem from '~/components/CartItem';
+import { useSelector } from 'react-redux';
 
 const cx = classNames.bind(styles);
 
@@ -29,12 +30,24 @@ function Header() {
   const [displayQuantity, setDisplayQuantity] = useState(cartItems.quantity);
   const isProduct = cartItems.items.length > 0 ? true : false;
   const isCarts = cartItems.items.length > 0 ? true : false;
-  const isLogin = false;
+  const [isLogin, setIsLogin] = useState(false);
 
   const headerRef = useRef(null);
   const languagesRef = useRef(null);
   const languageBtnRef = useRef(null);
   const cartRef = useRef(null);
+
+  const auth = useSelector((state) => state.auth.user);
+
+  useEffect(() => {
+    const token = localStorage.getItem('accessToken');
+
+    if (auth || token) {
+      setIsLogin(true);
+    } else {
+      setIsLogin(false);
+    }
+  }, [auth]);
 
   const handleClickOutside = useCallback((event) => {
     if (

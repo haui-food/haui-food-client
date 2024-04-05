@@ -28,14 +28,15 @@ const publicRoutes = [
     path: config.routes.restaurant,
     component: Restaurant,
   },
-  { path: config.routes.login, component: SignIn, layout: AuthLayout },
-  { path: config.routes.signup, component: SignUp, layout: AuthLayout },
+
   { path: config.routes.forgotPassword, component: ForgotPassword, layout: AuthLayout },
   { path: config.routes.verifyOTP, component: VerifyOTP, layout: AuthLayout },
   { path: config.routes.resetPassword, component: ResetPassword, layout: AuthLayout },
   { path: config.routes.aboutHaUIFood, component: AboutHaUIFood },
   { path: config.routes.aboutDevelopmentTeam, component: AboutDevelopmentTeam },
   { path: config.routes.notFound, component: NotFound, layout: NotFoundLayout },
+  { path: config.routes.login, component: SignIn, layout: AuthLayout },
+  { path: config.routes.signup, component: SignUp, layout: AuthLayout },
 ];
 
 const privateRoutes = [];

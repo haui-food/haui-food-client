@@ -96,12 +96,14 @@
   "login": {
     "heading": "Đăng nhập",
     "desc01": "Chào mừng bạn quay trở lại. Đăng nhập để tiếp tục mua hàng.",
-    "desc02": "Bạn chưa có tài khoản"
+    "desc02": "Bạn chưa có tài khoản",
+    "notify": "Đăng nhập thành công"
   },
   "sign-up": {
     "heading": "Đăng ký",
     "desc01": "Hãy bắt đầu tạo một tài khoản mới để trải nghiệm đầy đủ các tính năng và dịch vụ của chúng tôi.",
-    "desc02": "Bạn đã có tài khoản"
+    "desc02": "Bạn đã có tài khoản",
+    "notify": "Đăng ký thành công"
   },
   "forgot-password": {
     "heading": "Khôi phục mật khẩu",

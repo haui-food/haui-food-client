@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import classNames from 'classnames/bind';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
+import { Oval } from '@agney/react-loading';
 
 import styles from './SignUp.module.scss';
 import { EmailIcon, PasswordIcon, UserIcon } from '~/components/Icons';
@@ -17,11 +19,12 @@ function SignUp() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const loading = useSelector((state) => state.auth.loading);
   const error = useSelector((state) => state.auth.error);
 
   useEffect(() => {
     if (error) {
-      alert(error);
+      toast.error(error);
     }
   }, [error]);
 
@@ -92,10 +95,21 @@ function SignUp() {
         setTimeout(() => {
           navigate('/auth/login');
         }, 2000);
-        alert('Đăng ký thành công');
+        toast.success(t('sign-up.notify'));
       }
     });
   };
+
+  useEffect(() => {
+    if (passwordRegex.test(password) && emailRegex.test(email) && fullname !== '') {
+      setSubmit(false);
+    } else {
+      setSubmit(true);
+    }
+    if (passwordRegex.test(password)) {
+      setErrors({ ...errors, password: '' });
+    }
+  }, [password, passwordRegex, email, emailRegex, fullname, errors]);
 
   return (
     <div className={cx('signup')}>
@@ -159,7 +173,13 @@ function SignUp() {
         </div>
 
         <div style={submit ? { cursor: 'no-drop' } : {}} className={cx('form__group', 'signup__btn-group')}>
-          <Button primary auth disabled={submit} onClick={(e) => handleRegister(e)}>
+          <Button
+            primary
+            auth
+            disabled={submit || loading}
+            onClick={(e) => handleRegister(e)}
+            leftIcon={loading && <Oval width="20" color="#fff" />}
+          >
             {t('button.btn07')}
           </Button>
         </div>

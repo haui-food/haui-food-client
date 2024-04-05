@@ -96,12 +96,14 @@
   "login": {
     "heading": "Sign in",
     "desc01": "Welcome back. Sign in to continue shopping.",
-    "desc02": "You don't have an account"
+    "desc02": "You don't have an account",
+    "notify": "Login successful"
   },
   "sign-up": {
     "heading": "Sign up",
     "desc01": "Let's start creating a new account to fully experience our features and services.",
-    "desc02": "You already have an account"
+    "desc02": "You already have an account",
+    "notify": "Registration successful"
   },
   "forgot-password": {
     "heading": "Recover password",
