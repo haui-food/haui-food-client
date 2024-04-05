@@ -66,21 +66,21 @@ function RestaurentList({ category, query, type }) {
       setRestaurentList([]);
       fectRestaurants();
     }
-    console.log('query');
+    // console.log('query');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
 
   useEffect(() => {
     if (isFirstMount) return;
     fectRestaurants();
-    console.log('type');
+    // console.log('type');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [type]);
-  console.log('currantpage', currentPage);
-  console.log('totalPages', totalPages);
-  console.log(restaurentList.length);
-  console.log(totalDocuments);
-  console.log(restaurentList.length === totalDocuments);
+  // console.log('currantpage', currentPage);
+  // console.log('totalPages', totalPages);
+  // console.log(restaurentList.length);
+  // console.log(totalDocuments);
+  // console.log(restaurentList.length === totalDocuments);
   return (
     <div className={cx('restaurant-list')}>
       <div className={cx()}>

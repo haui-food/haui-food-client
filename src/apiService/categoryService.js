@@ -1,0 +1,16 @@
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import hostname from '~/utils/http';
+import axios from 'axios';
+
+export const getCategories = createAsyncThunk('category/getCategories', async ({ limit, page }) => {
+  try {
+    console.log(`${hostname}/v1/categories?limit=${limit}&page=${page}`);
+    const req = await axios.get(`${hostname}/v1/categories?limit=${limit}&page=${page}`);
+
+    const res = req.data.data;
+    // console.log(res);
+    return res;
+  } catch (error) {
+    throw error.response !== null ? new Error(error.response.data.message) : new Error('Đã xảy ra lỗi không mong đợi');
+  }
+});
