@@ -6,12 +6,13 @@ import { Link } from 'react-router-dom';
 import { ChevronRight } from '../Icons';
 import routes from '~/config/routes';
 import Cookies from 'js-cookie';
+
 const cx = classNames.bind(styles);
 
 function BreadCrumb({ className }) {
   const language = Cookies.get('lang');
-  // console.log(language);
-
+  const nameCategory = JSON.parse(localStorage.getItem('categorySelected'));
+  console.log(nameCategory);
   let resString = 'restaurants';
   let cuisinesString = 'cuisines';
   if (language === 'vi') {
@@ -22,9 +23,13 @@ function BreadCrumb({ className }) {
   const pathname = useLocation()
     .pathname.split('/')
     .map((path) => {
-      return decodeURIComponent(path).replace(/-/g, ' ').replace('  ', ' - ');
+      if (path === nameCategory.slug) {
+        return nameCategory.name;
+      }
+      return path;
     });
 
+  console.log(pathname);
   const upperFirstCase = (path) => {
     if (path === 'cuisines') {
       path = cuisinesString;
@@ -32,15 +37,7 @@ function BreadCrumb({ className }) {
     if (path === 'restaurants') {
       path = resString;
     }
-    if (path.includes('-')) {
-      //viết hoa chữ cái đầu tiên sau đáu "-"
-      return path
-        .split('-')
-        .map((word) => {
-          return word.trim().charAt(0).toUpperCase() + word.trim().slice(1);
-        })
-        .join(' - ');
-    }
+
     return path.charAt(0).toUpperCase() + path.slice(1);
   };
 

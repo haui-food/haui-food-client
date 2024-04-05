@@ -8,6 +8,7 @@
   padding-right: 7px;
   height: 100%;
   position: relative;
+  cursor: pointer;
 
   @include media-breakpoint-down(md) {
     padding-left: 5px;

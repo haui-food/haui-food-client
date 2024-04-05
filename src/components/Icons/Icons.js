@@ -11,9 +11,9 @@ export const ChevronRight = ({ className }) => {
       <path
         d="M1.5 1L8.5 8L1.5 15"
         stroke="#9E9DA8"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
@@ -415,7 +415,7 @@ export const tagIcon = ({ width = '1.6rem', height = '1.6rem', className }) => {
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
-      stroke-width="1.5"
+      strokeWidth="1.5"
       stroke="currentColor"
       className={className}
       width={width}
