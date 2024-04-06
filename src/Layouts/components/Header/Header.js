@@ -3,6 +3,7 @@ import classNames from 'classnames/bind';
 import { Link, useLocation } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 
 import styles from './Header.module.scss';
 
@@ -10,7 +11,16 @@ import { useBasket } from '~/contexts/BasketContext';
 import routes from '~/config/routes';
 import images from '~/assets/images';
 import Button from '~/components/Button';
-import { ArrowDownIcon, CartIcon, ClockIcon, CloseIcon, HomeIcon, MenuIcon } from '~/components/Icons';
+import {
+  ArrowDownIcon,
+  CartIcon,
+  ClockIcon,
+  CloseIcon,
+  HomeIcon,
+  LogOutIcon,
+  MenuIcon,
+  UserIcon,
+} from '~/components/Icons';
 import CartItem from '~/components/CartItem';
 import { useSelector } from 'react-redux';
 
@@ -24,6 +34,7 @@ function Header() {
 
   const [logo, setLogo] = useState(images.logoVip1);
   const [showLanguages, setShowLanguages] = useState(false);
+  const [showUserOptions, setShowUserOptions] = useState(false);
   const [showCart, setShowCart] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const [displayPrice, setDisplayPrice] = useState(cartItems.totalPrice);
@@ -35,27 +46,38 @@ function Header() {
   const headerRef = useRef(null);
   const languagesRef = useRef(null);
   const languageBtnRef = useRef(null);
+  const userOptionsRef = useRef(null);
+  const avatarRef = useRef(null);
   const cartRef = useRef(null);
 
   const auth = useSelector((state) => state.auth.user);
+  const token = localStorage.getItem('accessToken');
 
   useEffect(() => {
-    const token = localStorage.getItem('accessToken');
-
     if (auth || token) {
       setIsLogin(true);
     } else {
       setIsLogin(false);
     }
-  }, [auth]);
+  }, [auth, token]);
 
-  const handleClickOutside = useCallback((event) => {
+  const handleClickOutsideLanguages = useCallback((event) => {
     if (
       languagesRef.current &&
       !languagesRef.current.contains(event.target) &&
       !languageBtnRef.current.contains(event.target)
     ) {
       setShowLanguages(false);
+    }
+  }, []);
+
+  const handleClickOutsideUserOptions = useCallback((event) => {
+    if (
+      userOptionsRef.current &&
+      !userOptionsRef.current.contains(event.target) &&
+      !avatarRef.current.contains(event.target)
+    ) {
+      setShowUserOptions(false);
     }
   }, []);
 
@@ -73,6 +95,26 @@ function Header() {
       setShowMenu(false);
     }
   };
+
+  const handleLogOut = () => {
+    localStorage.removeItem('accessToken');
+    setShowUserOptions(false);
+    // Lưu trạng thái thông báo vào localStorage
+    localStorage.setItem('showToast', 'true');
+    window.location.href = '/';
+  };
+
+  // kiểm tra trạng thái thông báo khi trang web tải lại
+  useEffect(() => {
+    const showToast = localStorage.getItem('showToast');
+    if (showToast === 'true') {
+      toast.success(t('login.notify02'));
+      // Xóa trạng thái thông báo sau khi đã hiển thị
+      const deleteToast = setTimeout(() => localStorage.removeItem('showToast'), 5000);
+      // Xóa timeout sau khi nó đã thực hiện xong
+      return () => clearTimeout(deleteToast);
+    }
+  }, []);
 
   useEffect(() => {
     const onScroll = () => {
@@ -110,12 +152,20 @@ function Header() {
   }, [location]);
 
   useEffect(() => {
-    document.addEventListener('click', handleClickOutside);
+    document.addEventListener('click', handleClickOutsideLanguages);
 
     return () => {
-      document.removeEventListener('click', handleClickOutside);
+      document.removeEventListener('click', handleClickOutsideLanguages);
     };
-  }, [handleClickOutside]);
+  }, [handleClickOutsideLanguages]);
+
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutsideUserOptions);
+
+    return () => {
+      document.removeEventListener('click', handleClickOutsideUserOptions);
+    };
+  }, [handleClickOutsideUserOptions]);
 
   useEffect(() => {
     const disableScroll = (event) => {
@@ -185,10 +235,15 @@ function Header() {
           {/* Actions */}
           <nav className={cx('header__actions')}>
             <div onClick={() => setShowCart(!showCart)} className={cx('header__actions-group', 'header__actions-cart')}>
-              <Button haveProducts={isCarts} action outline leftIcon={<CartIcon className={cx('icon')} />}>
-                {displayPrice !== 0 ? `${displayPrice.toLocaleString('vi-VN')} ₫` : ''}
+              <Button
+                haveProducts={isCarts && (auth || token)}
+                action
+                outline
+                leftIcon={<CartIcon className={cx('icon')} />}
+              >
+                {displayPrice !== 0 && (auth || token) ? `${displayPrice.toLocaleString('vi-VN')} ₫` : ''}
               </Button>
-              {isCarts && <span className={cx('header__actions-quantity')}>{displayQuantity}</span>}
+              {isCarts && (auth || token) && <span className={cx('header__actions-quantity')}>{displayQuantity}</span>}
             </div>
             {!isLogin && (
               <div className={cx('header__actions-group')}>
@@ -201,9 +256,28 @@ function Header() {
             )}
             {isLogin && (
               <div className={cx('header__actions-group')}>
-                <Link to={'#!'}>
-                  <img className={cx('header__actions-avatar')} src={images.avatarDefault} alt="avatar" />
-                </Link>
+                <img
+                  ref={avatarRef}
+                  onClick={() => setShowUserOptions(!showUserOptions)}
+                  className={cx('header__actions-avatar', showUserOptions && 'header__actions-avatar--open')}
+                  src={images.avatarDefault}
+                  alt="avatar"
+                />
+                <ul
+                  ref={userOptionsRef}
+                  className={cx('header__user-options', showUserOptions ? 'header__user-options--show' : '')}
+                >
+                  <Link to={'#!'}>
+                    <li className={cx('header__user-option')}>
+                      <p>{t('user-options.op01')}</p>
+                      <UserIcon className={cx('icon')} />
+                    </li>
+                  </Link>
+                  <li onClick={handleLogOut} className={cx('header__user-option')}>
+                    <p>{t('user-options.op02')}</p>
+                    <LogOutIcon className={cx('icon')} />
+                  </li>
+                </ul>
               </div>
             )}
             <div
@@ -211,7 +285,15 @@ function Header() {
               ref={languageBtnRef}
               onClick={() => setShowLanguages(!showLanguages)}
             >
-              <Button action outline rightIcon={<ArrowDownIcon className={cx('icon')} />}>
+              <Button
+                action
+                outline
+                rightIcon={
+                  <ArrowDownIcon
+                    className={cx('header__language-arrow', showLanguages && 'header__language-arrow--open', 'icon')}
+                  />
+                }
+              >
                 {Cookies.get('lang').toUpperCase()}
               </Button>
             </div>
@@ -261,7 +343,7 @@ function Header() {
             <button onClick={handleCloseCart} className={cx('cart__close')}>
               <CloseIcon />
             </button>
-            {isProduct && (
+            {isProduct && (auth || token) && (
               <div className={cx('cart__top-block')}>
                 <h5 className={cx('cart__top-title')}>{t('cart.title01')}</h5>
                 <p className={cx('cart__top-desc')}>
@@ -273,8 +355,18 @@ function Header() {
               </div>
             )}
           </div>
-          <div className={cx('cart__container', !isProduct ? 'cart__container--center' : '')}>
-            {!isProduct && (
+          <div className={cx('cart__container', !isProduct || !auth || !token ? 'cart__container--center' : '')}>
+            {!auth && !token && (
+              <div className={cx('cart__empty')}>
+                <img className={cx('cart__empty-img')} src={images.cart} alt="cart" />
+                <h5 className={cx('cart__empty-title')}>{t('cart.title04')}</h5>
+                <p className={cx('cart__empty-desc')}>{t('cart.desc06')}</p>
+                <Link to={routes.login}>
+                  <button className={cx('cart__empty-btn')}>{t('button.btn05')}</button>
+                </Link>
+              </div>
+            )}
+            {!isProduct && (auth || token) && (
               <div className={cx('cart__empty')}>
                 <img className={cx('cart__empty-img')} src={images.cart} alt="cart" />
                 <h5 className={cx('cart__empty-title')}>{t('cart.title02')}</h5>
@@ -285,7 +377,7 @@ function Header() {
               </div>
             )}
 
-            {isProduct && (
+            {isProduct && (auth || token) && (
               <div ref={cartRef} onWheel={handleWheel} className={cx('cart__scroll')}>
                 <div className={cx('cart__content')}>
                   <div className={cx('cart__products')}>
@@ -316,7 +408,7 @@ function Header() {
               </div>
             )}
           </div>
-          {isProduct && (
+          {isProduct && (auth || token) && (
             <div className={cx('cart__bottom')}>
               <div className={cx('cart__bottom-info')}>
                 <span className={cx('cart__bottom-price')}>{t('cart.desc03')}</span>

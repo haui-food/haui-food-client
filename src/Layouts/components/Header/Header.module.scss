@@ -118,6 +118,11 @@
       border: 1px solid #f0efef;
       background-color: #676767;
       cursor: pointer;
+      transition: border linear 0.2s;
+
+      &--open {
+        border: 1.5px solid #676767;
+      }
     }
 
     &-quantity {
@@ -137,14 +142,24 @@
     }
   }
 
-  &__languages {
+  &__language-arrow {
+    rotate: 180deg;
+    transition: rotate linear 0.2s;
+
+    &--open {
+      rotate: 0deg;
+    }
+  }
+
+  &__languages,
+  &__user-options {
     position: absolute;
     top: 45px;
     right: 0;
     visibility: hidden;
     opacity: 0;
-    padding: 4px 0;
-    min-width: 152px;
+    padding: 8px 0;
+    min-width: 160px;
     text-align: left;
     border-radius: 6px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
@@ -158,8 +173,19 @@
     }
   }
 
-  &__language {
-    padding: 8px 12px;
+  &__user-options {
+    min-width: 180px;
+  }
+
+  &__user-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__language,
+  &__user-option {
+    padding: 10px 12px;
     font-size: 1.5rem;
     font-weight: 500;
     color: var(--text-color);

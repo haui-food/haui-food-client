@@ -102,7 +102,7 @@ function SignIn() {
     }
     dispatch(loginUser(loginForm)).then((result) => {
       if (result.payload) {
-        toast.success(t('login.notify'));
+        toast.success(t('login.notify01'));
         navigate('/');
       }
     });

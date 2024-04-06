@@ -50,11 +50,17 @@
     "title01": "Giỏ đồ ăn",
     "title02": "Giỏ hàng trống",
     "title03": "Giỏ hàng",
+    "title04": "Chưa đăng nhập",
     "desc01": "Thời gian giao:",
     "desc02": "Thêm sản phẩm vào giỏ hàng của bạn và đặt hàng tại đây.",
     "desc03": "Tổng cộng",
     "desc04": "Phí giao hàng sẽ được tính tự động sau khi bạn đặt đơn.",
-    "desc05": "phút"
+    "desc05": "phút",
+    "desc06": "Vui lòng đăng nhập để xem giỏ hàng của bạn."
+  },
+  "user-options": {
+    "op01": "Trang cá nhân",
+    "op02": "Đăng xuất"
   },
   "home": {
     "title01": "Ưu đãi HauiFood tại",
@@ -96,7 +102,8 @@
     "heading": "Đăng nhập",
     "desc01": "Chào mừng bạn quay trở lại. Đăng nhập để tiếp tục mua hàng.",
     "desc02": "Bạn chưa có tài khoản",
-    "notify": "Đăng nhập thành công"
+    "notify01": "Đăng nhập thành công",
+    "notify02": "Đăng xuất thành công"
   },
   "sign-up": {
     "heading": "Đăng ký",
