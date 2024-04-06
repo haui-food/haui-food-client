@@ -50,17 +50,60 @@
         "title01": "食品篮",
         "title02": "空购物车",
         "title03": "大车",
+        "title04": "未登录",
         "desc01": "交货时间：",
         "desc02": "将产品添加到您的购物车并在此下订单。",
         "desc03": "总计",
         "desc04": "下订单后，将自动计算配送费。",
-        "desc05": "分钟"
+        "desc05": "分钟",
+        "desc06": "请登录以查看您的购物车。"
+    },
+    "user-options": {
+        "op01": "个人页面",
+        "op02": "登出"
+    },
+    "home": {
+        "title01": "HauiFood优惠在",
+        "title02": "有些东西适合每个人！",
+        "title03": "为什么你应该在HauiFood上订购？",
+        "title04": "常见问题",
+        "title05": "精选餐厅",
+        "title06": "我们的应用程序上有更多有趣的功能",
+        "reasonKeyword01": "最快",
+        "reasonKeyword02": "最容易",
+        "reasonKeyword03": "满足所有需求",
+        "reasonKeyword04": "容易付款",
+        "reasonKeyword05": "更多礼物",
+        "reasonText01": "HauiFood提供市场上最快的食品配送服务。",
+        "reasonText02": "现在，您只需要进行几次点击或轻触就可以订购食物。在线订购食物或下载我们的Grab超级应用程序以获得更快、更有趣的体验。",
+        "reasonText03": "从当地特色菜到受欢迎的餐厅，多样化的选择一定会满足您的口味。",
+        "reasonText04": "HauiFood提供市场上最快的食品配送服务。发送和接收食物非常容易。使用GrabPay付款甚至更容易。",
+        "reasonText05": "为您的每个订单积累HauiFoodRewards积分，并使用奖励积分兑换更多优惠。",
+        "subtitle": "HauiFood是什么？",
+        "desc01": "午餐，Bún Cá Chấm Gốc Đa - Vũ Thạnh晚餐！我们在这里，通过在越南的广泛的商家伙伴，满足您的饥饿。HauiFood是越南最快的食品配送服务。我们已经合理地安排了您喜欢的所有食物、餐厅和食品，以帮助您尽可能快、方便地找到食物。在越南各地寻找和订购您喜欢的食物 - 只需几次操作，就可以在线订购食物，从早餐的Lifted Coffee & Brunch，到午餐的Maazi Indian – Nhà Hàng Ấn Độ，到晚餐的Bún Cá Chấm Gốc Đa - Vũ Thạnh！让我们通过在越南的一系列食品销售伙伴来满足您的饥饿。",
+        "desc02": "从小吃到大餐，我们不限制您的欲望。请放心，订购您想要的所有东西。",
+        "desc03": "下载我们的应用程序，使用其他支付方式，并享受与您的司机无缝沟通的能力。"
+    },
+    "home-banner": {
+        "placeholder": "输入您想搜索的食物",
+        "btn01": "搜索"
+    },
+    "restaurant": {
+        "title01": "在上的著名餐厅",
+        "title02": "在上的餐厅",
+        "at": "在",
+        "placeholder": "搜索食物或餐厅"
+    },
+    "no-result": {
+        "title": "很抱歉，目前没有任何餐厅",
+        "desc": "请刷新页面以解决问题。"
     },
     "login": {
         "heading": "登录",
         "desc01": "欢迎回来。登录以继续购物。",
         "desc02": "你没有账户",
-        "notify": "登录成功"
+        "notify01": "登录成功",
+        "notify02": "成功登出"
     },
     "sign-up": {
         "heading": "注册",

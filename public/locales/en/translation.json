@@ -50,11 +50,17 @@
     "title01": "Food Basket",
     "title02": "Empty Cart",
     "title03": "Cart",
+    "title04": "Not logged in",
     "desc01": "Delivery Time:",
     "desc02": "Add products to your cart and place your order here.",
     "desc03": "Total",
     "desc04": "Delivery fee will be automatically calculated after you place the order.",
-    "desc05": "minutes"
+    "desc05": "minutes",
+    "desc06": "Please log in to view your cart."
+  },
+  "user-options": {
+    "op01": "Profile page",
+    "op02": "Log Out"
   },
   "home": {
     "title01": "HauiFood Promo in",
@@ -96,7 +102,8 @@
     "heading": "Sign in",
     "desc01": "Welcome back. Sign in to continue shopping.",
     "desc02": "You don't have an account",
-    "notify": "Login successful"
+    "notify01": "Login successful",
+    "notify02": "Successfully logged out"
   },
   "sign-up": {
     "heading": "Sign up",
