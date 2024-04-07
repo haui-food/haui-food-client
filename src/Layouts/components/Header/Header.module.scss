@@ -154,12 +154,12 @@
   &__languages,
   &__user-options {
     position: absolute;
-    top: 45px;
+    top: 48px;
     right: 0;
     visibility: hidden;
     opacity: 0;
     padding: 8px 0;
-    min-width: 160px;
+    min-width: 180px;
     text-align: left;
     border-radius: 6px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
@@ -173,18 +173,19 @@
     }
   }
 
-  &__user-options {
-    min-width: 180px;
-  }
-
-  &__user-option {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  &__language {
+    &-img {
+      width: 30px;
+      object-fit: cover;
+      border-radius: 2px;
+    }
   }
 
   &__language,
   &__user-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding: 10px 12px;
     font-size: 1.5rem;
     font-weight: 500;
