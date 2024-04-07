@@ -110,10 +110,11 @@ function Header() {
     if (showToast === 'true') {
       toast.success(t('login.notify02'));
       // Xóa trạng thái thông báo sau khi đã hiển thị
-      const deleteToast = setTimeout(() => localStorage.removeItem('showToast'), 5000);
+      const deleteToast = setTimeout(() => localStorage.removeItem('showToast'), 4000);
       // Xóa timeout sau khi nó đã thực hiện xong
       return () => clearTimeout(deleteToast);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -125,12 +126,13 @@ function Header() {
 
           setLogo(images.logoVip2);
         } else {
-          headerRef.current.style.backgroundColor = 'transparent';
           headerRef.current.style.boxShadow = '0 1px 1px transparent';
           if (location.pathname !== '/') {
             setLogo(images.logoVip2);
+            headerRef.current.style.backgroundColor = '#fff';
           } else {
             setLogo(images.logoVip1);
+            headerRef.current.style.backgroundColor = 'transparent';
           }
         }
       }
@@ -309,7 +311,8 @@ function Header() {
                 }}
                 className={cx('header__language')}
               >
-                Tiếng Việt
+                <p>Tiếng Việt</p>
+                <img loading="lazy" className={cx('header__language-img')} src={images.vi} alt="vi" />
               </li>
               <li
                 onClick={() => {
@@ -320,7 +323,8 @@ function Header() {
                 }}
                 className={cx('header__language')}
               >
-                English
+                <p>English</p>
+                <img loading="lazy" className={cx('header__language-img')} src={images.en} alt="en" />
               </li>
               <li
                 onClick={() => {
@@ -331,7 +335,8 @@ function Header() {
                 }}
                 className={cx('header__language')}
               >
-                中国人
+                <p>中国人</p>
+                <img loading="lazy" className={cx('header__language-img')} src={images.zh} alt="zh" />
               </li>
             </ul>
           </nav>

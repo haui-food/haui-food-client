@@ -145,3 +145,14 @@
     width: 100%;
   }
 }
+
+.order {
+  padding: 15px;
+  min-width: 264px;
+  font-size: 1.5rem;
+
+  @include media-breakpoint-down(md) {
+    margin-top: 14px;
+    width: 100%;
+  }
+}

@@ -159,7 +159,7 @@
 
 .central-body {
   /*    width: 100%;*/
-  padding: 10% 5%;
+  padding: 10% 2%;
   text-align: center;
 }
 
@@ -208,16 +208,17 @@
   animation: move-astronaut 50s infinite linear both alternate;
 }
 
-.image-404 {
+.image-403 {
   position: relative;
   z-index: 100;
   pointer-events: none;
   user-select: none;
-  width: 400px;
+  width: 500px;
   //   filter: brightness(0) saturate(100%) invert(100%) sepia(10%) saturate(7489%) hue-rotate(267deg) brightness(117%)
   //     contrast(111%);
+
   @include media-breakpoint-down(md) {
-    width: 300px;
+    width: 365px;
   }
 }
 
