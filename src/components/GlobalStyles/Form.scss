@@ -15,6 +15,13 @@
       gap: 0;
     }
 
+    &--three {
+      @include media-breakpoint-down(lg) {
+        flex-direction: column;
+        gap: 0;
+      }
+    }
+
     > * {
       flex: 1;
     }
@@ -53,7 +60,7 @@
   }
 
   &__text-area {
-    height: 100px;
+    height: 200px;
 
     &-input {
       border: none;
@@ -81,6 +88,7 @@
     line-height: 144.444%;
 
     &::placeholder {
+      font-size: 1.6rem;
       color: #acacac;
     }
 
@@ -195,6 +203,7 @@
     }
 
     &--medium {
+      margin-bottom: 10px;
       font-size: 1.6rem;
       font-weight: 500;
       line-height: 144.444%;

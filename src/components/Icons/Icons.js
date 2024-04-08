@@ -587,3 +587,60 @@ export const SettingIcon = ({ width = '3rem', height = '3rem', className }) => {
     </svg>
   );
 };
+
+export const SendIcon = ({ width = '1.8rem', height = '1.8rem', className }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+    width={width}
+    height={height}
+    viewBox="0 0 487 450.9"
+    fill="#fff"
+  >
+    <g>
+      <path
+        d="M485.3,0.1L0.6,248.2c-0.9,0.5-0.8,1.8,0.2,2.1l167.4,53.1c0.4,0.1,0.8,0,1.1-0.2l207.8-186.6c1.1-0.9,2.5,0.5,1.6,1.6
+		L208.9,314.9c-0.5,0.6-0.3,1.6,0.5,1.8l185.7,57.4c0.6,0.2,1.3-0.2,1.4-0.8L486.9,1.4C487.2,0.5,486.2-0.3,485.3,0.1z"
+      />
+      <path
+        d="M273.4,358.8l-59.4-18c-0.7-0.2-1.5,0.3-1.5,1.1l1.3,108c0,1.1,1.5,1.5,2.1,0.6l58.1-89.9
+		C274.4,359.9,274.1,359,273.4,358.8z"
+      />
+    </g>
+  </svg>
+);
+
+export const PhoneIcon = ({ width = '2.2rem', height = '2.2rem', className }) => (
+  <svg
+    className={className}
+    width={width}
+    height={height}
+    viewBox="0 0 22 22"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M13.353 1.5C17.054 1.911 19.978 4.831 20.393 8.532"
+      stroke="#1A162E"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M13.353 5.04303C15.124 5.38703 16.508 6.77203 16.853 8.54303"
+      stroke="#1A162E"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M10.0315 11.4724C14.0205 15.4604 14.9254 10.8467 17.4653 13.3848C19.9138 15.8328 21.3222 16.3232 18.2188 19.4247C17.8302 19.737 15.3613 23.4943 6.68447 14.8197C-1.99341 6.144 1.76157 3.67244 2.07394 3.28395C5.18377 0.173846 5.66682 1.58938 8.11539 4.03733C10.6541 6.5765 6.04254 7.48441 10.0315 11.4724Z"
+      stroke="#1A162E"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);

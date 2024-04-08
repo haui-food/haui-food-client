@@ -28,13 +28,16 @@
     "btn11": "Đang xác minh ...",
     "btn12": "Đặt lại",
     "btn13": "Quay lại trang chủ",
-    "btn14": "Tìm hiểu thêm"
+    "btn14": "Tìm hiểu thêm",
+    "btn15": "Gửi"
   },
   "form": {
     "tp01": "Email",
     "tp02": "Mật khẩu",
     "tp03": "Họ tên",
     "tp04": "Nhập lại mật khẩu",
+    "tp05": "Điện thoại",
+    "tp06": "Nội dung",
     "lb01": "Hiển thị mật khẩu"
   },
   "errors": {
@@ -44,7 +47,10 @@
     "err04": "Mật khẩu phải chứa ít nhất 8 ký tự và 1 ký tự đặc biệt @-_",
     "err05": "Vui lòng nhập họ tên",
     "err06": "Mật khẩu sai, vui lòng nhập lại",
-    "err07": "Vui lòng nhập lại mật khẩu"
+    "err07": "Vui lòng nhập lại mật khẩu",
+    "err08": "Số điện thoại không đúng, vui lòng nhập lại",
+    "err09": "Vui lòng nhập nội dung",
+    "err10": "Nội dung từ 5 đến 500 ký tự"
   },
   "cart": {
     "title01": "Giỏ đồ ăn",
@@ -150,5 +156,10 @@
   "aboutDevelopmentTeam": {
     "heading": "Gặp gỡ đội ngũ phát triển website",
     "desc": "Chúng tôi có nhiều năm kinh nghiệm trong lĩnh vực thiết kế, lập trình và triển khai website."
+  },
+  "contact": {
+    "heading": "Hãy kết nối với chúng tôi",
+    "desc": "Bạn có đề xuất hoặc phản hồi? Chúng tôi rất sẵn sàng nghe ý kiến từ bạn! Sử dụng mẫu dưới đây để chia sẻ suy nghĩ của bạn. Cảm ơn bạn đã giúp chúng tôi cải thiện!",
+    "message": "Gửi tin nhắn thành công."
   }
 }

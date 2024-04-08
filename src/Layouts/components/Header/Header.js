@@ -110,7 +110,9 @@ function Header() {
     if (showToast === 'true') {
       toast.success(t('login.notify02'));
       // Xóa trạng thái thông báo sau khi đã hiển thị
-      const deleteToast = setTimeout(() => localStorage.removeItem('showToast'), 4000);
+      const deleteToast = setTimeout(() => {
+        localStorage.removeItem('showToast');
+      }, 100);
       // Xóa timeout sau khi nó đã thực hiện xong
       return () => clearTimeout(deleteToast);
     }
