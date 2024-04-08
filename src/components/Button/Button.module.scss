@@ -156,3 +156,21 @@
     width: 100%;
   }
 }
+
+.send {
+  padding: 12px;
+  min-width: 200px;
+  border-radius: 6px;
+
+  @include media-breakpoint-down(md) {
+    width: 100%;
+  }
+
+  .icon {
+    transition: transform linear 0.2s;
+  }
+
+  &:hover .icon {
+    transform: translate(2px, -3px);
+  }
+}
