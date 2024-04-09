@@ -104,6 +104,8 @@
 
   &__input-icon {
     margin-left: 12px;
+    filter: brightness(0) saturate(100%) invert(69%) sepia(9%) saturate(268%) hue-rotate(206deg) brightness(91%)
+      contrast(88%);
 
     &--err {
       filter: brightness(0) saturate(100%) invert(33%) sepia(33%) saturate(3942%) hue-rotate(341deg) brightness(99%)
