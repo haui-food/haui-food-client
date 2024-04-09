@@ -13,6 +13,7 @@ import ResetPassword from '~/pages/ResetPassword';
 import AboutHaUIFood from '~/pages/AboutHaUIFood';
 import AboutDevelopmentTeam from '~/pages/AboutDevelopmentTeam';
 import NotFound from '~/pages/NotFound';
+import Profile from '../pages/Profile';
 
 const publicRoutes = [
   { path: config.routes.home, component: Home },
@@ -37,6 +38,7 @@ const publicRoutes = [
   { path: config.routes.notFound, component: NotFound, layout: NotFoundLayout },
   { path: config.routes.login, component: SignIn, layout: AuthLayout },
   { path: config.routes.signup, component: SignUp, layout: AuthLayout },
+  { path: config.routes.profile, component: Profile },
 ];
 
 const privateRoutes = [];

@@ -8,6 +8,7 @@ export const loginUser = createAsyncThunk('auth/login', async (userCredentials) 
     const res = req.data.data;
     localStorage.setItem('accessToken', JSON.stringify(res.accessToken));
     localStorage.setItem('refreshToken', JSON.stringify(res.refreshToken));
+    console.log(res);
     return res;
   } catch (error) {
     console.log(error);

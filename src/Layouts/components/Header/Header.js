@@ -29,7 +29,9 @@ const cx = classNames.bind(styles);
 function Header() {
   const { t } = useTranslation();
   const location = useLocation();
-
+  const { user } = useSelector((state) => state.auth);
+  const userInfo = user;
+  console.log(userInfo);
   const { cartItems, clearCart } = useBasket();
 
   const [logo, setLogo] = useState(images.logoVip1);
@@ -267,7 +269,7 @@ function Header() {
                   ref={userOptionsRef}
                   className={cx('header__user-options', showUserOptions ? 'header__user-options--show' : '')}
                 >
-                  <Link to={'#!'}>
+                  <Link to={`/profile/${userInfo?._id}`}>
                     <li className={cx('header__user-option')}>
                       <p>{t('user-options.op01')}</p>
                       <UserIcon className={cx('icon')} />
