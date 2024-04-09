@@ -11,6 +11,7 @@ import Button from '~/components/Button';
 import routes from '~/config/routes';
 import { EmailIcon, PhoneIcon, QuotesIcon, SendIcon } from '~/components/Icons';
 import { contactUs } from '~/apiService/contactService';
+import { clearError } from '~/apiService/authService';
 
 const cx = classNames.bind(styles);
 
@@ -58,6 +59,10 @@ function AboutHaUIFood() {
       toast.error(error);
       setSubmit(false);
     }
+    return () => {
+      dispatch(clearError());
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error]);
 
   useEffect(() => {
