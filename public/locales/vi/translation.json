@@ -109,7 +109,8 @@
     "desc01": "Chào mừng bạn quay trở lại. Đăng nhập để tiếp tục mua hàng.",
     "desc02": "Bạn chưa có tài khoản",
     "notify01": "Đăng nhập thành công",
-    "notify02": "Đăng xuất thành công"
+    "notify02": "Đăng xuất thành công",
+    "notify03": "Bạn đã đăng nhập rồi"
   },
   "sign-up": {
     "heading": "Đăng ký",

@@ -109,7 +109,8 @@
     "desc01": "Welcome back. Sign in to continue shopping.",
     "desc02": "You don't have an account",
     "notify01": "Login successful",
-    "notify02": "Successfully logged out"
+    "notify02": "Successfully logged out",
+    "notify03": "You are already logged in"
   },
   "sign-up": {
     "heading": "Sign up",
