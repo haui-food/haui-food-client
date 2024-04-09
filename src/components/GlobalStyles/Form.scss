@@ -15,6 +15,13 @@
       gap: 0;
     }
 
+    &--three {
+      @include media-breakpoint-down(lg) {
+        flex-direction: column;
+        gap: 0;
+      }
+    }
+
     > * {
       flex: 1;
     }
@@ -53,7 +60,7 @@
   }
 
   &__text-area {
-    height: 100px;
+    height: 200px;
 
     &-input {
       border: none;
@@ -81,7 +88,8 @@
     line-height: 144.444%;
 
     &::placeholder {
-      color: #d2d1d6;
+      font-size: 1.6rem;
+      color: #acacac;
     }
 
     @include media-breakpoint-down(md) {
@@ -96,6 +104,8 @@
 
   &__input-icon {
     margin-left: 12px;
+    filter: brightness(0) saturate(100%) invert(69%) sepia(9%) saturate(268%) hue-rotate(206deg) brightness(91%)
+      contrast(88%);
 
     &--err {
       filter: brightness(0) saturate(100%) invert(33%) sepia(33%) saturate(3942%) hue-rotate(341deg) brightness(99%)
@@ -195,6 +205,7 @@
     }
 
     &--medium {
+      margin-bottom: 10px;
       font-size: 1.6rem;
       font-weight: 500;
       line-height: 144.444%;

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { loginUser, registerUser } from '~/apiService/authService';
+import { loginUser, registerUser, clearError } from '~/apiService/authService';
 
 const authSlice = createSlice({
   name: 'auth',
@@ -54,6 +54,9 @@ const authSlice = createSlice({
         state.user = null;
         state.error = action.error.message;
         state.isLogin = null;
+      })
+      .addCase(clearError.fulfilled, (state) => {
+        state.error = null;
       });
   },
 });

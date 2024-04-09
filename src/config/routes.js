@@ -12,6 +12,9 @@ const routes = {
   aboutHaUIFood: '/about/haui-food',
   aboutDevelopmentTeam: '/about/development-team',
   profile: '/profile/:userId',
+  checkout: '/checkout',
+  forbidden: '/forbidden',
+  internalServer: '/server-error',
   notFound: '*',
 };
 

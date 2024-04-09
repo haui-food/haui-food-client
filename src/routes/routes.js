@@ -1,6 +1,6 @@
 import config from '~/config';
 
-import { AuthLayout, NotFoundLayout } from '~/Layouts';
+import { AuthLayout, NotFoundLayout, CheckoutLayout } from '~/Layouts';
 
 import Home from '~/pages/Home';
 import Restaurants from '~/pages/Restaurants';
@@ -12,8 +12,11 @@ import VerifyOTP from '~/pages/VerifyOTP';
 import ResetPassword from '~/pages/ResetPassword';
 import AboutHaUIFood from '~/pages/AboutHaUIFood';
 import AboutDevelopmentTeam from '~/pages/AboutDevelopmentTeam';
+import CheckOut from '~/pages/CheckOut';
 import NotFound from '~/pages/NotFound';
 import Profile from '../pages/Profile';
+import Forbidden from '~/pages/Forbidden';
+import ServerError from '~/pages/ServerError';
 
 const publicRoutes = [
   { path: config.routes.home, component: Home },
@@ -36,9 +39,12 @@ const publicRoutes = [
   { path: config.routes.aboutHaUIFood, component: AboutHaUIFood },
   { path: config.routes.aboutDevelopmentTeam, component: AboutDevelopmentTeam },
   { path: config.routes.notFound, component: NotFound, layout: NotFoundLayout },
+  { path: config.routes.forbidden, component: Forbidden, layout: NotFoundLayout },
+  { path: config.routes.internalServer, component: ServerError, layout: NotFoundLayout },
   { path: config.routes.login, component: SignIn, layout: AuthLayout },
   { path: config.routes.signup, component: SignUp, layout: AuthLayout },
   { path: config.routes.profile, component: Profile },
+  { path: config.routes.checkout, component: CheckOut, layout: CheckoutLayout },
 ];
 
 const privateRoutes = [];

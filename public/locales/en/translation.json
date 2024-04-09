@@ -28,13 +28,16 @@
     "btn11": "Verifying...",
     "btn12": "Reset",
     "btn13": "Go to home page",
-    "btn14": "Learn more"
+    "btn14": "Learn more",
+    "btn15": "Send"
   },
   "form": {
     "tp01": "Email",
     "tp02": "Password",
     "tp03": "Full name",
     "tp04": "Re-enter password",
+    "tp05": "Phone",
+    "tp06": "Content",
     "lb01": "Show password"
   },
   "errors": {
@@ -44,7 +47,10 @@
     "err04": "Password must contain at least 8 characters and 1 special character @-_",
     "err05": "Please enter full name",
     "err06": "Incorrect password, please re-enter",
-    "err07": "Please re-enter password"
+    "err07": "Please re-enter password",
+    "err08": "The phone number is incorrect, please re-enter",
+    "err09": "Please enter the content",
+    "err10": "Content from 5 to 500 characters"
   },
   "cart": {
     "title01": "Food Basket",
@@ -103,7 +109,8 @@
     "desc01": "Welcome back. Sign in to continue shopping.",
     "desc02": "You don't have an account",
     "notify01": "Login successful",
-    "notify02": "Successfully logged out"
+    "notify02": "Successfully logged out",
+    "notify03": "You are already logged in"
   },
   "sign-up": {
     "heading": "Sign up",
@@ -150,5 +157,10 @@
   "aboutDevelopmentTeam": {
     "heading": "Meet the website development team",
     "desc": "We have many years of experience in the field of design, programming, and website deployment."
+  },
+  "contact": {
+    "heading": "Connect with us",
+    "desc": "Do you have suggestions or feedback? We are very ready to hear from you! Use the form below to share your thoughts. Thank you for helping us improve!",
+    "message": "Message sent successfully."
   }
 }

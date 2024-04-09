@@ -1,0 +1,131 @@
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
+
+.checkout {
+  &__top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 20px 15px;
+    height: 200px;
+
+    @include media-breakpoint-down(lg) {
+      padding: 20px 0;
+      align-items: flex-start;
+    }
+
+    @include media-breakpoint-down(md) {
+      padding: 8px 0;
+      height: auto;
+    }
+  }
+
+  &__heading {
+    font-size: 2.8rem;
+    font-weight: 700;
+    line-height: 1.5;
+
+    @include media-breakpoint-down(lg) {
+      font-size: 2.5rem;
+    }
+
+    @include media-breakpoint-down(md) {
+      font-size: 2rem;
+    }
+  }
+
+  &__name {
+    margin-top: 8px;
+    font-size: 1.8rem;
+    font-weight: 600;
+    line-height: 1.5;
+
+    @include media-breakpoint-down(md) {
+      font-size: 1.6rem;
+    }
+  }
+
+  &__content {
+    height: 500px;
+    padding: 24px auto 130px;
+    background-color: #f7f7f7;
+
+    @include media-breakpoint-down(lg) {
+      padding-left: 38px;
+      padding-right: 38px;
+    }
+
+    @include media-breakpoint-down(md) {
+      padding: 8px 0 146px;
+    }
+  }
+
+  &__bottom {
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    min-height: 100px;
+    background-color: #fff;
+    box-shadow: 0 -2px 6px 0 rgba(28, 28, 28, 0.06);
+
+    @include media-breakpoint-down(md) {
+      padding: 16px 0;
+    }
+
+    &-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      width: 100%;
+      height: 100px;
+
+      @include media-breakpoint-down(lg) {
+        justify-content: space-between;
+      }
+
+      @include media-breakpoint-down(md) {
+        flex-direction: column;
+        height: auto;
+        align-items: flex-start;
+      }
+    }
+
+    &-info {
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 4px;
+
+      @include media-breakpoint-down(md) {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      & h5 {
+        font-size: 2rem;
+        font-weight: 600;
+        line-height: 1.4;
+
+        @include media-breakpoint-down(md) {
+          font-size: 1.6rem;
+        }
+      }
+
+      & h4 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        line-height: 1.4;
+
+        @include media-breakpoint-down(md) {
+          font-size: 1.6rem;
+        }
+      }
+    }
+  }
+}

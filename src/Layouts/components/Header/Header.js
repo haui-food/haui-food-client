@@ -29,9 +29,8 @@ const cx = classNames.bind(styles);
 function Header() {
   const { t } = useTranslation();
   const location = useLocation();
-  const { user } = useSelector((state) => state.auth);
-  const userInfo = user;
-  console.log(userInfo);
+  const userInfo = JSON.parse(localStorage.getItem('user'));
+
   const { cartItems, clearCart } = useBasket();
 
   const [logo, setLogo] = useState(images.logoVip1);
@@ -52,7 +51,7 @@ function Header() {
   const avatarRef = useRef(null);
   const cartRef = useRef(null);
 
-  const auth = useSelector((state) => state.auth.user);
+  const auth = useSelector((state) => state.auth.isLogin);
   const token = localStorage.getItem('accessToken');
 
   useEffect(() => {
@@ -100,6 +99,7 @@ function Header() {
 
   const handleLogOut = () => {
     localStorage.removeItem('accessToken');
+    localStorage.removeItem('user');
     setShowUserOptions(false);
     // Lưu trạng thái thông báo vào localStorage
     localStorage.setItem('showToast', 'true');
@@ -112,10 +112,13 @@ function Header() {
     if (showToast === 'true') {
       toast.success(t('login.notify02'));
       // Xóa trạng thái thông báo sau khi đã hiển thị
-      const deleteToast = setTimeout(() => localStorage.removeItem('showToast'), 5000);
+      const deleteToast = setTimeout(() => {
+        localStorage.removeItem('showToast');
+      }, 100);
       // Xóa timeout sau khi nó đã thực hiện xong
       return () => clearTimeout(deleteToast);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -127,12 +130,13 @@ function Header() {
 
           setLogo(images.logoVip2);
         } else {
-          headerRef.current.style.backgroundColor = 'transparent';
           headerRef.current.style.boxShadow = '0 1px 1px transparent';
           if (location.pathname !== '/') {
             setLogo(images.logoVip2);
+            headerRef.current.style.backgroundColor = '#fff';
           } else {
             setLogo(images.logoVip1);
+            headerRef.current.style.backgroundColor = 'transparent';
           }
         }
       }
@@ -311,7 +315,8 @@ function Header() {
                 }}
                 className={cx('header__language')}
               >
-                Tiếng Việt
+                <p>Tiếng Việt</p>
+                <img loading="lazy" className={cx('header__language-img')} src={images.vi} alt="vi" />
               </li>
               <li
                 onClick={() => {
@@ -322,7 +327,8 @@ function Header() {
                 }}
                 className={cx('header__language')}
               >
-                English
+                <p>English</p>
+                <img loading="lazy" className={cx('header__language-img')} src={images.en} alt="en" />
               </li>
               <li
                 onClick={() => {
@@ -333,7 +339,8 @@ function Header() {
                 }}
                 className={cx('header__language')}
               >
-                中国人
+                <p>中国人</p>
+                <img loading="lazy" className={cx('header__language-img')} src={images.zh} alt="zh" />
               </li>
             </ul>
           </nav>
@@ -417,8 +424,7 @@ function Header() {
                 <span className={cx('cart__bottom-price')}>{cartItems.totalPrice.toLocaleString('vi-VN')} ₫</span>
               </div>
               <Button checkout primary>
-                {/* {t('button.btn01')} */}
-                {t('button.btn03')}
+                {t('button.btn01')}
               </Button>
             </div>
           )}

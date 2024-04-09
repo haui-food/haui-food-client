@@ -17,6 +17,8 @@ function Button({
   auth = false,
   authGoogle = false,
   more = false,
+  order = false,
+  send = false,
   className,
   children,
   leftIcon,
@@ -59,6 +61,8 @@ function Button({
     auth,
     authGoogle,
     more,
+    order,
+    send,
   });
   return (
     <Comp className={classes} {...props}>

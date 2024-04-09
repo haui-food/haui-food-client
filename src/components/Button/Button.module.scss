@@ -27,7 +27,7 @@
   // Disabled
   &.disabled {
     pointer-events: none;
-    opacity: 0.5;
+    opacity: 0.4;
   }
 }
 
@@ -143,5 +143,34 @@
   @include media-breakpoint-down(md) {
     padding: 12px 30px;
     width: 100%;
+  }
+}
+
+.order {
+  padding: 15px;
+  min-width: 264px;
+  font-size: 1.5rem;
+
+  @include media-breakpoint-down(md) {
+    margin-top: 14px;
+    width: 100%;
+  }
+}
+
+.send {
+  padding: 12px;
+  min-width: 200px;
+  border-radius: 6px;
+
+  @include media-breakpoint-down(md) {
+    width: 100%;
+  }
+
+  .icon {
+    transition: transform linear 0.2s;
+  }
+
+  &:hover .icon {
+    transform: translate(2px, -3px);
   }
 }

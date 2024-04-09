@@ -1,18 +1,117 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import classNames from 'classnames/bind';
 import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 
 import styles from './AboutHaUIFood.module.scss';
 import images from '~/assets/images';
 import { Link } from 'react-router-dom';
 import Button from '~/components/Button';
 import routes from '~/config/routes';
-import { QuotesIcon } from '~/components/Icons';
+import { EmailIcon, PhoneIcon, QuotesIcon, SendIcon, UserIcon } from '~/components/Icons';
+import { contactUs } from '~/apiService/contactService';
+import { clearError } from '~/apiService/authService';
 
 const cx = classNames.bind(styles);
 
 function AboutHaUIFood() {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+
+  const loading = useSelector((state) => state.auth.loading);
+  const error = useSelector((state) => state.auth.error);
+
+  const emailRegex = useMemo(() => /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/, []);
+  const phoneRegex = useMemo(() => /(((\+|)84)|0)(3|5|7|8|9)([0-9]{8})\b/, []);
+
+  const [fullname, setFullName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [message, setMessage] = useState('');
+  const [errors, setErrors] = useState({ email: '', phone: '', message: '' });
+  const [submit, setSubmit] = useState(false);
+  const [isBlur, setIsBlur] = useState(true);
+  const [contactForm, setContactForm] = useState({});
+
+  const messageRef = useRef(null);
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setContactForm((prevLoginForm) => ({
+      ...prevLoginForm,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(contactUs(contactForm)).then((result) => {
+      if (result.payload) {
+        toast.success(t('contact.message'));
+        setFullName('');
+        setEmail('');
+        setPhone('');
+        setMessage('');
+        messageRef.current.blur();
+      }
+    });
+  };
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+      setSubmit(false);
+    }
+    return () => {
+      dispatch(clearError());
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [error]);
+
+  useEffect(() => {
+    if (phone.trim() === '') {
+      setErrors({ ...errors, phone: '' });
+    } else if (!phoneRegex.test(phone)) {
+      setErrors({ ...errors, phone: t('errors.err08') });
+    } else {
+      setErrors({ ...errors, phone: '' });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phone]);
+
+  useEffect(() => {
+    let contentError = '';
+    if (message.trim() === '') {
+      contentError = t('errors.err09');
+    } else if (message.length < 5 || message.length > 500) {
+      contentError = t('errors.err10');
+    }
+    if (!isBlur) {
+      setErrors({ ...errors, message: contentError });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [message]);
+
+  useEffect(() => {
+    if (email.trim() === '') {
+      setErrors({ ...errors, email: '' });
+    } else if (!emailRegex.test(email)) {
+      setErrors({ ...errors, email: t('errors.err02') });
+    } else {
+      setErrors({ ...errors, email: '' });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [email]);
+
+  useEffect(() => {
+    const isEmailValid = email === '' || emailRegex.test(email);
+    const isPhoneValid = phone === '' || phoneRegex.test(phone);
+    const isContentPresent = message.trim() !== '' && message.length >= 5 && message.length <= 500;
+
+    setSubmit(isEmailValid && isPhoneValid && isContentPresent);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [email, phone, message]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -124,6 +223,123 @@ function AboutHaUIFood() {
           </p>
         </div>
         <div className={cx('about__footer-bg')}></div>
+      </div>
+
+      <div className={cx('container')}>
+        <div className={cx('about__contact')}>
+          <h4 data-aos="fade-up-right" className={cx('about__contact-heading')}>
+            {t('contact.heading')}
+          </h4>
+          <p data-aos="fade-up-right" className={cx('about__contact-desc')}>
+            {t('contact.desc')}
+          </p>
+          <form data-aos="zoom-in-up" action="" className={cx('form')} autoComplete="off">
+            <div className={cx('form__row', 'form__row--three')}>
+              <div className={cx('form__group')}>
+                <label htmlFor="fullname" className={cx('form__label', 'form__label--medium')}>
+                  {t('form.tp03')}
+                </label>
+                <div className={cx('form__text-input', 'form__text-input--sm')}>
+                  <input
+                    value={fullname}
+                    onChange={(e) => {
+                      setFullName(e.target.value);
+                      handleInputChange(e);
+                    }}
+                    type="text"
+                    id="fullname"
+                    name="fullname"
+                    placeholder={t('form.tp03')}
+                    className={cx('form__input')}
+                  />
+                  <UserIcon />
+                </div>
+              </div>
+              <div className={cx('form__group')}>
+                <label htmlFor="email" className={cx('form__label', 'form__label--medium')}>
+                  {t('form.tp01')}
+                </label>
+                <div
+                  className={cx('form__text-input', 'form__text-input--sm')}
+                  style={errors.email !== '' ? { border: '1px solid #f44336' } : {}}
+                >
+                  <input
+                    value={email}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                      handleInputChange(e);
+                    }}
+                    id="email"
+                    type="email"
+                    name="email"
+                    placeholder={t('form.tp01')}
+                    className={cx('form__input')}
+                  />
+                  <EmailIcon className={cx('form__input-icon', errors.email && 'form__input-icon--err')} />
+                </div>
+                <p className={cx('form__error')}>{errors.email}</p>
+              </div>
+              <div className={cx('form__group')}>
+                <label htmlFor="phone" className={cx('form__label', 'form__label--medium')}>
+                  {t('form.tp05')}
+                </label>
+                <div
+                  className={cx('form__text-input', 'form__text-input--sm')}
+                  style={errors.phone !== '' ? { border: '1px solid #f44336' } : {}}
+                >
+                  <input
+                    value={phone}
+                    onChange={(e) => {
+                      setPhone(e.target.value);
+                      handleInputChange(e);
+                    }}
+                    id="phone"
+                    type="tel"
+                    name="phone"
+                    placeholder={t('form.tp05')}
+                    className={cx('form__input')}
+                  />
+                  <PhoneIcon className={cx('form__input-icon', errors.phone && 'form__input-icon--err')} />
+                </div>
+                <p className={cx('form__error')}>{errors.phone}</p>
+              </div>
+            </div>
+            <div className={cx('form__group')}>
+              <label htmlFor="message" className={cx('form__label', 'form__label--medium')}>
+                {t('form.tp06')} <span style={{ color: '#f44336' }}>*</span>
+              </label>
+              <div
+                className={cx('form__text-area', 'form__text-area--sm')}
+                style={errors.message !== '' ? { border: '1px solid #f44336' } : {}}
+              >
+                <textarea
+                  ref={messageRef}
+                  value={message}
+                  onChange={(e) => {
+                    setMessage(e.target.value);
+                    handleInputChange(e);
+                  }}
+                  onFocus={() => setIsBlur(false)}
+                  onBlur={() => setIsBlur(true)}
+                  id="message"
+                  name="message"
+                  placeholder={t('form.tp06')}
+                  className={cx('form__text-area-input')}
+                ></textarea>
+              </div>
+              <p className={cx('form__error')}>{errors.message}</p>
+            </div>
+            <div className={cx('form__group')}>
+              <div className={cx('about__contact-btn')}>
+                <div style={!submit ? { cursor: 'no-drop' } : {}}>
+                  <Button onClick={handleSubmit} send primary disabled={!submit || loading} rightIcon={<SendIcon />}>
+                    {t('button.btn15')}
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );
