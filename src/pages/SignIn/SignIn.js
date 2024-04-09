@@ -9,7 +9,7 @@ import { EmailIcon, GoogleIcon, PasswordIcon } from '~/components/Icons';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from '~/components/Button';
 import routes from '~/config/routes';
-import { loginUser } from '~/apiService/authService';
+import { loginUser, clearError } from '~/apiService/authService';
 
 import { useDispatch, useSelector } from 'react-redux';
 const cx = classNames.bind(styles);
@@ -27,13 +27,19 @@ function SignIn() {
   });
 
   const loading = useSelector((state) => state.auth.loading);
-  const auth = useSelector((state) => state.auth.user);
   const error = useSelector((state) => state.auth.error);
+  const isLogin = useSelector((state) => state.auth.isLogin);
+
   useEffect(() => {
     if (error) {
       toast.error(error);
       setSubmit(false);
     }
+
+    return () => {
+      dispatch(clearError());
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error]);
 
   const navigate = useNavigate();
@@ -95,8 +101,8 @@ function SignIn() {
     const token = localStorage.getItem('accessToken');
     e.preventDefault();
     setSubmit(true);
-    if (token || auth) {
-      toast.warning('Bạn đã đăng nhập rồi');
+    if (token || isLogin) {
+      toast.warning(t('login.notify03'));
       navigate('/');
       return;
     }

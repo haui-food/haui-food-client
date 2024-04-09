@@ -22,7 +22,7 @@ function AboutHaUIFood() {
   const error = useSelector((state) => state.auth.error);
 
   const emailRegex = useMemo(() => /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/, []);
-  const phoneRegex = useMemo(() => /(((\+|)84)|0)(3|5|7|8|9)+([0-9]{7})\b/, []);
+  const phoneRegex = useMemo(() => /(((\+|)84)|0)(3|5|7|8|9)([0-9]{8})\b/, []);
 
   const [fullname, setFullName] = useState('');
   const [email, setEmail] = useState('');

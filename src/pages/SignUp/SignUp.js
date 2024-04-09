@@ -10,7 +10,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Button from '~/components/Button';
 import routes from '~/config/routes';
 import { useDispatch, useSelector } from 'react-redux';
-import { registerUser } from '~/apiService/authService';
+import { clearError, registerUser } from '~/apiService/authService';
 
 const cx = classNames.bind(styles);
 
@@ -26,6 +26,11 @@ function SignUp() {
     if (error) {
       toast.error(error);
     }
+
+    return () => {
+      dispatch(clearError());
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error]);
 
   const [fullname, setFullName] = useState('');

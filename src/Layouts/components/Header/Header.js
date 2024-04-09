@@ -50,7 +50,7 @@ function Header() {
   const avatarRef = useRef(null);
   const cartRef = useRef(null);
 
-  const auth = useSelector((state) => state.auth.user);
+  const auth = useSelector((state) => state.auth.isLogin);
   const token = localStorage.getItem('accessToken');
 
   useEffect(() => {
@@ -98,6 +98,7 @@ function Header() {
 
   const handleLogOut = () => {
     localStorage.removeItem('accessToken');
+    localStorage.removeItem('user');
     setShowUserOptions(false);
     // Lưu trạng thái thông báo vào localStorage
     localStorage.setItem('showToast', 'true');
@@ -422,8 +423,7 @@ function Header() {
                 <span className={cx('cart__bottom-price')}>{cartItems.totalPrice.toLocaleString('vi-VN')} ₫</span>
               </div>
               <Button checkout primary>
-                {/* {t('button.btn01')} */}
-                {t('button.btn03')}
+                {t('button.btn01')}
               </Button>
             </div>
           )}

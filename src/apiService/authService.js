@@ -8,6 +8,7 @@ export const loginUser = createAsyncThunk('auth/login', async (userCredentials) 
     const res = req.data.data;
     localStorage.setItem('accessToken', JSON.stringify(res.accessToken));
     localStorage.setItem('refreshToken', JSON.stringify(res.refreshToken));
+    localStorage.setItem('user', JSON.stringify(res.user));
     return res;
   } catch (error) {
     console.log(error);
@@ -25,3 +26,5 @@ export const registerUser = createAsyncThunk('auth/signup', async (userCredentia
     throw error.response !== null ? new Error(error.response.data.message) : new Error('Đã xảy ra lỗi không mong đợi');
   }
 });
+
+export const clearError = createAsyncThunk('auth/clearError', async () => {});
