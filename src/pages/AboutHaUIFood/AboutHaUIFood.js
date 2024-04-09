@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import classNames from 'classnames/bind';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -31,7 +31,10 @@ function AboutHaUIFood() {
   const [message, setMessage] = useState('');
   const [errors, setErrors] = useState({ email: '', phone: '', message: '' });
   const [submit, setSubmit] = useState(false);
+  const [isBlur, setIsBlur] = useState(true);
   const [contactForm, setContactForm] = useState({});
+
+  const messageRef = useRef(null);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -50,6 +53,7 @@ function AboutHaUIFood() {
         setEmail('');
         setPhone('');
         setMessage('');
+        messageRef.current.blur();
       }
     });
   };
@@ -83,7 +87,9 @@ function AboutHaUIFood() {
     } else if (message.length < 5 || message.length > 500) {
       contentError = t('errors.err10');
     }
-    setErrors({ ...errors, message: contentError });
+    if (!isBlur) {
+      setErrors({ ...errors, message: contentError });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [message]);
 
@@ -300,18 +306,21 @@ function AboutHaUIFood() {
             </div>
             <div className={cx('form__group')}>
               <label htmlFor="message" className={cx('form__label', 'form__label--medium')}>
-                {t('form.tp06')}
+                {t('form.tp06')} <span style={{ color: '#f44336' }}>*</span>
               </label>
               <div
                 className={cx('form__text-area', 'form__text-area--sm')}
                 style={errors.message !== '' ? { border: '1px solid #f44336' } : {}}
               >
                 <textarea
+                  ref={messageRef}
                   value={message}
                   onChange={(e) => {
                     setMessage(e.target.value);
                     handleInputChange(e);
                   }}
+                  onFocus={() => setIsBlur(false)}
+                  onBlur={() => setIsBlur(true)}
                   id="message"
                   name="message"
                   placeholder={t('form.tp06')}
