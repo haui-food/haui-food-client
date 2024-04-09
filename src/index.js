@@ -18,7 +18,8 @@ import store from './redux/store';
 
 AOS.init({
   once: true,
-  duration: 1000,
+  duration: 800,
+  easing: 'linear',
 });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
