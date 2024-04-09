@@ -9,7 +9,7 @@ import images from '~/assets/images';
 import { Link } from 'react-router-dom';
 import Button from '~/components/Button';
 import routes from '~/config/routes';
-import { EmailIcon, PhoneIcon, QuotesIcon, SendIcon } from '~/components/Icons';
+import { EmailIcon, PhoneIcon, QuotesIcon, SendIcon, UserIcon } from '~/components/Icons';
 import { contactUs } from '~/apiService/contactService';
 import { clearError } from '~/apiService/authService';
 
@@ -246,6 +246,7 @@ function AboutHaUIFood() {
                     placeholder={t('form.tp03')}
                     className={cx('form__input')}
                   />
+                  <UserIcon />
                 </div>
               </div>
               <div className={cx('form__group')}>
