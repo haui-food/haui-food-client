@@ -83,7 +83,7 @@ function AboutHaUIFood() {
     } else if (message.length < 5 || message.length > 500) {
       contentError = t('errors.err10');
     }
-    setErrors({ ...errors, content: contentError });
+    setErrors({ ...errors, message: contentError });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [message]);
 
@@ -253,7 +253,10 @@ function AboutHaUIFood() {
                 <label htmlFor="email" className={cx('form__label', 'form__label--medium')}>
                   {t('form.tp01')}
                 </label>
-                <div className={cx('form__text-input', 'form__text-input--sm')}>
+                <div
+                  className={cx('form__text-input', 'form__text-input--sm')}
+                  style={errors.email !== '' ? { border: '1px solid #f44336' } : {}}
+                >
                   <input
                     value={email}
                     onChange={(e) => {
@@ -266,7 +269,7 @@ function AboutHaUIFood() {
                     placeholder={t('form.tp01')}
                     className={cx('form__input')}
                   />
-                  <EmailIcon className={cx('icon')} />
+                  <EmailIcon className={cx('form__input-icon', errors.email && 'form__input-icon--err')} />
                 </div>
                 <p className={cx('form__error')}>{errors.email}</p>
               </div>
@@ -274,7 +277,10 @@ function AboutHaUIFood() {
                 <label htmlFor="phone" className={cx('form__label', 'form__label--medium')}>
                   {t('form.tp05')}
                 </label>
-                <div className={cx('form__text-input', 'form__text-input--sm')}>
+                <div
+                  className={cx('form__text-input', 'form__text-input--sm')}
+                  style={errors.phone !== '' ? { border: '1px solid #f44336' } : {}}
+                >
                   <input
                     value={phone}
                     onChange={(e) => {
@@ -287,7 +293,7 @@ function AboutHaUIFood() {
                     placeholder={t('form.tp05')}
                     className={cx('form__input')}
                   />
-                  <PhoneIcon className={cx('icon')} />
+                  <PhoneIcon className={cx('form__input-icon', errors.phone && 'form__input-icon--err')} />
                 </div>
                 <p className={cx('form__error')}>{errors.phone}</p>
               </div>
@@ -296,7 +302,10 @@ function AboutHaUIFood() {
               <label htmlFor="message" className={cx('form__label', 'form__label--medium')}>
                 {t('form.tp06')}
               </label>
-              <div className={cx('form__text-area', 'form__text-area--sm')}>
+              <div
+                className={cx('form__text-area', 'form__text-area--sm')}
+                style={errors.message !== '' ? { border: '1px solid #f44336' } : {}}
+              >
                 <textarea
                   value={message}
                   onChange={(e) => {
