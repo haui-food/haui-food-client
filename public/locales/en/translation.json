@@ -202,6 +202,12 @@
     "btn-update": "Update",
     "btn-cancel": "Cancel",
     "btn-edit": "Edit",
-    "btn-select-img": "Select Image"
+    "btn-select-img": "Select Image",
+    "toast": {
+      "noChanged": "No changes have been made.",
+      "noExactly": "Please check the information again and enter in the correct format.",
+      "successed": "Update successful.",
+      "error": "Update failed."
+    }
   }
 }

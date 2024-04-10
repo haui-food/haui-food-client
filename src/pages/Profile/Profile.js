@@ -11,6 +11,10 @@ import { updateUserById, getUser } from '~/apiService/userService';
 import Loader from '~/components/Loader';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
+import 'flatpickr/dist/flatpickr.css';
+import Flatpickr from 'react-flatpickr';
+import moment from 'moment';
+
 const cx = classNames.bind(style);
 
 function Profile() {
@@ -18,11 +22,6 @@ function Profile() {
   const [userInfo, setUserInfo] = useState();
   const reduxData = useSelector((prop) => prop.user);
   const { t } = useTranslation();
-  useEffect(() => {
-    //eslint-disable-next-line
-    dispatch(getUser());
-    setUserInfo(reduxData.user);
-  }, []);
 
   // console.log('UserInfo', userInfo);
 
@@ -36,10 +35,12 @@ function Profile() {
     {
       title: t('profile.nav01'),
       icon: <PersonalInfoIcon className={cx('icon')} />,
+      navId: 'personnalInfo',
     },
     {
       title: t('profile.nav02'),
       icon: <PasswordIcon className={cx('icon')} />,
+      navId: 'changePassword',
     },
     {
       title: t('profile.navTitle02'),
@@ -49,16 +50,16 @@ function Profile() {
     {
       title: t('profile.nav03'),
       icon: <HelpIcon className={cx('icon')} />,
+      navId: 'help',
     },
     {
       title: t('profile.nav04'),
       icon: <TermsOfUseIcon className={cx('icon')} />,
+      navId: 'termsOfUse',
     },
   ];
 
-  const [selectedOption, setSelectedOption] = useState('Personal Info');
-  const [startDate, setStartDate] = useState(userInfo?.dateOfBirth ? new Date(userInfo?.dateOfBirth) : null);
-  const datePickerRef = useRef();
+  // const datePickerRef = useRef();
   const inputRefs = {
     fullName: useRef(null),
     email: useRef(null),
@@ -76,26 +77,52 @@ function Profile() {
   const [email, setEmail] = useState(userInfo?.email);
   const [imageSelected, setImageSelected] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
+  const [date, setDate] = useState([userInfo?.dateOfBirth ? new Date(userInfo?.dateOfBirth) : null]);
+  const [isFirstMound, setIsFirstMound] = useState(true);
 
   useEffect(() => {
-    // console.log('UserInfo', userInfo);
+    //eslint-disable-next-line
+    // console.log('call api');
+    dispatch(getUser());
+    //eslint-enable-next-line
+    upDateUserInfo();
+    setIsFirstMound(false);
+  }, []);
+
+  const upDateUserInfo = () => {
     setUserInfo(reduxData.user);
-    setEmail(userInfo?.email);
-    setFullName(userInfo?.fullname);
-    setMsv(userInfo?.msv || '');
-    setPhoneNumber(userInfo?.phone || '');
-    setStartDate(userInfo?.dateOfBirth ? new Date(userInfo?.dateOfBirth) : null);
-    setGender(userInfo?.gender);
+    setEmail(reduxData.user?.email);
+    setFullName(reduxData.user?.fullname);
+    setMsv(reduxData.user?.msv || '');
+    setPhoneNumber(reduxData.user?.phone || '');
+    setDate([reduxData.user?.dateOfBirth ? new Date(reduxData.user?.dateOfBirth) : null]);
+    setGender(reduxData.user?.gender);
     setIsChange(false);
     setImagePreview(null);
     setImageSelected(null);
+    setErrors({});
+  };
+
+  const [selectedOption, setSelectedOption] = useState('Personal Info');
+  useEffect(() => {
+    // console.log('UserInfo', userInfo);
+
+    if (isFirstMound) {
+      console.log('firstMound');
+    } else if (reduxData.loading === false && reduxData.error === null && reduxData.isUpdate) {
+      toast.success(t('profile.toast.successed'));
+      upDateUserInfo();
+    } else if (reduxData.loading === false && reduxData.error !== null && reduxData.isUpdate) {
+      toast.error(t('profile.toast.error'));
+      upDateUserInfo();
+    }
     //eslint-disable-next-line
   }, [reduxData]);
 
   // handle when update
   const handleUpdate = async () => {
     validateInputs();
-    validateDatePicker();
+    validateDate(date);
     let isChange = true;
     let hasChanged = true;
     Object.values(errors).forEach((error) => {
@@ -106,7 +133,7 @@ function Profile() {
       }
     });
 
-    // console.log('start date', startDate);
+    console.log('start date', date);
     // console.log('dateOfBirth', new Date(userInfo.dateOfBirth));
     // console.log(startDate.getTime() === new Date(userInfo.dateOfBirth).getTime());
 
@@ -115,10 +142,10 @@ function Profile() {
       phoneNumber === (userInfo?.phone || '') &&
       msv === (userInfo?.msv || '') &&
       gender === (userInfo?.gender === 'male' ? 'male' : 'female') &&
-      startDate.getTime() === new Date(userInfo.dateOfBirth).getTime() &&
+      date[0].getTime() === new Date(userInfo.dateOfBirth).getTime() &&
       imageSelected === null
     ) {
-      toast.info('Không có gì thay đổi để cập nhật!');
+      toast.info(t('profile.toast.noChanged'));
       hasChanged = false;
       return;
     }
@@ -126,26 +153,36 @@ function Profile() {
     if (isChange && hasChanged) {
       const data = {
         fullname: fullName,
-        gender: userInfo?.gender,
-        dateOfBirth: startDate,
+        gender: gender,
+        dateOfBirth: date[0],
         // phone: phoneNumber,
         // msv: msv,
       };
       dispatch(updateUserById({ userData: data, avatar: imageSelected }));
     } else {
-      toast.error('Vui lòng nhập đúng các trường');
+      toast.error(t('profile.toast.noExactly'));
     }
   };
 
   const handleSelectImage = (e) => {
     const file = e.target.files[0];
+    // console.log('selected image');
+
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
         setImagePreview(reader.result);
         setImageSelected(reader.result);
       };
-      reader.readAsDataURL(file);
+
+      // Thêm try-catch để bắt lỗi khi đọc file
+      try {
+        reader.readAsDataURL(file);
+      } catch (error) {
+        // Xử lý lỗi và hiển thị thông báo
+        console.error('Error reading the file:', error);
+        toast.error('Đã xảy ra lỗi khi đọc file.');
+      }
     }
   };
 
@@ -154,7 +191,6 @@ function Profile() {
     setMsv(userInfo?.MSV || '');
     setPhoneNumber(userInfo?.phone || '');
     setEmail(userInfo?.email);
-    setStartDate(userInfo?.dateOfBirth ? new Date(userInfo?.dateOfBirth) : null);
     setGender(
       userInfo?.gender
         ? userInfo.gender.toLowerCase() === 'male'
@@ -229,40 +265,74 @@ function Profile() {
     setErrors(newErrors);
   };
 
-  const validateDatePicker = () => {
-    const value = datePickerRef.current.input.value;
-    console.log(value);
+  const validateDate = (date) => {
+    let newErrors = { ...errors };
+    console.log('on change', date);
 
-    const [day, month, year] = value.split('/');
-    const inputDate = new Date(`${year}-${month}-${day}`);
-    const currentDay = new Date();
-    let newErrors = { ...errors }; // Sao chép errors hiện tại để thay đổi
-    console.log('start date', startDate.getFullYear());
-    // console.log('4 year', year.toString().length === 4);
-    // console.log('18 year', currentDay.getFullYear() - year < 18);
-
-    // if (inputDate instanceof Date && !isNaN(inputDate)) {
-    //   console.log('intant of date');
-    //   setStartDate(inputDate);
-    // }
-    if (!(inputDate instanceof Date)) {
-      return (newErrors = { ...newErrors, birthDay: 'Ngày sinh không hợp lệ' });
-      // console.log('ngay sinh khong hop le');
-    } else if (inputDate > currentDay) {
-      newErrors = { ...newErrors, birthDay: 'Ngày sinh không thể lớn hơn hôm nay' };
-      console.log('ngay sinh khong the lon hon ngay hom nay');
-    } else if (year && year.toString().length === 4 && currentDay.getFullYear() - year < 18) {
-      newErrors = { ...newErrors, birthDay: 'Bạn chưa đủ 18 tuổi' };
-      console.log('ngay sinh khong the lon hon 18 tuoi');
-    } else if (currentDay.getFullYear() - 100 > year && year === startDate.getFullYear().toString()) {
-      newErrors = { ...newErrors, birthDay: 'Bạn đã quá 100 tuổi' };
-      console.log('ngay sinh khong the lon hon 100 tuoi');
+    if (!moment(date[0], 'DD.MM.YYYY', true).isValid()) {
+      console.log('khong hop le');
+      newErrors = { ...newErrors, birthDay: t('errors.birthDay.err05') };
     } else {
-      newErrors = { ...newErrors, birthDay: '' }; // Không có lỗi
-    }
+      const today = moment();
+      const birthDay = moment(date[0], 'DD.MM.YYYY', true);
+      // console.log(moment(date, 'DD.MM.YYYY', true));
+      const age = today.diff(birthDay, 'years');
+      // console.log('age', age);
 
+      if (age < 0) {
+        newErrors = { ...newErrors, birthDay: t('errors.birthDay.err02') };
+      } else if (age < 18) {
+        newErrors = { ...newErrors, birthDay: t('errors.birthDay.err03') };
+      } else if (age > 100) {
+        newErrors = { ...newErrors, birthDay: t('errors.birthDay.err04') };
+      } else {
+        newErrors = { ...newErrors, birthDay: '' };
+      }
+    }
+    setDate(date);
     setErrors(newErrors);
   };
+
+  const handleDateChange = (date) => {
+    // console.log(date);
+    validateDate(date);
+  };
+
+  //   const value = datePickerRef.current.input.value;
+  //   console.log(value);
+
+  //   const [day, month, year] = value.split('/');
+  //   const inputDate = new Date(`${year}-${month}-${day}`);
+  //   const currentDay = new Date();
+  //   let newErrors = { ...errors }; // Sao chép errors hiện tại để thay đổi
+  //   // console.log('start date', startDate.getFullYear());
+  //   // console.log('4 year', year.toString().length === 4);
+  //   // console.log('18 year', currentDay.getFullYear() - year < 18);
+
+  //   if (inputDate instanceof Date && !isNaN(inputDate) && year?.toString().length === 4) {
+  //     console.log('intant of date');
+  //     setStartDate(inputDate);
+  //   } else {
+  //     return;
+  //   }
+  //   if (!(inputDate instanceof Date)) {
+  //     return (newErrors = { ...newErrors, birthDay: 'Ngày sinh không hợp lệ' });
+  //     // console.log('ngay sinh khong hop le');
+  //   } else if (inputDate > currentDay) {
+  //     newErrors = { ...newErrors, birthDay: 'Ngày sinh không thể lớn hơn hôm nay' };
+  //     console.log('ngay sinh khong the lon hon ngay hom nay');
+  //   } else if (year && year.toString().length === 4 && currentDay.getFullYear() - year < 18) {
+  //     newErrors = { ...newErrors, birthDay: 'Bạn chưa đủ 18 tuổi' };
+  //     console.log('ngay sinh khong the lon hon 18 tuoi');
+  //   } else if (currentDay.getFullYear() - 100 > year && year === startDate?.getFullYear().toString()) {
+  //     newErrors = { ...newErrors, birthDay: 'Bạn đã quá 100 tuổi' };
+  //     console.log('ngay sinh khong the lon hon 100 tuoi');
+  //   } else {
+  //     newErrors = { ...newErrors, birthDay: '' }; // Không có lỗi
+  //   }
+
+  //   setErrors(newErrors);
+  // };
 
   // console.log(image);
   return (
@@ -294,7 +364,7 @@ function Profile() {
                       type="file"
                       accept="image/*"
                       style={{ display: 'none' }}
-                      onChange={(e) => {
+                      onInput={(e) => {
                         handleSelectImage(e);
                       }}
                     />
@@ -333,8 +403,8 @@ function Profile() {
             </div>
           </div>
           <div className={cx('col-xl-9')}>
-            <div className={cx('profile-content-container')}>
-              {reduxData.loading && <Loader />}
+            <div className={cx('profile-content-container', { onLoader: reduxData.loading })}>
+              {reduxData.loading && <Loader className={cx('loader')} />}
               {!reduxData.loading && (
                 <div className={cx('profile-content')}>
                   <div className={cx('profile-input-container')}>
@@ -432,26 +502,25 @@ function Profile() {
                       <label className={cx('profile-input-group__label')} htmlFor="birth-day">
                         {t('profile.birthDay')}
                       </label>
-                      {/* {errors.birthDay && <div className={cx('errors-message')}>{errors.birthDay}</div>} */}
                       <div className={cx('date-picker-container', { 'no-change': !isChange })}>
-                        <DatePicker
-                          ref={datePickerRef}
-                          dateFormat="dd/MM/yyyy"
-                          selected={startDate}
-                          onChange={(date) => {
-                            setStartDate(date);
-                            validateDatePicker();
+                        <Flatpickr
+                          value={date}
+                          // các option thêm cho thư viện
+                          placeholder={t('profile.birthDay')}
+                          options={{
+                            dateFormat: 'd/m/Y',
+                            // allowInput: true,
+                            // maxDate: new Date(),
                           }}
-                          showMonthDropdown
-                          showYearDropdown
-                          className={cx('date-picker-input', { isError: errors.birthDay })}
-                          onBlur={validateDatePicker}
-                          name="birthDay"
-                          shouldCloseOnSelect={true}
+                          onBlur={(e) => {
+                            validateDate(date);
+                          }}
+                          onChange={(dateSelect) => {
+                            handleDateChange(dateSelect);
+                          }}
                         />
                       </div>
                       {errors.birthDay && <div className={cx('errors-message')}>{errors.birthDay}</div>}
-                      {/* <div className={cx('placeholder-fake')}></div> */}
                     </div>
 
                     {/* Gioi tinh */}

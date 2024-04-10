@@ -60,17 +60,18 @@
     },
 
     "phoneNumber": {
-      "err01": "Vui lòng nhập số điện thoại",
-      "err02": "Số điện thoại không hợp lệ"
+      "err01": "Vui lòng nhập số điện thoại.",
+      "err02": "Số điện thoại không hợp lệ."
     },
     "fullName": {
-      "err01": "Vui lòng nhập đầy đủ họ tên"
+      "err01": "Vui lòng nhập đầy đủ họ tên."
     },
     "birthDay": {
       "err01": "Vui lòng nhập ngày sinh của bạn.",
       "err02": "Ngày sinh không được lớn hơn ngày hiện tại.",
       "err03": "Bạn chưa đủ 18 tuổi để sử dụng dịch vụ.",
-      "err04": "Xin lỗi, bạn đã quá tuổi để sử dụng dịch vụ của chúng tôi."
+      "err04": "Xin lỗi, bạn đã quá tuổi để sử dụng dịch vụ của chúng tôi.",
+      "err05": "Ngày sinh không hợp lệ."
     }
   },
   "cart": {
@@ -204,6 +205,12 @@
     "btn-update": "Cập Nhật",
     "btn-cancel": "Hủy",
     "btn-edit": "Chỉnh sửa",
-    "btn-select-img": "Chọn ảnh"
+    "btn-select-img": "Chọn ảnh",
+    "toast": {
+      "noChanged": "Không có thay đổi nào được thực hiện.",
+      "noExactly": "Vui lòng kiểm tra lại thông tin và nhập đúng định dạng.",
+      "successed": "Cập nhật thành công.",
+      "error": "Cập nhật thất bại."
+    }
   }
 }
