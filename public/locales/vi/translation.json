@@ -195,8 +195,15 @@
       "male": "Nam",
       "female": "Nữ"
     },
+    "navTitle01": "Quản lý tài khoản",
+    "navTitle02": "Hỗ trợ khác hàng",
+    "nav01": "Thông tin cá nhân",
+    "nav02": "Đổi mật khẩu",
+    "nav03": "Trợ giúp",
+    "nav04": "Điều khoản sử dụng",
     "btn-update": "Cập Nhật",
     "btn-cancel": "Hủy",
-    "btn-edit": "Chỉnh sửa"
+    "btn-edit": "Chỉnh sửa",
+    "btn-select-img": "Chọn ảnh"
   }
 }

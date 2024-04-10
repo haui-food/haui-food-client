@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { updateUserById, getUser } from '~/apiService/userService';
-
+import { toast } from 'react-toastify';
 const userSlice = createSlice({
   name: 'user',
   initialState: {
@@ -8,10 +8,11 @@ const userSlice = createSlice({
     loading: null,
     error: null,
   },
-  
+
   reducers: {},
   extraReducers(builder) {
     builder
+      // update user
       .addCase(updateUserById.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -19,10 +20,12 @@ const userSlice = createSlice({
       .addCase(updateUserById.fulfilled, (state, action) => {
         state.loading = false;
         state.user = action.payload;
+        toast.success('User updated successfully');
       })
       .addCase(updateUserById.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+        toast.error('Cập nhật Không thành công');
       })
 
       // get user

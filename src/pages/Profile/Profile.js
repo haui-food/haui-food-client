@@ -10,36 +10,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateUserById, getUser } from '~/apiService/userService';
 import Loader from '~/components/Loader';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 const cx = classNames.bind(style);
-
-const listOptions = [
-  {
-    title: 'Manage Account',
-    icon: <div className={cx('special-icon')}></div>,
-    isTitle: true,
-  },
-  {
-    title: 'Personal Info',
-    icon: <PersonalInfoIcon className={cx('icon')} />,
-  },
-  {
-    title: 'Change Password',
-    icon: <PasswordIcon className={cx('icon')} />,
-  },
-  {
-    title: 'Customer Service',
-    icon: <div className={cx('special-icon')}></div>,
-    isTitle: true,
-  },
-  {
-    title: 'Help',
-    icon: <HelpIcon className={cx('icon')} />,
-  },
-  {
-    title: 'Terms of Use',
-    icon: <TermsOfUseIcon className={cx('icon')} />,
-  },
-];
 
 function Profile() {
   const dispatch = useDispatch();
@@ -54,6 +26,36 @@ function Profile() {
 
   // console.log('UserInfo', userInfo);
 
+  // list nav options
+  const listOptions = [
+    {
+      title: t('profile.navTitle01'),
+      icon: <div className={cx('special-icon')}></div>,
+      isTitle: true,
+    },
+    {
+      title: t('profile.nav01'),
+      icon: <PersonalInfoIcon className={cx('icon')} />,
+    },
+    {
+      title: t('profile.nav02'),
+      icon: <PasswordIcon className={cx('icon')} />,
+    },
+    {
+      title: t('profile.navTitle02'),
+      icon: <div className={cx('special-icon')}></div>,
+      isTitle: true,
+    },
+    {
+      title: t('profile.nav03'),
+      icon: <HelpIcon className={cx('icon')} />,
+    },
+    {
+      title: t('profile.nav04'),
+      icon: <TermsOfUseIcon className={cx('icon')} />,
+    },
+  ];
+
   const [selectedOption, setSelectedOption] = useState('Personal Info');
   const [startDate, setStartDate] = useState(userInfo?.dateOfBirth ? new Date(userInfo?.dateOfBirth) : null);
   const datePickerRef = useRef();
@@ -62,38 +64,40 @@ function Profile() {
     email: useRef(null),
     phoneNumber: useRef(null),
     msv: useRef(null),
+    avatar: useRef(null),
   };
   const [isChange, setIsChange] = useState(false);
   const [gender, setGender] = useState(userInfo?.gender);
   const [isShowGender, setIsShowGender] = useState(false);
   const [fullName, setFullName] = useState(userInfo?.fullname);
   const [phoneNumber, setPhoneNumber] = useState(userInfo?.phone);
-  const [msv, setMsv] = useState(userInfo?.MSV);
+  const [msv, setMsv] = useState(userInfo?.msv);
   const [errors, setErrors] = useState({});
   const [email, setEmail] = useState(userInfo?.email);
-  const [image, setImage] = useState(null);
+  const [imageSelected, setImageSelected] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
 
   useEffect(() => {
-    console.log('UserInfo', userInfo);
+    // console.log('UserInfo', userInfo);
     setUserInfo(reduxData.user);
     setEmail(userInfo?.email);
     setFullName(userInfo?.fullname);
+    setMsv(userInfo?.msv || '');
     setPhoneNumber(userInfo?.phone || '');
     setStartDate(userInfo?.dateOfBirth ? new Date(userInfo?.dateOfBirth) : null);
-    setGender(
-      userInfo?.gender
-        ? userInfo.gender.toLowerCase() === 'male'
-          ? t('profile.gender.male')
-          : t('profile.gender.female')
-        : '',
-    );
-  }, [reduxData.user, userInfo]);
+    setGender(userInfo?.gender);
+    setIsChange(false);
+    setImagePreview(null);
+    setImageSelected(null);
+    //eslint-disable-next-line
+  }, [reduxData]);
 
-  const handleUpdate = () => {
+  // handle when update
+  const handleUpdate = async () => {
     validateInputs();
     validateDatePicker();
-    console.log(errors);
     let isChange = true;
+    let hasChanged = true;
     Object.values(errors).forEach((error) => {
       console.log(error);
       if (error !== '') {
@@ -102,7 +106,24 @@ function Profile() {
       }
     });
 
-    if (isChange) {
+    // console.log('start date', startDate);
+    // console.log('dateOfBirth', new Date(userInfo.dateOfBirth));
+    // console.log(startDate.getTime() === new Date(userInfo.dateOfBirth).getTime());
+
+    if (
+      fullName === userInfo?.fullname &&
+      phoneNumber === (userInfo?.phone || '') &&
+      msv === (userInfo?.msv || '') &&
+      gender === (userInfo?.gender === 'male' ? 'male' : 'female') &&
+      startDate.getTime() === new Date(userInfo.dateOfBirth).getTime() &&
+      imageSelected === null
+    ) {
+      toast.info('Không có gì thay đổi để cập nhật!');
+      hasChanged = false;
+      return;
+    }
+
+    if (isChange && hasChanged) {
       const data = {
         fullname: fullName,
         gender: userInfo?.gender,
@@ -110,9 +131,21 @@ function Profile() {
         // phone: phoneNumber,
         // msv: msv,
       };
-      dispatch(updateUserById({ userData: data, avatar: image }));
+      dispatch(updateUserById({ userData: data, avatar: imageSelected }));
     } else {
-      alert('loi');
+      toast.error('Vui lòng nhập đúng các trường');
+    }
+  };
+
+  const handleSelectImage = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result);
+        setImageSelected(reader.result);
+      };
+      reader.readAsDataURL(file);
     }
   };
 
@@ -198,46 +231,79 @@ function Profile() {
 
   const validateDatePicker = () => {
     const value = datePickerRef.current.input.value;
-    // console.log(value);
+    console.log(value);
+
     const [day, month, year] = value.split('/');
     const inputDate = new Date(`${year}-${month}-${day}`);
     const currentDay = new Date();
     let newErrors = { ...errors }; // Sao chép errors hiện tại để thay đổi
-    console.log('inputdate', errors);
-    if (!(inputDate instanceof Date) || isNaN(inputDate) || (year && year.toString().length !== 4)) {
-      newErrors = { ...newErrors, birthDay: 'Ngày sinh không hợp lệ' };
-      console.log('ngay sinh khong hop le');
+    console.log('start date', startDate.getFullYear());
+    // console.log('4 year', year.toString().length === 4);
+    // console.log('18 year', currentDay.getFullYear() - year < 18);
+
+    // if (inputDate instanceof Date && !isNaN(inputDate)) {
+    //   console.log('intant of date');
+    //   setStartDate(inputDate);
+    // }
+    if (!(inputDate instanceof Date)) {
+      return (newErrors = { ...newErrors, birthDay: 'Ngày sinh không hợp lệ' });
+      // console.log('ngay sinh khong hop le');
     } else if (inputDate > currentDay) {
       newErrors = { ...newErrors, birthDay: 'Ngày sinh không thể lớn hơn hôm nay' };
       console.log('ngay sinh khong the lon hon ngay hom nay');
-    } else if (currentDay.getFullYear() - year < 18) {
+    } else if (year && year.toString().length === 4 && currentDay.getFullYear() - year < 18) {
       newErrors = { ...newErrors, birthDay: 'Bạn chưa đủ 18 tuổi' };
       console.log('ngay sinh khong the lon hon 18 tuoi');
     } else if (currentDay.getFullYear() - 100 > year && year === startDate.getFullYear().toString()) {
       newErrors = { ...newErrors, birthDay: 'Bạn đã quá 100 tuổi' };
       console.log('ngay sinh khong the lon hon 100 tuoi');
     } else {
-      // newErrors = { ...newErrors, birthDay: '' }; // Không có lỗi
+      newErrors = { ...newErrors, birthDay: '' }; // Không có lỗi
     }
 
     setErrors(newErrors);
   };
+
   // console.log(image);
   return (
     <div className={cx('wrapper')}>
       <div className={cx('container')}>
         <div className={cx('row profile')}>
           <div className={cx('col-xl-3')}>
-            <div
-              className={cx('profile__img-container')}
-              style={{
-                backgroundImage:
-                  "url('https://images.unsplash.com/photo-1491146179969-d674118945ff?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bGVhZiUyMGdyZWVuJTIwYmFja2dyb3VuZCUyMGZvb2R8ZW58MHx8MHx8fDA%3D')",
-              }}
-            >
-              <img className={cx('profile__img')} src={images.avatarDefault} alt="Profile" />
-              <div className={cx('profile__user-name')}>Le Nghia</div>
-              <div className={cx('profile__registered-day')}>Registered: 20th May 2024</div>
+            <div className={cx('profile__img-container')}>
+              <img
+                className={cx('profile__img-cover')}
+                src="https://plus.unsplash.com/premium_photo-1675725088215-a07116c0b75d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODF8fGdyZWVuJTIwYmFja2dyb3VuZHxlbnwwfHwwfHx8MA%3D%3D"
+                alt="hauifood"
+              />
+              <div className={cx('profile__img-content', { 'no-change': !isChange })}>
+                <div className={cx('profile__avatar-container')}>
+                  <img
+                    className={cx('profile__img')}
+                    src={imagePreview ? imagePreview : userInfo?.avatar ? userInfo.avatar : images.avatarDefault}
+                    alt="hauifood"
+                  />
+                  <div
+                    className={cx('select-image-btn')}
+                    onClick={() => {
+                      inputRefs.avatar.current.click();
+                    }}
+                  >
+                    <input
+                      ref={inputRefs.avatar}
+                      type="file"
+                      accept="image/*"
+                      style={{ display: 'none' }}
+                      onChange={(e) => {
+                        handleSelectImage(e);
+                      }}
+                    />
+                    <div className={cx('profile__select-img-title')}>{t('profile.btn-select-img')}</div>
+                  </div>
+                </div>
+                <div className={cx('profile__user-name')}>{userInfo?.fullname ? userInfo.fullname : 'HauiFood'}</div>
+                <div className={cx('profile__registered-day')}>Registered: 20th May 2024</div>
+              </div>
             </div>
 
             <div className={cx('profile-nav-container')}>
@@ -272,15 +338,8 @@ function Profile() {
               {!reduxData.loading && (
                 <div className={cx('profile-content')}>
                   <div className={cx('profile-input-container')}>
-                    <input
-                      type="file"
-                      onChange={(e) => {
-                        const files = e.target.files;
-                        setImage(files);
-                        // console.log(e.target.files);
-                      }}
-                    />
-                    <div className={cx('profile-content__title')}>Personal Info</div>
+                    {/* {imageSelected && <img src={imagePreview} />} */}
+                    <div className={cx('profile-content__title')}>{t('profile.nav01')}</div>
                     <div className={cx('profile__sub-row')}></div>
                     {/* full name */}
                     <div className={cx('profile-input-group')}>
@@ -297,7 +356,6 @@ function Profile() {
                         value={fullName}
                         onChange={(e) => {
                           handleInputChange(e);
-                          // handleBlur(e);
                           validateInputs();
                         }}
                         onBlur={validateInputs}
@@ -319,7 +377,6 @@ function Profile() {
                         placeholder="Email"
                         value={email}
                       />
-                      {/* <div className={cx('placeholder-fake')}></div> */}
                     </div>
 
                     {/* phone number */}
@@ -337,9 +394,7 @@ function Profile() {
                         placeholder={t('profile.phoneNumber')}
                         value={phoneNumber}
                         onChange={(e) => {
-                          // setStartDate(startDate);
                           handleInputChange(e);
-                          // handleBlur(e);
                           validateInputs();
                         }}
                         onBlur={validateInputs}
@@ -360,12 +415,11 @@ function Profile() {
                         type="text"
                         max={10}
                         name="msv"
-                        // id="msv"
                         placeholder={t('profile.msv')}
                         value={msv}
                         onChange={(e) => {
                           handleInputChange(e);
-                          // handleBlur(e);
+
                           validateInputs();
                         }}
                         onBlur={validateInputs}
@@ -384,10 +438,8 @@ function Profile() {
                           ref={datePickerRef}
                           dateFormat="dd/MM/yyyy"
                           selected={startDate}
-                          onChange={(date, event) => {
-                            // handleDatePickerChange(date);
+                          onChange={(date) => {
                             setStartDate(date);
-                            // handleBlur(event);
                             validateDatePicker();
                           }}
                           showMonthDropdown
@@ -395,6 +447,7 @@ function Profile() {
                           className={cx('date-picker-input', { isError: errors.birthDay })}
                           onBlur={validateDatePicker}
                           name="birthDay"
+                          shouldCloseOnSelect={true}
                         />
                       </div>
                       {errors.birthDay && <div className={cx('errors-message')}>{errors.birthDay}</div>}
@@ -412,7 +465,13 @@ function Profile() {
                           setIsShowGender(!isShowGender);
                         }}
                       >
-                        <div className={cx('gender__selected-value')}>{gender}</div>
+                        <div className={cx('gender__selected-value')}>
+                          {gender
+                            ? gender === 'male'
+                              ? t('profile.gender.male')
+                              : t('profile.gender.female')
+                            : t('profile.gender.title')}
+                        </div>
                         <ArrowDownIcon className={cx('gender__icon')} />
                         <ul
                           className={cx('gender__options', { isShow: isShowGender })}
