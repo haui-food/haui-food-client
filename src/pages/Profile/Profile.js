@@ -79,7 +79,7 @@ function Profile() {
   const [imagePreview, setImagePreview] = useState(null);
   const [date, setDate] = useState([userInfo?.dateOfBirth ? new Date(userInfo?.dateOfBirth) : null]);
   const [isFirstMound, setIsFirstMound] = useState(true);
-
+  const [selectedOption, setSelectedOption] = useState('Personal Info');
   useEffect(() => {
     //eslint-disable-next-line
     // console.log('call api');
@@ -103,12 +103,10 @@ function Profile() {
     setErrors({});
   };
 
-  const [selectedOption, setSelectedOption] = useState('Personal Info');
   useEffect(() => {
     // console.log('UserInfo', userInfo);
-
-    if (isFirstMound) {
-      console.log('firstMound');
+    if (!reduxData.isUpdate) {
+      upDateUserInfo();
     } else if (reduxData.loading === false && reduxData.error === null && reduxData.isUpdate) {
       toast.success(t('profile.toast.successed'));
       upDateUserInfo();
