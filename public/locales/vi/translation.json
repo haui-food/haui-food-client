@@ -50,7 +50,29 @@
     "err07": "Vui lòng nhập lại mật khẩu",
     "err08": "Số điện thoại không đúng, vui lòng nhập lại",
     "err09": "Vui lòng nhập nội dung",
-    "err10": "Nội dung từ 5 đến 500 ký tự"
+    "err10": "Nội dung từ 5 đến 500 ký tự",
+
+    "msv": {
+      "err01": "Vui lòng nhập mã sinh viên.",
+      "err02": "Mã sinh viên phải có đúng 10 ký tự.",
+      "err03": "Xin lỗi, bạn đã tốt nghiệp.",
+      "err04": "4 số đầu của mã sinh viên không hợp lệ."
+    },
+
+    "phoneNumber": {
+      "err01": "Vui lòng nhập số điện thoại.",
+      "err02": "Số điện thoại không hợp lệ."
+    },
+    "fullName": {
+      "err01": "Vui lòng nhập đầy đủ họ tên."
+    },
+    "birthDay": {
+      "err01": "Vui lòng nhập ngày sinh của bạn.",
+      "err02": "Ngày sinh không được lớn hơn ngày hiện tại.",
+      "err03": "Bạn chưa đủ 18 tuổi để sử dụng dịch vụ.",
+      "err04": "Xin lỗi, bạn đã quá tuổi để sử dụng dịch vụ của chúng tôi.",
+      "err05": "Ngày sinh không hợp lệ."
+    }
   },
   "cart": {
     "title01": "Giỏ đồ ăn",
@@ -162,5 +184,33 @@
     "heading": "Hãy kết nối với chúng tôi",
     "desc": "Bạn có đề xuất hoặc phản hồi? Chúng tôi rất sẵn sàng nghe ý kiến từ bạn! Sử dụng mẫu dưới đây để chia sẻ suy nghĩ của bạn. Cảm ơn bạn đã giúp chúng tôi cải thiện!",
     "message": "Gửi tin nhắn thành công."
+  },
+  "profile": {
+    "fullName": "Họ tên",
+    "email": "Email",
+    "phoneNumber": "Số điện thoại",
+    "msv": "Mã sinh viên",
+    "birthDay": "Ngày sinh",
+    "gender": {
+      "title": "Giới tính",
+      "male": "Nam",
+      "female": "Nữ"
+    },
+    "navTitle01": "Quản lý tài khoản",
+    "navTitle02": "Hỗ trợ khác hàng",
+    "nav01": "Thông tin cá nhân",
+    "nav02": "Đổi mật khẩu",
+    "nav03": "Trợ giúp",
+    "nav04": "Điều khoản sử dụng",
+    "btn-update": "Cập Nhật",
+    "btn-cancel": "Hủy",
+    "btn-edit": "Chỉnh sửa",
+    "btn-select-img": "Chọn ảnh",
+    "toast": {
+      "noChanged": "Không có thay đổi nào được thực hiện.",
+      "noExactly": "Vui lòng kiểm tra lại thông tin và nhập đúng định dạng.",
+      "successed": "Cập nhật thành công.",
+      "error": "Cập nhật thất bại."
+    }
   }
 }

@@ -1,6 +1,6 @@
 const routes = {
   home: '/',
-  category: 'category/:category',
+  // category: 'category/:category',
   category: 'cuisines/:category',
   restaurants: '/restaurants',
   restaurant: '/restaurant/:restaurant',
@@ -11,6 +11,7 @@ const routes = {
   resetPassword: '/auth/reset-password',
   aboutHaUIFood: '/about/haui-food',
   aboutDevelopmentTeam: '/about/development-team',
+  profile: '/profile/:userId',
   checkout: '/checkout',
   forbidden: '/forbidden',
   internalServer: '/server-error',

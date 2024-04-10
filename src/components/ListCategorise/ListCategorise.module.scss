@@ -15,9 +15,12 @@
     }
   }
   .loader {
-    width: 150px;
-    height: 150px;
-    margin: 10% auto;
+    width: 130px !important;
+    height: 130px !important;
+    @include media-breakpoint-down(md) {
+      width: 100px !important;
+      height: 100px !important;
+    }
   }
 }
 

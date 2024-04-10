@@ -50,7 +50,26 @@
     "err07": "Please re-enter password",
     "err08": "The phone number is incorrect, please re-enter",
     "err09": "Please enter the content",
-    "err10": "Content from 5 to 500 characters"
+    "err10": "Content from 5 to 500 characters",
+    "msv": {
+      "err01": "Please enter your student ID.",
+      "err02": "Student ID must be exactly 10 characters.",
+      "err03": "Sorry, you have graduated.",
+      "err04": "The first 4 digits of the student ID are invalid."
+    },
+    "phoneNumber": {
+      "err01": "Please enter your phone number.",
+      "err02": "Invalid phone number."
+    },
+    "fullName": {
+      "err01": "Please enter your full name."
+    },
+    "birthDay": {
+      "err01": "Please enter your date of birth.",
+      "err02": "Date of birth cannot be later than today.",
+      "err03": "You must be at least 18 years old to use our service.",
+      "err04": "Sorry, you are too old to use our service."
+    }
   },
   "cart": {
     "title01": "Food Basket",
@@ -162,5 +181,33 @@
     "heading": "Connect with us",
     "desc": "Do you have suggestions or feedback? We are very ready to hear from you! Use the form below to share your thoughts. Thank you for helping us improve!",
     "message": "Message sent successfully."
+  },
+  "profile": {
+    "fullName": "Full Name",
+    "email": "Email",
+    "phoneNumber": "Phone Number",
+    "msv": "Student ID",
+    "birthDay": "Date of Birth",
+    "gender": {
+      "title": "Gender",
+      "male": "Male",
+      "female": "Female"
+    },
+    "navTitle01": "Account Management",
+    "navTitle02": "Customer Support",
+    "nav01": "Personal Information",
+    "nav02": "Change Password",
+    "nav03": "Help",
+    "nav04": "Terms of Use",
+    "btn-update": "Update",
+    "btn-cancel": "Cancel",
+    "btn-edit": "Edit",
+    "btn-select-img": "Select Image",
+    "toast": {
+      "noChanged": "No changes have been made.",
+      "noExactly": "Please check the information again and enter in the correct format.",
+      "successed": "Update successful.",
+      "error": "Update failed."
+    }
   }
 }

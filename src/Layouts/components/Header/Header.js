@@ -29,6 +29,7 @@ const cx = classNames.bind(styles);
 function Header() {
   const { t } = useTranslation();
   const location = useLocation();
+  const userInfo = JSON.parse(localStorage.getItem('user'));
 
   const { cartItems, clearCart } = useBasket();
 
@@ -272,7 +273,7 @@ function Header() {
                   ref={userOptionsRef}
                   className={cx('header__user-options', showUserOptions ? 'header__user-options--show' : '')}
                 >
-                  <Link to={'#!'}>
+                  <Link to={`/profile/${userInfo?._id}`}>
                     <li className={cx('header__user-option')}>
                       <p>{t('user-options.op01')}</p>
                       <UserIcon className={cx('icon')} />

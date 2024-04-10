@@ -14,6 +14,7 @@ import AboutHaUIFood from '~/pages/AboutHaUIFood';
 import AboutDevelopmentTeam from '~/pages/AboutDevelopmentTeam';
 import CheckOut from '~/pages/CheckOut';
 import NotFound from '~/pages/NotFound';
+import Profile from '../pages/Profile';
 import Forbidden from '~/pages/Forbidden';
 import ServerError from '~/pages/ServerError';
 
@@ -42,6 +43,7 @@ const publicRoutes = [
   { path: config.routes.internalServer, component: ServerError, layout: NotFoundLayout },
   { path: config.routes.login, component: SignIn, layout: AuthLayout },
   { path: config.routes.signup, component: SignUp, layout: AuthLayout },
+  { path: config.routes.profile, component: Profile },
   { path: config.routes.checkout, component: CheckOut, layout: CheckoutLayout },
 ];
 
