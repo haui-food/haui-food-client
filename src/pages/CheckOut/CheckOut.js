@@ -16,16 +16,25 @@ function CheckOut() {
 
   return (
     <div className={cx('checkout')}>
-      <div className={cx('container gx-5')}>
-        <div className={cx('checkout__top')}>
-          <div>
-            <h1 className={cx('checkout__heading')}>Bước cuối cùng - Thanh toán</h1>
-            <h4 className={cx('checkout__name')}>LÂM SUSHI - Cơm Cà Ri Vị Nhật</h4>
+      <div className={cx('checkout__top')}>
+        <div className={cx('container gx-5')}>
+          <div className={cx('checkout__info')}>
+            <div>
+              <h1 className={cx('checkout__heading')}>Bước cuối cùng - Thanh toán</h1>
+              <h4 className={cx('checkout__name')}>LÂM SUSHI - Cơm Cà Ri Vị Nhật</h4>
+            </div>
           </div>
         </div>
       </div>
 
-      <div className={cx('checkout__content')}></div>
+      <div className={cx('container gx-5')}>
+        <div className={cx('checkout__content')}>
+          <div className={cx('checkout__group')}>
+            <h4 className={cx('checkout__address-title')}>Giao đến</h4>
+            <div className={cx('separate')} style={{ '--separate-bg': '#d1d3d6' }}></div>
+          </div>
+        </div>
+      </div>
 
       <div className={cx('checkout__bottom')}>
         <div className={cx('container gx-5 justify-content-center')}>
