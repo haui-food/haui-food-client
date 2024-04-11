@@ -3,7 +3,13 @@
 @import 'bootstrap/scss/mixins';
 
 .checkout {
+  background-color: #f7f7f7;
+
   &__top {
+    background-color: var(--white);
+  }
+
+  &__info {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -49,16 +55,15 @@
 
   &__content {
     height: 500px;
-    padding: 24px auto 130px;
-    background-color: #f7f7f7;
+    width: 624px;
+    margin: 24px auto 100px;
 
     @include media-breakpoint-down(lg) {
-      padding-left: 38px;
-      padding-right: 38px;
+      width: 100%;
     }
 
     @include media-breakpoint-down(md) {
-      padding: 8px 0 146px;
+      margin: 8px 0 120px;
     }
   }
 
@@ -127,5 +132,13 @@
         }
       }
     }
+  }
+
+  &__group {
+    padding: 20px;
+    margin: 24px auto;
+    border-radius: 6px;
+    background-color: var(--white);
+    box-shadow: rgba(95, 95, 95, 0.1) 0px 2px 4px 1px;
   }
 }
