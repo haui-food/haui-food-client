@@ -273,7 +273,7 @@ function Header() {
                   ref={userOptionsRef}
                   className={cx('header__user-options', showUserOptions ? 'header__user-options--show' : '')}
                 >
-                  <Link to={`/profile/${userInfo?._id}`}>
+                  <Link to={`/profile/${userInfo?._id}`} onClick={() => setShowUserOptions(false)}>
                     <li className={cx('header__user-option')}>
                       <p>{t('user-options.op01')}</p>
                       <UserIcon className={cx('icon')} />
