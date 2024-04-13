@@ -1,0 +1,36 @@
+.help {
+  color: var(--primary-text-color);
+  font-size: 1.7rem;
+
+  & a {
+    color: var(--primary-color) !important;
+    font-weight: 500;
+  }
+
+  & strong {
+    font-weight: 600;
+  }
+  .title {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-top: 15px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .first-p {
+    width: 100%;
+  }
+
+  & li {
+    width: 100%;
+    margin-top: 15px;
+
+    &:first-child {
+      margin-top: 5px;
+    }
+  }
+}
