@@ -27,4 +27,25 @@ export const registerUser = createAsyncThunk('auth/signup', async (userCredentia
   }
 });
 
+export const changePassword = createAsyncThunk('auth/change-password', async (userData) => {
+  try {
+    const req = await axios.post(`${hostname}/v1/auth/change-password`, userData, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${JSON.parse(localStorage.getItem('accessToken'))}`,
+      },
+    });
+    const res = await req.data;
+    return res;
+  } catch (error) {
+    console.log(error);
+    if (error.response)
+      return {
+        message: error.response.data.message,
+        status: error.response.data.code,
+      };
+    throw new Error('Đã xảy ra lỗi không mong đợi');
+  }
+});
+
 export const clearError = createAsyncThunk('auth/clearError', async () => {});

@@ -1,3 +1,22 @@
+export const HideIcon = ({ className }) => {
+  return (
+    <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" id="eye">
+      <g fill="none" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24M1 1l22 22" />
+      </g>
+    </svg>
+  );
+};
+
+export const EyeIcon = ({ className }) => {
+  return (
+    <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" id="eye">
+      <path d="M25 39c13.036 0 23.352-12.833 23.784-13.379l.491-.621-.491-.621C48.352 23.833 38.036 11 25 11S1.648 23.833 1.216 24.379L.725 25l.491.621C1.648 26.167 11.964 39 25 39zm0-26c10.494 0 19.47 9.46 21.69 12C44.473 27.542 35.509 37 25 37 14.506 37 5.53 27.54 3.31 25 5.527 22.458 14.491 13 25 13z" />
+      <path d="M25 34c4.963 0 9-4.038 9-9s-4.037-9-9-9-9 4.038-9 9 4.037 9 9 9zm0-16c3.859 0 7 3.14 7 7s-3.141 7-7 7-7-3.14-7-7 3.141-7 7-7z" />
+    </svg>
+  );
+};
+
 export const TermsOfUseIcon = ({ className }) => {
   return (
     <svg
@@ -194,7 +213,7 @@ export const ArrowDownIcon = ({ width = '1.2rem', height = '1.2rem', className }
   >
     <path
       d="M8.5 1.25L5 4.75L1.5 1.25"
-      stroke="#676767"
+      stroke="currentColor"
       strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"

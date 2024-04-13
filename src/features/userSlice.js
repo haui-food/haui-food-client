@@ -42,6 +42,8 @@ const userSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       });
+
+      
   },
 });
 // export const { setCategoryClicked } = categorySlice.actions;

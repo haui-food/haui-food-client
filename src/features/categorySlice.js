@@ -6,12 +6,13 @@ const categorySlice = createSlice({
   initialState: {
     data: {},
     listCategories: [],
-
     loading: null,
     error: null,
   },
 
-  reducers: {},
+  reducers: {
+    
+  },
   extraReducers(builder) {
     builder
       .addCase(getCategories.pending, (state) => {

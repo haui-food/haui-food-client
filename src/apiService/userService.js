@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import hostname from '~/utils/http';
 import axios from 'axios';
 
+
 export const updateUserById = createAsyncThunk('user/updateById', async ({ userData, avatar }) => {
   try {
     console.log(`${hostname}/v1/auth/me`);
