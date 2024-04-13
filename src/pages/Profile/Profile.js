@@ -237,6 +237,25 @@ function Profile() {
     }
   };
 
+  const formatRegisterDate = (date) => {
+    // Kiểm tra xem ngày truyền vào có hợp lệ không
+
+    let newDate = new Date(date);
+
+    if (!(newDate instanceof Date) || isNaN(newDate.getTime())) {
+      console.warn("Invalid date. Using today's date instead.");
+      newDate = new Date(); // Sử dụng ngày hôm nay
+    }
+
+    // Lấy các thành phần ngày, tháng và năm từ đối tượng ngày
+    const day = newDate.getDate().toString().padStart(2, '0');
+    const month = (newDate.getMonth() + 1).toString().padStart(2, '0'); // Lưu ý: Tháng bắt đầu từ 0
+    const year = newDate.getFullYear();
+
+    // Trả về chuỗi đã được định dạng
+    return `${day}/${month}/${year}`;
+  };
+
   //handle when selected image
   const handleSelectImage = (e) => {
     const file = e.target.files[0];
@@ -394,13 +413,13 @@ function Profile() {
     if (newPassword === '') {
       newErrors = { ...newErrors, newPassword: '' };
     } else if (!/^(?=.*[@-_]).{8,}$/.test(newPassword)) {
-      newErrors = { ...newErrors, newPassword:  t('errors.password.err01') };
+      newErrors = { ...newErrors, newPassword: t('errors.password.err01') };
     }
 
     if (confirmPassword === '') {
       newErrors = { ...newErrors, confirmPassword: '' };
     } else if (confirmPassword !== newPassword) {
-      newErrors = { ...newErrors, confirmPassword:  t('errors.password.err02') };
+      newErrors = { ...newErrors, confirmPassword: t('errors.password.err02') };
     }
 
     setErrors(newErrors);
@@ -490,11 +509,13 @@ function Profile() {
               />
               <div
                 // listOption[1].title là "Personal info"
-                className={cx('profile__img-content', {
-                  'no-change': !isChange || selectedOption !== listOptions[1].title,
-                })}
+                className={cx('profile__img-content')}
               >
-                <div className={cx('profile__avatar-container')}>
+                <div
+                  className={cx('profile__avatar-container', {
+                    'no-change': !isChange || selectedOption !== listOptions[1].title,
+                  })}
+                >
                   <img
                     className={cx('profile__img')}
                     src={imagePreview ? imagePreview : userInfo?.avatar ? userInfo.avatar : images.avatarDefault}
@@ -519,7 +540,9 @@ function Profile() {
                   </div>
                 </div>
                 <div className={cx('profile__user-name')}>{userInfo?.fullname ? userInfo.fullname : 'HauiFood'}</div>
-                <div className={cx('profile__registered-day')}>Registered: 20th May 2024</div>
+                <div className={cx('profile__registered-day')}>
+                  {t('profile.registered')} {formatRegisterDate(userInfo?.createdAt)}
+                </div>
               </div>
             </div>
 

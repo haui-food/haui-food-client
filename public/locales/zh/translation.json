@@ -187,6 +187,7 @@
     "message": "成功发送消息。"
   },
   "profile": {
+    "registered": "注册日期: ",
     "fullName": "全名",
     "email": "电子邮件",
     "phoneNumber": "电话号码",

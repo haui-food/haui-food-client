@@ -190,6 +190,7 @@
     "message": "Gửi tin nhắn thành công."
   },
   "profile": {
+    "registered": "Ngày đăng ký: ",
     "fullName": "Họ tên",
     "email": "Email",
     "phoneNumber": "Số điện thoại",

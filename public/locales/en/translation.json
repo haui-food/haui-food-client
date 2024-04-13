@@ -187,6 +187,7 @@
     "message": "Message sent successfully."
   },
   "profile": {
+    "registered": "Registration date: ",
     "fullName": "Full Name",
     "email": "Email",
     "phoneNumber": "Phone Number",
