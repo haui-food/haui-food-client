@@ -69,6 +69,10 @@
       "err02": "Date of birth cannot be later than today.",
       "err03": "You must be at least 18 years old to use our service.",
       "err04": "Sorry, you are too old to use our service."
+    },
+    "password": {
+      "err01": "Password must be at least 8 characters long and contain at least 1 special character.",
+      "err02": "Confirmation password does not match"
     }
   },
   "cart": {
@@ -193,6 +197,11 @@
       "male": "Male",
       "female": "Female"
     },
+
+    "oldPassword": "Old Password",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm New Password",
+
     "navTitle01": "Account Management",
     "navTitle02": "Customer Support",
     "nav01": "Personal Information",
@@ -207,7 +216,48 @@
       "noChanged": "No changes have been made.",
       "noExactly": "Please check the information again and enter in the correct format.",
       "successed": "Update successful.",
-      "error": "Update failed."
+      "error": "Update failed.",
+      "noExactlyPasswords": "Incorrect old password"
     }
+  },
+  "termsOfUse": {
+    "title1": "Acceptance",
+    "content1": "Using this website implies your agreement to our terms and conditions.",
+    "title2": "Placing Orders",
+    "content2": "Place orders only when you are sure the information you provide is accurate.",
+    "title3": "Payment",
+    "content3": "Payment is made upon receiving the order. We accept payment in cash or by credit card.",
+    "title4": "Order Cancellation",
+    "content4": "There is a cancellation policy, please see details on the website.",
+    "title5": "Privacy",
+    "content5": "Your personal information is protected according to our privacy policy.",
+    "title6": "Intellectual Property Rights",
+    "content6": "All intellectual property rights belong to us or are licensed.",
+    "title7": "Changes to Terms",
+    "content7": "We may change the terms without prior notice.",
+    "title8": "Contact",
+    "content8": "If you have any questions, please contact us.",
+    "title9": "Customer Support",
+    "content9": "We are committed to providing professional and prompt customer support for any issues or inquiries. Contact us through the provided channels."
+  },
+  "help": {
+    "title01": "Customer Feedback",
+    "title02": "How to Send Feedback",
+    "title03": "Feedback Template",
+    "here": "Here",
+    "content01": "We always appreciate feedback from our customers about their experience using our services. Please share your thoughts so that we have the opportunity to improve our services and products.",
+    "content02.1": "To send feedback immediately, please use our online feedback system.",
+    "content02.2": "This helps us better understand your needs and desires.",
+    "content03": "If you would like to share feedback privately, please send an email to the address",
+    "content04": "Please describe the issue you encountered and suggest how we can improve.",
+    "content05": "What do you find most satisfying about our services?",
+    "content06": "What are your thoughts on the interface and user experience of our website or application?",
+    "content07": "Do you have any suggestions for content, information, or features that you would like us to update?",
+    "strong01": "Online Feedback System:",
+    "strong02": "Email:",
+    "strong03": "Issue and Improvement Suggestions:",
+    "strong04": "Advantages and Strengths:",
+    "strong05": "Feedback on Interface and User Experience:",
+    "strong06": "Content Suggestions:"
   }
 }

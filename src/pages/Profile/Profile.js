@@ -22,6 +22,8 @@ import Flatpickr from 'react-flatpickr';
 import moment from 'moment';
 import { changePassword } from '~/apiService/authService';
 import { reFreshStatus } from '~/features/authSlice';
+import TermsOfUse from '~/components/TermsOfUse';
+import Help from '~/components/Help';
 const cx = classNames.bind(style);
 
 function Profile() {
@@ -135,11 +137,16 @@ function Profile() {
 
   useEffect(() => {
     if (reduxChangePassword.status === 200) {
-      toast.success('Đổi mật khẩu thành công');
+      toast.success(t('profile.toast.successed'));
       upDateUserInfo();
+      setShowPassword({
+        newPassword: false,
+        confirmPassword: false,
+        oldPassword: false,
+      });
       dispatch(reFreshStatus());
     } else if (reduxChangePassword.status === 401) {
-      toast.error('Mật khẩu không đúng');
+      toast.error(t('profile.toast.noExactlyPasswords'));
       dispatch(reFreshStatus());
     }
   }, [reduxChangePassword.status]);
@@ -189,7 +196,7 @@ function Profile() {
 
     if (!isPersonalInfo) {
       if (oldPassword === '' || oldPassword === '' || confirmPassword === '') {
-        toast.error('vui long hap day du cac truong');
+        toast.error(t('profile.toast.noExactly'));
       } else if (!isChange) {
         toast.error(t('profile.toast.noExactly'));
       } else {
@@ -381,19 +388,19 @@ function Profile() {
     if (oldPassword === '') {
       newErrors = { ...newErrors, oldPassword: '' };
     } else if (!/^(?=.*[@-_]).{8,}$/.test(oldPassword)) {
-      newErrors = { ...newErrors, oldPassword: 'Mật khẩu phải có ít nhất 8 ký tự và ít nhất 1 ký tự đặc biệt' };
+      newErrors = { ...newErrors, oldPassword: t('errors.password.err01') };
     }
 
     if (newPassword === '') {
       newErrors = { ...newErrors, newPassword: '' };
     } else if (!/^(?=.*[@-_]).{8,}$/.test(newPassword)) {
-      newErrors = { ...newErrors, newPassword: 'Mật khẩu phải có ít nhất 8 ký tự và ít nhất 1 ký tự đặc biệt' };
+      newErrors = { ...newErrors, newPassword:  t('errors.password.err01') };
     }
 
     if (confirmPassword === '') {
       newErrors = { ...newErrors, confirmPassword: '' };
     } else if (confirmPassword !== newPassword) {
-      newErrors = { ...newErrors, confirmPassword: 'Mật khẩu xác nhận không khớp' };
+      newErrors = { ...newErrors, confirmPassword:  t('errors.password.err02') };
     }
 
     setErrors(newErrors);
@@ -829,6 +836,11 @@ function Profile() {
                         </div>
                       </>
                     )}
+
+                    {/* help */}
+                    {selectedOption === listOptions[4].title && <Help />}
+                    {/* Terms of use */}
+                    {selectedOption === listOptions[5].title && <TermsOfUse />}
                   </div>
 
                   {/* listOption[1].title là "Personal info" */}
@@ -848,7 +860,7 @@ function Profile() {
 
                   {/* listOption[1].title là "Personal info" */}
                   {/* nếu đang thay đổi hoặc không phải là trang personal info thì hiển thị */}
-                  {(isChange || selectedOption !== listOptions[1].title) && (
+                  {(isChange || selectedOption === listOptions[2].title) && (
                     <div className={cx('btn-container')}>
                       <Button
                         className={cx('cancel-btn')}

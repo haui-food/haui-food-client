@@ -72,6 +72,10 @@
       "err03": "Bạn chưa đủ 18 tuổi để sử dụng dịch vụ.",
       "err04": "Xin lỗi, bạn đã quá tuổi để sử dụng dịch vụ của chúng tôi.",
       "err05": "Ngày sinh không hợp lệ."
+    },
+    "password": {
+      "err01": "Mật khẩu phải có ít nhất 8 ký tự và ít nhất 1 ký tự đặc biệt.",
+      "err02": "Mật khẩu xác nhận không khớp"
     }
   },
   "cart": {
@@ -214,7 +218,49 @@
       "noChanged": "Không có thay đổi nào được thực hiện.",
       "noExactly": "Vui lòng kiểm tra lại thông tin và nhập đúng định dạng.",
       "successed": "Cập nhật thành công.",
-      "error": "Cập nhật thất bại."
+      "error": "Cập nhật thất bại.",
+      "noExactlyPasswords": "Mật khẩu cũ không chính xác"
     }
+  },
+
+  "termsOfUse": {
+    "title1": "Chấp Nhận",
+    "content1": "Sử dụng trang web này đồng nghĩa với việc bạn đồng ý với các điều khoản và điều kiện của chúng tôi.",
+    "title2": "Đặt Hàng",
+    "content2": "Thực hiện đặt hàng chỉ khi bạn chắc chắn thông tin bạn cung cấp là chính xác.",
+    "title3": "Thanh Toán",
+    "content3": "Thanh toán được thực hiện khi nhận hàng. Chúng tôi chấp nhận thanh toán bằng tiền mặt hoặc thẻ tín dụng.",
+    "title4": "Hủy Đơn Hàng",
+    "content4": "Có chính sách hủy đơn hàng, vui lòng xem chi tiết trên trang web.",
+    "title5": "Bảo Mật",
+    "content5": "Thông tin cá nhân của bạn được bảo vệ theo chính sách bảo mật của chúng tôi.",
+    "title6": "Quyền Sở Hữu Trí Tuệ",
+    "content6": "Mọi quyền sở hữu trí tuệ thuộc về chúng tôi hoặc được cấp phép.",
+    "title7": "Thay Đổi Điều Khoản",
+    "content7": "Chúng tôi có thể thay đổi điều khoản mà không cần thông báo trước.",
+    "title8": "Liên Hệ",
+    "content8": "Nếu bạn có câu hỏi, vui lòng liên hệ với chúng tôi.",
+    "title9": "Hỗ Trợ Khách Hàng",
+    "content9": "Cam kết cung cấp dịch vụ hỗ trợ chuyên nghiệp và nhanh chóng cho mọi vấn đề hoặc thắc mắc của bạn. Liên hệ thông qua phương tiện được cung cấp."
+  },
+  "help": {
+    "title01": "Ý Kiến của Khách Hàng",
+    "title02": "Cách Gửi Phản Hồi",
+    "title03": "Mẫu Phản Hồi",
+    "here": "Tại đây",
+    "content01": "Chúng tôi luôn trân trọng mọi phản hồi từ quý khách hàng về trải nghiệm sử dụng dịch vụ của chúng tôi. Vui lòng chia sẻ ý kiến của bạn để chúng tôi có cơ hội cải thiện dịch vụ và sản phẩm của mình.",
+    "content02.1": " Để gửi phản hồi ngay lập tức, vui lòng sử dụng hệ thống gửi phản hồi trực tuyến của chúng tôi. ",
+    "content02.2": " Điều này giúp chúng tôi hiểu rõ hơn về nhu cầu và mong muốn của bạn.",
+    "content03": " Nếu bạn muốn chia sẻ ý kiến một cách riêng tư, vui lòng gửi email đến địa chỉ",
+    "content04": " Xin hãy mô tả vấn đề bạn gặp phải và gợi ý cách chúng tôi có thể cải thiện.",
+    "content05": " Bạn thấy điều gì làm bạn hài lòng nhất về dịch vụ của chúng tôi?",
+    "content06": " Cảm nhận của bạn về giao diện và trải nghiệm sử dụng của trang web hoặc ứng dụng của chúng tôi là gì?",
+    "content07": " Bạn có đề xuất gì về nội dung, thông tin hoặc chức năng mà bạn muốn chúng tôi cập nhật?",
+    "strong01": "Hệ Thống Gửi Phản Hồi Trực Tuyến:",
+    "strong02": "Email:",
+    "strong03": "Vấn Đề và Đề Xuất Cải Thiện:",
+    "strong04": "Ưu Điểm và Điểm Mạnh:",
+    "strong05": "Phản Hồi Về Giao Diện và Trải Nghiệm Người Dùng:",
+    "strong06": "Góp Ý Về Nội Dung:"
   }
 }
