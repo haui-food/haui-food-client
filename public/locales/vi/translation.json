@@ -196,6 +196,10 @@
       "male": "Nam",
       "female": "Nữ"
     },
+    "oldPassword": "Mật khẩu cũ",
+    "newPassword": "Mật khẩu mới",
+    "confirmPassword": "Xác nhận mật khẩu mới",
+
     "navTitle01": "Quản lý tài khoản",
     "navTitle02": "Hỗ trợ khác hàng",
     "nav01": "Thông tin cá nhân",
