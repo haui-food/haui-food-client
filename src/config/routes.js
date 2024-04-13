@@ -11,7 +11,7 @@ const routes = {
   resetPassword: '/auth/reset-password',
   aboutHaUIFood: '/about/haui-food',
   aboutDevelopmentTeam: '/about/development-team',
-  profile: '/profile/:userId',
+  profile: '/auth/profile',
   checkout: '/checkout',
   forbidden: '/forbidden',
   internalServer: '/server-error',
