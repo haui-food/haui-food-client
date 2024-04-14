@@ -21,6 +21,7 @@ const userSlice = createSlice({
       .addCase(updateUserById.fulfilled, (state, action) => {
         state.loading = false;
         state.user = action.payload;
+        localStorage.setItem('user', JSON.stringify(action.payload));
         state.isUpdate = true;
       })
       .addCase(updateUserById.rejected, (state, action) => {
@@ -42,8 +43,6 @@ const userSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       });
-
-      
   },
 });
 // export const { setCategoryClicked } = categorySlice.actions;
