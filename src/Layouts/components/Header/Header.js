@@ -266,7 +266,7 @@ function Header() {
                   ref={avatarRef}
                   onClick={() => setShowUserOptions(!showUserOptions)}
                   className={cx('header__actions-avatar', showUserOptions && 'header__actions-avatar--open')}
-                  src={images.avatarDefault}
+                  src={JSON.parse(localStorage.getItem('user')).avatar}
                   alt="avatar"
                 />
                 <ul
