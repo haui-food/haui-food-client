@@ -39,29 +39,32 @@ function ListCategorise() {
           currentPage === 1 && !data.totalResult ? true : listCategories.length < data.totalResult ? true : false
         }
       >
-        {loading && <Loader className={cx('loader')} />}
-        {!loading &&
-          listCategories.map((item, index) => (
-            <Link
-              to={`${routes.category.split('/')[0]}/${nomalizeString(item.slug)}`}
-              key={index}
-              className={cx('col-xl-3 col-6')}
-              onClick={() => {
-                console.log('test');
-                localStorage.setItem('categorySelected', JSON.stringify({ name: item.name, slug: item.slug }));
-                // dispatch(setCategoryClicked({ name: item.name, slug: item.slug }));
-              }}
-            >
-              <div>
-                <div className={cx('list-categorise__item')} key={item._id}>
-                  <img className={cx('category-img')} src={item.image} alt={item.name} />
-                  <span className={cx('category-name')}>{item.name}</span>
-                </div>
+        {listCategories.map((item, index) => (
+          <Link
+            to={`${routes.category.split('/')[0]}/${nomalizeString(item.slug)}`}
+            key={index}
+            className={cx('col-xl-3 col-6')}
+            onClick={() => {
+              console.log('test');
+              localStorage.setItem('categorySelected', JSON.stringify({ name: item.name, slug: item.slug }));
+              // dispatch(setCategoryClicked({ name: item.name, slug: item.slug }));
+            }}
+          >
+            <div>
+              <div className={cx('list-categorise__item')} key={item._id}>
+                <img className={cx('category-img')} src={item.image} alt={item.name} />
+                <span className={cx('category-name')}>{item.name}</span>
               </div>
-            </Link>
-          ))}
+            </div>
+          </Link>
+        ))}
         {listCategories.length <= 0 && !loading && <NoResult />}
       </InfiniteScroll>
+      {loading && (
+        <div>
+          <Loader className={cx('loader')} />
+        </div>
+      )}
     </div>
   );
 }

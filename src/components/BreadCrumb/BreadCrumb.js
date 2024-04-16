@@ -11,7 +11,10 @@ const cx = classNames.bind(styles);
 
 function BreadCrumb({ className }) {
   const language = Cookies.get('lang');
-  const nameCategory = JSON.parse(localStorage.getItem('categorySelected'));
+  const nameCategory = localStorage.getItem('categorySelected')
+    ? JSON.parse(localStorage.getItem('categorySelected'))
+    : null;
+
   console.log(nameCategory);
   let resString = 'restaurants';
   let cuisinesString = 'cuisines';
@@ -23,7 +26,7 @@ function BreadCrumb({ className }) {
   const pathname = useLocation()
     .pathname.split('/')
     .map((path) => {
-      if (path === nameCategory.slug) {
+      if (path === nameCategory?.slug ? nameCategory.slug : '') {
         return nameCategory.name;
       }
       return path;

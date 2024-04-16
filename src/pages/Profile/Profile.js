@@ -149,6 +149,7 @@ function Profile() {
       toast.error(t('profile.toast.noExactlyPasswords'));
       dispatch(reFreshStatus());
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reduxChangePassword.status]);
 
   //call api and assign userInfo when first mounted
@@ -156,7 +157,8 @@ function Profile() {
     // console.log('call api');
     dispatch(getUser());
     upDateUserInfo();
-    //eslint-enable-next-line
+    
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

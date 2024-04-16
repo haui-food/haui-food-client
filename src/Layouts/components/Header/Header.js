@@ -29,8 +29,8 @@ const cx = classNames.bind(styles);
 function Header() {
   const { t } = useTranslation();
   const location = useLocation();
-  const userInfo = JSON.parse(localStorage.getItem('user'));
-  console.log('get local', userInfo);
+  let userInfo = JSON.parse(localStorage.getItem('user'));
+  console.log(userInfo);
   const { cartItems, clearCart } = useBasket();
 
   const [logo, setLogo] = useState(images.logoVip1);
@@ -44,7 +44,7 @@ function Header() {
   const isCarts = cartItems.items.length > 0 ? true : false;
   const [isLogin, setIsLogin] = useState(false);
   const [avatar, setAvatar] = useState(userInfo?.avatar ? userInfo.avatar : images.avatarDefault);
-  console.log('avatar state', avatar);
+
   const headerRef = useRef(null);
   const languagesRef = useRef(null);
   const languageBtnRef = useRef(null);
@@ -60,16 +60,19 @@ function Header() {
     if (userData.isUpdate) {
       setAvatar(userData.user?.avatar ? userData.user.avatar : images.avatarDefault);
     }
-    
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userData.user]);
 
   useEffect(() => {
     if (auth || token) {
       setIsLogin(true);
+      setAvatar(userInfo?.avatar ? userInfo.avatar : images.avatarDefault);
     } else {
       setIsLogin(false);
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auth, token]);
 
   const handleClickOutsideLanguages = useCallback((event) => {
