@@ -100,7 +100,7 @@ function Profile() {
       navId: 'changePassword',
     },
     {
-      title: 'Bảo mật 2 lớp',
+      title: t('profile.nav05'),
       icon: <KeyIcon className={cx('icon')} />,
       navId: 'authTwinSetup',
     },

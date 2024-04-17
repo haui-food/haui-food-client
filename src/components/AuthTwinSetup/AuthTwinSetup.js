@@ -4,6 +4,7 @@ import { CheckIcon, RefreshIcon } from '../Icons';
 import images from '~/assets/images';
 import Button from '../Button';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const cx = classNames.bind(style);
 
@@ -25,6 +26,7 @@ const secretKey = generateSecretKey();
 console.log(secretKey);
 
 function AuthTwinSetup() {
+  const { t } = useTranslation();
   // eslint-disable-next-line no-unused-vars
   const [isUseAuthTwin, setIsUseAuthTwin] = useState(false);
   const [secretKey, SetSecretKey] = useState(generateSecretKey());
@@ -63,22 +65,20 @@ function AuthTwinSetup() {
 
   return (
     <div className={cx('auth-twin-wrapper')}>
-      <h2 className={cx('auth-twin__title')}>Cấu hình App bảo mật 2 lớp</h2>
+      <h2 className={cx('auth-twin__title')}>{t('authTwinSetup.title01')}</h2>
       <div className={cx('first-row')}>
         <p className={cx('first-row__desc')}>
           <div>
             <CheckIcon className={cx('check-icon')} />
           </div>
-          Chọn phương thức (hoặc tắt không sử dụng) tính năng bảo mật 2 lớp. Mỗi lần thay đổi đều phải nhập chính xác mã
-          xác thực TOPT.
+          {t('authTwinSetup.desc01')}
         </p>
 
         <p className={cx('first-row__desc')}>
           <div>
             <CheckIcon className={cx('check-icon')} />
           </div>
-          Có thể sử dụng ứng dụng sinh mã xác thực Google Authenticator. Xem thêm bảo mật 2 lớp & hướng dẫn cài đặt và
-          sử dụng Google Authenticator.
+          {t('authTwinSetup.desc02')}
         </p>
 
         <p className={cx('first-row__desc')}>
@@ -86,11 +86,11 @@ function AuthTwinSetup() {
             <CheckIcon className={cx('check-icon')} />
           </div>
           <p>
-            Tải ứng dụng trên trên{' '}
+            {t('authTwinSetup.desc03.1')}
             <a target="blank" href="https://apps.apple.com/us/app/google-authenticator/id388497605">
               <strong className={cx('strong')}> IOS </strong>
             </a>
-            hoặc{' '}
+            {t('authTwinSetup.desc03.2')}
             <a
               target="blank"
               href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en&gl=US&pli=1"
@@ -103,7 +103,7 @@ function AuthTwinSetup() {
 
       <div className={cx('security-method')}>
         {/* method security */}
-        <div className={cx('security-method__title')}>Phương thức bảo mật</div>
+        <div className={cx('security-method__title')}>{t('authTwinSetup.title02')}</div>
         <div className={cx('security-method__options')}>
           <label
             className={cx('security-method__option-label')}
@@ -112,7 +112,7 @@ function AuthTwinSetup() {
             }}
           >
             <input type="radio" name="security-method" checked={!isUseAuthTwin} />
-            Không sử dụng
+            {t('authTwinSetup.method01')}
           </label>
           <label
             className={cx('security-method__option-label')}
@@ -121,7 +121,7 @@ function AuthTwinSetup() {
             }}
           >
             <input type="radio" name="security-method" checked={isUseAuthTwin} />
-            App (Google authenticator, Authy...)
+            {t('authTwinSetup.method02')}
           </label>
         </div>
       </div>
@@ -129,10 +129,7 @@ function AuthTwinSetup() {
       <div className={cx('secret-key__container')}>
         <div className={cx('secret-key__first-row')}>
           <div className={cx('secret-key__content')}>
-            <p className={cx('secret-key__desc')}>
-              Quét mã QR Code hoặc nhập Secret key bên dưới vào App. Sau đó, App sẽ cung cấp cho bạn một mã OTP duy
-              nhất, bạn hãy nhập nó vào ô "Mã OTP" bên dưới để kích hoạt chức năng bảo mật 2 lớp.
-            </p>
+            <p className={cx('secret-key__desc')}>{t('authTwinSetup.desc04')}</p>
 
             <p className={cx('secret-key__label')}>Secret Key:</p>
             <div className={cx('secret-key__value-container')}>
@@ -142,7 +139,7 @@ function AuthTwinSetup() {
                 className={cx('secret-key__refresh-btn')}
                 onClick={handleRefreshSecretKey}
               >
-                Đổi Secret Key
+                {t('authTwinSetup.refresh-btn')}
               </Button>
             </div>
           </div>
@@ -150,7 +147,7 @@ function AuthTwinSetup() {
         </div>
 
         <div className={cx('otp__container')}>
-          <div className={cx('otp__title')}>Mã OTP</div>
+          <div className={cx('otp__title')}>{t('authTwinSetup.title03')}</div>
           <div>
             <input
               className={cx('otp__input')}
@@ -162,44 +159,37 @@ function AuthTwinSetup() {
             />
             {errors && <p>{errors}</p>}
           </div>
-          <p className={cx('otp__note')}>(Mã OTP là 1 chuỗi gồm 6 số nhận được trong App)</p>
+          <p className={cx('otp__note')}> {t('authTwinSetup.otpNote')}</p>
         </div>
         <Button leftIcon={<CheckIcon className={cx('btn-check-icon')} />} className={cx('update-btn')}>
-          Cập nhật
+          {t('authTwinSetup.update-btn')}
         </Button>
 
         <div className={cx('note__container')}>
-          <p className={cx('note__title')}>Lưu ý:</p>
+          <p className={cx('note__title')}>{t('authTwinSetup.title04')}</p>
           <div className={cx('note__desc')}>
             1.{' '}
             <p>
-              Tên định danh trên App: <strong className={cx('strong')}>HauiFood</strong>
+              {t('authTwinSetup.note01')}
+              <strong className={cx('strong')}>HauiFood</strong>
             </p>
           </div>
           <div className={cx('note__desc')}>
             2.
-            <p>
-              {' '}
-              Sau khi bật tính năng Bảo mật / xác thực 2 lớp, mỗi lần đăng nhập hệ thống, bạn cần thêm 1 bước xác thực
-              bằng cách nhập đúng mã xác thực 6 số được sinh bằng ứng dụng TOTP.
-            </p>
+            <p> {t('authTwinSetup.note02')}</p>
           </div>
           <div className={cx('note__desc')}>
-            3.{' '}
-            <p>
-              Trong trường hợp mất thiết bị sinh mã, phải tài khoản Quản trị hệ thống mới có thể bỏ tính năng xác thực 2
-              lớp cho tài khoản của bạn.
-            </p>
+            3. <p>{t('authTwinSetup.note03')}</p>
           </div>
           <div className={cx('note__desc')}>
-            4. <p>Xem thêm bảo mật 2 lớp & hướng dẫn cài đặt và sử dụng Google Authenticator.</p>
+            4. <p> {t('authTwinSetup.note04')}</p>
           </div>
           <p className={cx('note__desc')}>
-            Tải ứng dụng trên trên{' '}
+            {t('authTwinSetup.note05.1')}
             <a target="blank" href="https://apps.apple.com/us/app/google-authenticator/id388497605">
               <strong className={cx('strong')}>IOS</strong>
             </a>
-            hoặc{' '}
+            {t('authTwinSetup.note05.2')}
             <a
               target="blank"
               href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en&gl=US&pli=1"
