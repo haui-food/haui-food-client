@@ -31,6 +31,9 @@ const images = {
   vi: require('~/assets/images/languages/vi.png'),
   en: require('~/assets/images/languages/en.png'),
   zh: require('~/assets/images/languages/zh.png'),
+  bank: require('~/assets/images/checkout/bank.png'),
+  cash: require('~/assets/images/checkout/cash.png'),
+  qrPay: require('~/assets/images/checkout/qr-payment.jpg'),
   banhtieusr: require('~/assets/images/products/bachtieusaurieng.jpg'),
   chickenBowl: require('~/assets/images/chicken-bowl.svg').default,
 };
