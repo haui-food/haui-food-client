@@ -23,13 +23,15 @@ import {
 } from '~/components/Icons';
 import CartItem from '~/components/CartItem';
 import { useSelector } from 'react-redux';
-
+import { getLocalStorageItem } from '~/utils/localStorage';
 const cx = classNames.bind(styles);
 
 function Header() {
   const { t } = useTranslation();
   const location = useLocation();
-  const userInfo = JSON.parse(localStorage.getItem('user'));
+
+  let userInfo = getLocalStorageItem('user');
+  // console.log(userInfo);
   const { cartItems, clearCart } = useBasket();
 
   const [logo, setLogo] = useState(images.logoVip1);
@@ -43,6 +45,7 @@ function Header() {
   const isCarts = cartItems.items.length > 0 ? true : false;
   const [isLogin, setIsLogin] = useState(false);
   const [avatar, setAvatar] = useState(userInfo?.avatar ? userInfo.avatar : images.avatarDefault);
+
   const headerRef = useRef(null);
   const languagesRef = useRef(null);
   const languageBtnRef = useRef(null);
@@ -65,9 +68,12 @@ function Header() {
   useEffect(() => {
     if (auth || token) {
       setIsLogin(true);
+      setAvatar(userInfo?.avatar ? userInfo.avatar : images.avatarDefault);
     } else {
       setIsLogin(false);
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auth, token]);
 
   const handleClickOutsideLanguages = useCallback((event) => {
