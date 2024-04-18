@@ -276,12 +276,15 @@
     "title12": "Payment method",
     "title13": "Applicable fee",
     "title14": "Room",
+    "title15": "Start ordering",
     "desc01": "Please call me first",
     "desc02": "Pay in cash",
     "desc03": "Bank transfer payment",
     "desc04": "PLEASE SCAN THE CODE BELOW TO MAKE A BANK TRANSFER PAYMENT",
     "desc05": "Use the bank transfer payment method to receive attractive offers. Only on HaUIFood website.",
+    "desc06": "Add dishes to the food cart and place your order here.",
     "notify01": "Please select a building first",
-    "notify02": "Please select a floor first"
+    "notify02": "Please select a floor first",
+    "link01": "Browse restaurants"
   }
 }

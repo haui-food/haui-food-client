@@ -277,12 +277,15 @@
     "title12": "Phương thức thanh toán",
     "title13": "Phí áp dụng",
     "title14": "Phòng",
+    "title15": "Bắt đầu chọn món",
     "desc01": "Hãy gọi điện trước cho tôi",
     "desc02": "Thanh toán tiền mặt",
     "desc03": "Thanh toán chuyển khoản",
     "desc04": "VUI LÒNG QUÉT MÃ BÊN DƯỚI ĐỂ THANH TOÁN CHUYỂN KHOẢN",
     "desc05": "Dùng phương thức thanh toán chuyển khoản để nhận ưu đãi hấp dẫn. Chỉ có trên website HaUIFood.",
+    "desc06": "Thêm món ăn vào giỏ đồ ăn và đặt đơn tại đây.",
     "notify01": "Vui lòng chọn tòa nhà trước",
-    "notify02": "Vui lòng chọn tầng trước"
+    "notify02": "Vui lòng chọn tầng trước",
+    "link01": "Duyệt nhà hàng"
   }
 }
