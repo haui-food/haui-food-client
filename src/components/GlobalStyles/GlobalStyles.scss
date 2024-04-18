@@ -88,9 +88,9 @@ img {
 }
 
 .separate {
-  margin: 24px 0 16px;
+  margin: var(--separate-mg, 24px 0 16px);
   width: 100%;
-  height: 1px;
+  height: 0.5px;
   background-color: var(--separate-bg, #4dc984);
 }
 

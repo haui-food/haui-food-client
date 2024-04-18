@@ -29,7 +29,8 @@
     "btn12": "Reset",
     "btn13": "Go to home page",
     "btn14": "Learn more",
-    "btn15": "Send"
+    "btn15": "Send",
+    "btn16": "Place order"
   },
   "form": {
     "tp01": "Email",
@@ -198,11 +199,9 @@
       "male": "Male",
       "female": "Female"
     },
-
     "oldPassword": "Old Password",
     "newPassword": "New Password",
     "confirmPassword": "Confirm New Password",
-
     "navTitle01": "Account Management",
     "navTitle02": "Customer Support",
     "nav01": "Personal Information",
@@ -261,6 +260,33 @@
     "strong04": "Advantages and Strengths:",
     "strong05": "Feedback on Interface and User Experience:",
     "strong06": "Content Suggestions:"
+  },
+  "checkout": {
+    "heading": "Final Step - Checkout",
+    "title01": "Deliver to",
+    "title02": "Delivery time",
+    "title03": "Address",
+    "title04": "Building",
+    "title05": "Floor",
+    "title06": "Tower",
+    "title07": "Classroom",
+    "title08": "Note for shipper",
+    "title09": "Order summary",
+    "title10": "Temporary total",
+    "title11": "Payment details",
+    "title12": "Payment method",
+    "title13": "Applicable fee",
+    "title14": "Room",
+    "title15": "Start ordering",
+    "desc01": "Please call me first",
+    "desc02": "Pay in cash",
+    "desc03": "Bank transfer payment",
+    "desc04": "PLEASE SCAN THE CODE BELOW TO MAKE A BANK TRANSFER PAYMENT",
+    "desc05": "Use the bank transfer payment method to receive attractive offers. Only on HaUIFood website.",
+    "desc06": "Add dishes to the food cart and place your order here.",
+    "notify01": "Please select a building first",
+    "notify02": "Please select a floor first",
+    "link01": "Browse restaurants"
   },
   "authTwinSetup": {
     "title01": "Configure Two-Factor Authentication",

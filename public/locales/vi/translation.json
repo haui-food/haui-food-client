@@ -29,7 +29,8 @@
     "btn12": "Đặt lại",
     "btn13": "Quay lại trang chủ",
     "btn14": "Tìm hiểu thêm",
-    "btn15": "Gửi"
+    "btn15": "Gửi",
+    "btn16": "Đặt đơn"
   },
   "form": {
     "tp01": "Email",
@@ -51,14 +52,12 @@
     "err08": "Số điện thoại không đúng, vui lòng nhập lại",
     "err09": "Vui lòng nhập nội dung",
     "err10": "Nội dung từ 5 đến 500 ký tự",
-
     "msv": {
       "err01": "Vui lòng nhập mã sinh viên.",
       "err02": "Mã sinh viên phải có đúng 10 ký tự.",
       "err03": "Xin lỗi, bạn đã tốt nghiệp.",
       "err04": "4 số đầu của mã sinh viên không hợp lệ."
     },
-
     "phoneNumber": {
       "err01": "Vui lòng nhập số điện thoại.",
       "err02": "Số điện thoại không hợp lệ."
@@ -204,7 +203,6 @@
     "oldPassword": "Mật khẩu cũ",
     "newPassword": "Mật khẩu mới",
     "confirmPassword": "Xác nhận mật khẩu mới",
-
     "navTitle01": "Quản lý tài khoản",
     "navTitle02": "Hỗ trợ khác hàng",
     "nav01": "Thông tin cá nhân",
@@ -224,7 +222,6 @@
       "noExactlyPasswords": "Mật khẩu cũ không chính xác"
     }
   },
-
   "termsOfUse": {
     "title1": "Chấp Nhận",
     "content1": "Sử dụng trang web này đồng nghĩa với việc bạn đồng ý với các điều khoản và điều kiện của chúng tôi.",
@@ -264,6 +261,33 @@
     "strong04": "Ưu Điểm và Điểm Mạnh:",
     "strong05": "Phản Hồi Về Giao Diện và Trải Nghiệm Người Dùng:",
     "strong06": "Góp Ý Về Nội Dung:"
+  },
+  "checkout": {
+    "heading": "Bước cuối cùng - Thanh toán",
+    "title01": "Giao đến",
+    "title02": "Thời gian giao hàng đến",
+    "title03": "Địa chỉ",
+    "title04": "Tòa nhà",
+    "title05": "Tầng",
+    "title06": "Tòa",
+    "title07": "Phòng học",
+    "title08": "Ghi chú cho shipper",
+    "title09": "Tóm tắt đơn hàng",
+    "title10": "Tổng tạm tính",
+    "title11": "Chi tiết thanh toán",
+    "title12": "Phương thức thanh toán",
+    "title13": "Phí áp dụng",
+    "title14": "Phòng",
+    "title15": "Bắt đầu chọn món",
+    "desc01": "Hãy gọi điện trước cho tôi",
+    "desc02": "Thanh toán tiền mặt",
+    "desc03": "Thanh toán chuyển khoản",
+    "desc04": "VUI LÒNG QUÉT MÃ BÊN DƯỚI ĐỂ THANH TOÁN CHUYỂN KHOẢN",
+    "desc05": "Dùng phương thức thanh toán chuyển khoản để nhận ưu đãi hấp dẫn. Chỉ có trên website HaUIFood.",
+    "desc06": "Thêm món ăn vào giỏ đồ ăn và đặt đơn tại đây.",
+    "notify01": "Vui lòng chọn tòa nhà trước",
+    "notify02": "Vui lòng chọn tầng trước",
+    "link01": "Duyệt nhà hàng"
   },
   "authTwinSetup": {
     "title01": "Cấu hình App bảo mật 2 lớp",

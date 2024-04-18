@@ -29,6 +29,7 @@ const cx = classNames.bind(styles);
 function Header() {
   const { t } = useTranslation();
   const location = useLocation();
+
   let userInfo = getLocalStorageItem('user');
   // console.log(userInfo);
   const { cartItems, clearCart } = useBasket();
