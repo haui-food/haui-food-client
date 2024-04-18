@@ -228,7 +228,8 @@ function Header() {
               <HomeIcon className={cx('icon')} />
               {t('header.na01')}
             </Link>
-            <li
+            <Link
+              to={routes.checkout}
               onClick={() => {
                 setShowCart(false);
                 setShowMenu(false);
@@ -237,7 +238,7 @@ function Header() {
             >
               <CartIcon className={cx('icon')} />
               {t('cart.title03')}
-            </li>
+            </Link>
             <li className={cx('header__menu-bottom')}></li>
           </ul>
 
