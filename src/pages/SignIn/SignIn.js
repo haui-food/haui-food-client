@@ -30,17 +30,17 @@ function SignIn() {
   const error = useSelector((state) => state.auth.error);
   const isLogin = useSelector((state) => state.auth.isLogin);
 
-  useEffect(() => {
-    if (error) {
-      toast.error(error);
-      setSubmit(false);
-    }
+  // useEffect(() => {
+  //   if (error) {
+  //     toast.error(error);
+  //     setSubmit(false);
+  //   }
 
-    return () => {
-      dispatch(clearError());
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [error]);
+  //   return () => {
+  //     dispatch(clearError());
+  //   };
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [error]);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -106,10 +106,19 @@ function SignIn() {
       navigate('/');
       return;
     }
+
     dispatch(loginUser(loginForm)).then((result) => {
-      if (result.payload) {
+      console.log(result);
+
+      // if (result.payload.code === 202) {
+      //   navigate('/auth/verify-otp');
+      // }
+
+      if (result.payload.code === 200) {
         toast.success(t('login.notify01'));
         navigate('/');
+      } else if (result.payload.code === 400 || result.payload.code === 401 || result.payload.code === 429) {
+        toast.error(result.payload.message);
       }
     });
   };

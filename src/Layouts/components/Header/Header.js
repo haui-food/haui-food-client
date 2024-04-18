@@ -23,14 +23,14 @@ import {
 } from '~/components/Icons';
 import CartItem from '~/components/CartItem';
 import { useSelector } from 'react-redux';
-
+import { getLocalStorageItem } from '~/utils/localStorage';
 const cx = classNames.bind(styles);
 
 function Header() {
   const { t } = useTranslation();
   const location = useLocation();
-  let userInfo = JSON.parse(localStorage.getItem('user'));
-  console.log(userInfo);
+  let userInfo = getLocalStorageItem('user');
+  // console.log(userInfo);
   const { cartItems, clearCart } = useBasket();
 
   const [logo, setLogo] = useState(images.logoVip1);

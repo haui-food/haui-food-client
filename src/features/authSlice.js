@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { loginUser, registerUser, clearError, changePassword } from '~/apiService/authService';
+import { loginUser, registerUser, clearError, changePassword, getSecretKey } from '~/apiService/authService';
 
 const authSlice = createSlice({
   name: 'auth',
@@ -9,15 +9,37 @@ const authSlice = createSlice({
     error: null,
     isLogin: null,
     status: null,
+    secretKey: '',
+    message: '',
+    secretStatus: null,
   },
 
   reducers: {
     reFreshStatus: (state) => {
       state.status = null;
+      state.secretStatus = null;
     },
   },
   extraReducers: (builder) => {
     builder
+      // get secret key
+      .addCase(getSecretKey.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getSecretKey.fulfilled, (state, action) => {
+        state.loading = false;
+        state.secretKey = action.payload.data.secret;
+        state.secretStatus = action.payload.code;
+        state.error = null;
+        state.message = action.payload.message;
+      })
+      .addCase(getSecretKey.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload.message;
+        state.secretStatus = action.payload.code;
+      })
+
       // change password
       .addCase(changePassword.pending, (state) => {
         console.log('change password Pending');
@@ -47,17 +69,18 @@ const authSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         console.log('Fulfilled');
-        console.log(action.payload.user);
+        console.log(action.payload);
         state.loading = false;
-        state.user = action.payload.user;
+        state.user = action.payload.data.user;
         state.error = null;
         state.isLogin = true;
       })
       .addCase(loginUser.rejected, (state, action) => {
         console.log('Rejected');
+        console.log(action.payload);
         state.loading = false;
         state.user = null;
-        state.error = action.error.message;
+        state.error = action.payload.message;
         state.isLogin = null;
       })
 

@@ -30,10 +30,15 @@
   border-radius: 5px;
   font-weight: 500;
 
-  @include media-breakpoint-down(lg){
+  @include media-breakpoint-down(lg) {
     margin-top: 10px;
   }
+}
 
+.isDisabled{
+  opacity: 0.4;
+  user-select: none;
+  pointer-events: none;
 }
 
 .btn-check-icon {
@@ -45,6 +50,7 @@
   &-wrapper {
     color: var(primary-text-color);
     padding-right: 30px;
+    width: 100%;
     @include media-breakpoint-down(lg) {
       padding-right: 0;
     }
@@ -114,6 +120,8 @@
 .secret-key {
   &__container {
     margin-top: 30px;
+    @include media-breakpoint-down(lg) {
+    }
   }
 
   &__first-row {
@@ -145,13 +153,16 @@
     font-weight: 400;
   }
 
+  &__content {
+    width: 100%;
+  }
+
   &__value-container {
     display: flex;
     align-items: center;
     @include media-breakpoint-down(lg) {
-      flex-direction:column;
+      flex-direction: column;
       justify-content: center;
-
     }
   }
 
@@ -159,17 +170,34 @@
     font-size: 1.8rem;
     color: var(--primary-color);
     font-weight: 600;
-    @include media-breakpoint-down(lg){
+    min-width: 60%;
+    @include media-breakpoint-down(md) {
       margin-top: 10px;
+      width: 300px;
+      text-align: center;
+      word-wrap: break-word; /* CSS 2.1 */
+      overflow-wrap: break-word;
+      // text-wrap: wrap;
     }
   }
 
   &__refresh-btn {
     background-color: transparent;
-    border: 1px solid var(--primary-color);
+    border: 1px solid var(--text-color);
     margin-left: 30px;
     border-radius: 5px;
-    @include media-breakpoint-down(lg){
+    transition: 0.5s;
+
+    &:hover {
+      border: 1px solid var(--primary-color);
+      color: var(--primary-color);
+
+      & .refresh-icon {
+        color: var(--primary-color);
+      }
+    }
+
+    @include media-breakpoint-down(lg) {
       margin-left: 0;
       margin-top: 10px;
       margin-bottom: 30px;
@@ -193,7 +221,7 @@
     align-items: center;
     margin-top: 30px;
 
-    @include media-breakpoint-down(lg){
+    @include media-breakpoint-down(lg) {
       flex-wrap: wrap;
     }
   }
@@ -217,11 +245,10 @@
     font-size: 1.7rem;
     font-weight: 400;
     margin-left: auto;
-    @include media-breakpoint-down(lg){
+    @include media-breakpoint-down(lg) {
       width: 100%;
       margin-top: 10px;
     }
-    
   }
 }
 

@@ -16,6 +16,7 @@ import GlobalStyles from '~/components/GlobalStyles';
 import BasketProvider from './contexts/BasketContext';
 import store from './redux/store';
 
+
 AOS.init({
   once: true,
   duration: 800,
@@ -26,7 +27,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 function Main() {
   const { t } = useTranslation();
-
+  
   return (
     <Provider store={store}>
       <React.StrictMode>

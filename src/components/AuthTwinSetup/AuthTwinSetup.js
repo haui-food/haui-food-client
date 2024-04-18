@@ -1,37 +1,55 @@
+import { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
 import classNames from 'classnames/bind';
+import { useSelector, useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+
+import { getSecretKey } from '~/apiService/authService';
+import { reFreshStatus } from '~/features/authSlice';
+import { getLocalStorageItem, updateFieldInLocalStorage, addOrUpdateFieldInLocalStorage } from '~/utils/localStorage';
+import { generateQRCodeImage } from '~/utils/qrCode';
+
 import style from './AuthTwinSetup.module.scss';
 import { CheckIcon, RefreshIcon } from '../Icons';
 import images from '~/assets/images';
 import Button from '../Button';
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
 const cx = classNames.bind(style);
 
-function generateSecretKey() {
-  const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
-  let secretKey = '';
-  for (let i = 0; i < 32; i++) {
-    const randomIndex = Math.floor(Math.random() * charset.length);
-    secretKey += charset[randomIndex];
-    if ((i + 1) % 4 === 0 && i !== 31) {
-      secretKey += ' '; // Thêm dấu cách sau mỗi 4 ký tự, trừ ở ký tự cuối cùng
-    }
-  }
-  return secretKey;
-}
-
-// Sử dụng hàm để tạo ra một đoạn mã secret key 2FA có độ dài là 32 ký tự
-const secretKey = generateSecretKey();
-console.log(secretKey);
-
 function AuthTwinSetup() {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
   // eslint-disable-next-line no-unused-vars
   const [isUseAuthTwin, setIsUseAuthTwin] = useState(false);
-  const [secretKey, SetSecretKey] = useState(generateSecretKey());
+  const [secretKey, SetSecretKey] = useState();
   const [otpValue, setOtpValue] = useState('');
-  const [errors, setErrors] = useState('');
+  const [isUpdate, setIsUpdate] = useState(false);
+  const [qrImg, setQrImg] = useState('');
+  const [isFirstMounted, setIsFirstMounted] = useState(true);
+
+  const reduxData = useSelector((state) => state.auth);
+  const userInfo = getLocalStorageItem('user');
+  useEffect(() => {
+    const secretKey = userInfo?.secret ? userInfo.secret : '';
+    setQrImg(generateQRCodeImage(userInfo.email, secretKey));
+    SetSecretKey(secretKey);
+    setIsFirstMounted(false);
+  }, []);
+
+  useEffect(() => {
+    if (!isFirstMounted) {
+      SetSecretKey(reduxData.secretKey);
+      setQrImg(generateQRCodeImage(userInfo.email, reduxData.secretKey));
+      addOrUpdateFieldInLocalStorage('user', 'secretTemp', reduxData.secretKey);
+      if (reduxData.secretStatus === 200) {
+        toast.success('lam moi thanh cong');
+      } else if (reduxData.secretStatus === 429) {
+        toast.error('quá nhiều request');
+      }
+    }
+    dispatch(reFreshStatus());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [reduxData.secretStatus, dispatch]);
 
   // handle select security method
   const handleSelectSecurityMethod = (type) => {
@@ -41,7 +59,7 @@ function AuthTwinSetup() {
 
   // handle refresh secret key
   const handleRefreshSecretKey = () => {
-    SetSecretKey(generateSecretKey());
+    dispatch(getSecretKey());
   };
 
   // handle otp input change
@@ -49,17 +67,16 @@ function AuthTwinSetup() {
   const handleOtpInputChange = (event) => {
     // setOtpValue(event.target.value);
   };
+
   const validateOtpInput = (event) => {
     const value = event.target.value;
 
     if (/^\d*$/.test(value) && value.length < 7) {
-      console.log(value);
       setOtpValue(value);
-      setErrors('');
-    } else if (value.length > 7) {
-      setErrors('Mã xác thực phải là 1 chuỗi gồm 6 chữ số');
-    } else if (value.length === 6) {
-      setErrors('');
+      setIsUpdate(false);
+    }
+    if (value.length === 6) {
+      setIsUpdate(true);
     }
   };
 
@@ -133,35 +150,50 @@ function AuthTwinSetup() {
 
             <p className={cx('secret-key__label')}>Secret Key:</p>
             <div className={cx('secret-key__value-container')}>
-              <p className={cx('secret-key__value')}>{secretKey}</p>
+              <div className={cx('secret-key__value')}>{secretKey}</div>
               <Button
                 leftIcon={<RefreshIcon className={cx('refresh-icon')} />}
                 className={cx('secret-key__refresh-btn')}
-                onClick={handleRefreshSecretKey}
+                disabled={!isUseAuthTwin}
+                onClick={() => {
+                  handleRefreshSecretKey();
+                }}
               >
                 {t('authTwinSetup.refresh-btn')}
               </Button>
             </div>
           </div>
-          <img className={cx('secret-key__qr-code')} src={images.avatarDefault} alt="" />
+          <img
+            className={cx('secret-key__qr-code')}
+            src={qrImg}
+            alt="QR Code"
+            crossorigin="anonymous"
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = images.avatarDefault;
+            }} // Xử lý khi ảnh không thể tải được
+          />
         </div>
 
         <div className={cx('otp__container')}>
           <div className={cx('otp__title')}>{t('authTwinSetup.title03')}</div>
           <div>
             <input
-              className={cx('otp__input')}
+              className={cx('otp__input', { isDisabled: !isUseAuthTwin })}
               placeholder="XXXXXX"
               value={otpValue}
               onChange={(e) => {
                 validateOtpInput(e);
               }}
             />
-            {errors && <p>{errors}</p>}
           </div>
           <p className={cx('otp__note')}> {t('authTwinSetup.otpNote')}</p>
         </div>
-        <Button leftIcon={<CheckIcon className={cx('btn-check-icon')} />} className={cx('update-btn')}>
+        <Button
+          leftIcon={<CheckIcon className={cx('btn-check-icon')} />}
+          className={cx('update-btn')}
+          disabled={!isUseAuthTwin || !isUpdate}
+        >
           {t('authTwinSetup.update-btn')}
         </Button>
 
