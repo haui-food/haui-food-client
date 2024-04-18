@@ -9,6 +9,7 @@ import {
   ArrowDownIcon,
   EyeIcon,
   HideIcon,
+  KeyIcon,
 } from '~/components/Icons';
 import Button from '~/components/Button';
 import { useState, useRef, useEffect } from 'react';
@@ -24,6 +25,7 @@ import { changePassword } from '~/apiService/authService';
 import { reFreshStatus } from '~/features/authSlice';
 import TermsOfUse from '~/components/TermsOfUse';
 import Help from '~/components/Help';
+import AuthTwinSetup from '~/components/AuthTwinSetup';
 const cx = classNames.bind(style);
 
 function Profile() {
@@ -98,6 +100,11 @@ function Profile() {
       navId: 'changePassword',
     },
     {
+      title: t('profile.nav05'),
+      icon: <KeyIcon className={cx('icon')} />,
+      navId: 'authTwinSetup',
+    },
+    {
       title: t('profile.navTitle02'),
       icon: <div className={cx('special-icon')}></div>,
       isTitle: true,
@@ -149,6 +156,7 @@ function Profile() {
       toast.error(t('profile.toast.noExactlyPasswords'));
       dispatch(reFreshStatus());
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reduxChangePassword.status]);
 
   //call api and assign userInfo when first mounted
@@ -156,7 +164,8 @@ function Profile() {
     // console.log('call api');
     dispatch(getUser());
     upDateUserInfo();
-    //eslint-enable-next-line
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -860,10 +869,13 @@ function Profile() {
                       </>
                     )}
 
+                    {/* auth twin setup */}
+                    {selectedOption === listOptions[3].title && <AuthTwinSetup />}
+
                     {/* help */}
-                    {selectedOption === listOptions[4].title && <Help />}
+                    {selectedOption === listOptions[5].title && <Help />}
                     {/* Terms of use */}
-                    {selectedOption === listOptions[5].title && <TermsOfUse />}
+                    {selectedOption === listOptions[6].title && <TermsOfUse />}
                   </div>
 
                   {/* listOption[1].title là "Personal info" */}

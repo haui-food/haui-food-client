@@ -209,6 +209,7 @@
     "nav02": "Đổi mật khẩu",
     "nav03": "Trợ giúp",
     "nav04": "Điều khoản sử dụng",
+    "nav05": "Bảo mật 2 lớp",
     "btn-update": "Cập Nhật",
     "btn-cancel": "Hủy",
     "btn-edit": "Chỉnh sửa",
@@ -287,5 +288,28 @@
     "notify01": "Vui lòng chọn tòa nhà trước",
     "notify02": "Vui lòng chọn tầng trước",
     "link01": "Duyệt nhà hàng"
+  },
+  "authTwinSetup": {
+    "title01": "Cấu hình App bảo mật 2 lớp",
+    "title02": "Phương thức bảo mật",
+    "title03": "Mã OTP",
+    "title04": "Lưu ý:",
+    "desc01": "Chọn phương thức (hoặc tắt không sử dụng) tính năng bảo mật 2 lớp. Mỗi lần thay đổi đều phải nhập chính xác mã xác thực TOPT.",
+    "desc02": "Có thể sử dụng ứng dụng sinh mã xác thực Google Authenticator. Xem thêm bảo mật 2 lớp & hướng dẫn cài đặt và sử dụng Google Authenticator.",
+    "desc03.1": "Tải ứng dụng trên trên",
+    "desc03.2": "hoặc",
+    "method01": "Không sử dụng",
+    "method02": "App (Google authenticator, Authy...)",
+    "desc04": "Quét mã QR Code hoặc nhập Secret key bên dưới vào App. Sau đó, App sẽ cung cấp cho bạn một mã OTP duy nhất, bạn hãy nhập nó vào ô \"Mã OTP\" bên dưới để kích hoạt chức năng bảo mật 2 lớp.",
+    "secretKey": "Secret Key:",
+    "otpNote": "(Mã OTP là 1 chuỗi gồm 6 số nhận được trong App)",
+    "note01": "Tên định danh trên App:",
+    "note02": "Sau khi bật tính năng Bảo mật / xác thực 2 lớp, mỗi lần đăng nhập hệ thống, bạn cần thêm 1 bước xác thực bằng cách nhập đúng mã xác thực 6 số được sinh bằng ứng dụng TOTP.",
+    "note03": "Trong trường hợp mất thiết bị sinh mã, phải tài khoản Quản trị hệ thống mới có thể bỏ tính năng xác thực 2 lớp cho tài khoản của bạn.",
+    "note04": "Xem thêm bảo mật 2 lớp & hướng dẫn cài đặt và sử dụng Google Authenticator.",
+    "note05.1": "Tải ứng dụng trên trên",
+    "note05.2": "hoặc",
+    "refresh-btn": "Đổi Secret Key",
+    "update-btn": "Cập nhật"
   }
 }
