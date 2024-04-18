@@ -438,9 +438,11 @@ function Header() {
                 <span className={cx('cart__bottom-price')}>{t('cart.desc03')}</span>
                 <span className={cx('cart__bottom-price')}>{cartItems.totalPrice.toLocaleString('vi-VN')} ₫</span>
               </div>
-              <Button checkout primary>
-                {t('button.btn01')}
-              </Button>
+              <Link to={routes.checkout}>
+                <Button checkout primary>
+                  {t('button.btn01')}
+                </Button>
+              </Link>
             </div>
           )}
         </div>
