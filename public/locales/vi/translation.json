@@ -310,6 +310,11 @@
     "note05.1": "Tải ứng dụng trên trên",
     "note05.2": "hoặc",
     "refresh-btn": "Đổi Secret Key",
-    "update-btn": "Cập nhật"
+    "update-btn": "Cập nhật",
+
+    "toast": {
+      "copySuccess": "Copy thành công.",
+      "invalidOtp": "Xin vui lòng nhập mã OTP đúng định dạng."
+    }
   }
 }

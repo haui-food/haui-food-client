@@ -3,27 +3,16 @@ import hostname from '~/utils/http';
 import axios from 'axios';
 import { callApi } from './apiUtils';
 
-// export const loginUser = createAsyncThunk('auth/login', async (userCredentials) => {
-//   try {
-//     const req = await axios.post(`${hostname}/v1/auth/login`, userCredentials);
-//     const res = req.data.data;
-//     localStorage.setItem('accessToken', JSON.stringify(res.accessToken));
-//     localStorage.setItem('refreshToken', JSON.stringify(res.refreshToken));
-//     localStorage.setItem('user', JSON.stringify(res.user));
-//     return res;
-//   } catch (error) {
-//     console.log(error);
-//     throw error.response !== null ? new Error(error.response.data.message) : new Error('Đã xảy ra lỗi không mong đợi');
-//   }
-// });
 
 export const loginUser = createAsyncThunk('auth/login', async (userCredentials, { rejectWithValue }) => {
   try {
     const res = await callApi('POST', '/v1/auth/login', null, userCredentials);
     console.log(res);
-    localStorage.setItem('accessToken', JSON.stringify(res.data.accessToken));
-    localStorage.setItem('refreshToken', JSON.stringify(res.data.refreshToken));
-    localStorage.setItem('user', JSON.stringify(res.data.user));
+    if (res.code === 200) {
+      localStorage.setItem('accessToken', JSON.stringify(res.data.accessToken));
+      localStorage.setItem('refreshToken', JSON.stringify(res.data.refreshToken));
+      localStorage.setItem('user', JSON.stringify(res.data.user));
+    }
     return res;
   } catch (error) {
     return rejectWithValue({ ...error });
@@ -88,6 +77,27 @@ export const changePassword = createAsyncThunk('auth/change-password', async (us
 export const getSecretKey = createAsyncThunk('auth/getSecretKey', async (_, { rejectWithValue }) => {
   try {
     const response = await callApi('post', '/v1/auth/generate-2fa-secret', null, {});
+    return response;
+  } catch (error) {
+    return rejectWithValue({ ...error });
+  }
+});
+
+export const toggle2FA = createAsyncThunk('auth/toggle2FA', async (code, { rejectWithValue }) => {
+  try {
+    const response = await callApi('post', 'v1/auth/toggle-2fa', null, code);
+    console.log(response);
+    return response;
+  } catch (error) {
+    return rejectWithValue({ ...error });
+  }
+});
+
+export const updateSecretKey = createAsyncThunk('auth/updateSecretKey', async (data, { rejectWithValue }) => {
+  try {
+    console.log(data);
+    const response = await callApi('post', 'v1/auth/change-2fa-secret', null, data);
+    console.log(response);
     return response;
   } catch (error) {
     return rejectWithValue({ ...error });

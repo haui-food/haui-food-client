@@ -1,5 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { loginUser, registerUser, clearError, changePassword, getSecretKey } from '~/apiService/authService';
+import {
+  loginUser,
+  registerUser,
+  clearError,
+  changePassword,
+  getSecretKey,
+  updateSecretKey,
+  toggle2FA,
+} from '~/apiService/authService';
 
 const authSlice = createSlice({
   name: 'auth',
@@ -11,7 +19,6 @@ const authSlice = createSlice({
     status: null,
     secretKey: '',
     message: '',
-    secretStatus: null,
   },
 
   reducers: {
@@ -20,8 +27,42 @@ const authSlice = createSlice({
       state.secretStatus = null;
     },
   },
+
+  // update secret key
+
   extraReducers: (builder) => {
     builder
+
+      // toggle 2FA
+      .addCase(toggle2FA.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(toggle2FA.fulfilled, (state, action) => {
+        state.loading = false;
+        state.secretKey = action.payload.data.secret;
+        state.message = action.payload.message;
+      })
+      .addCase(toggle2FA.rejected, (state, action) => {
+        state.loading = false;
+        state.message = action.payload.message;
+      })
+
+      // update secret key
+      .addCase(updateSecretKey.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(updateSecretKey.fulfilled, (state, action) => {
+        state.loading = false;
+        state.secretKey = action.payload.data.secret;
+        state.message = action.payload.message;
+      })
+      .addCase(updateSecretKey.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload.message;
+      })
+
       // get secret key
       .addCase(getSecretKey.pending, (state) => {
         state.loading = true;
@@ -30,14 +71,11 @@ const authSlice = createSlice({
       .addCase(getSecretKey.fulfilled, (state, action) => {
         state.loading = false;
         state.secretKey = action.payload.data.secret;
-        state.secretStatus = action.payload.code;
-        state.error = null;
         state.message = action.payload.message;
       })
       .addCase(getSecretKey.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload.message;
-        state.secretStatus = action.payload.code;
       })
 
       // change password
@@ -71,9 +109,9 @@ const authSlice = createSlice({
         console.log('Fulfilled');
         console.log(action.payload);
         state.loading = false;
-        state.user = action.payload.data.user;
+        state.user = action.payload.code === 200 ? action.payload.data.user : null;
         state.error = null;
-        state.isLogin = true;
+        state.isLogin = action.payload.code === 200 ? true : false;
       })
       .addCase(loginUser.rejected, (state, action) => {
         console.log('Rejected');

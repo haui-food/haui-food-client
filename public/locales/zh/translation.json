@@ -309,6 +309,10 @@
     "note05.1": "从以下位置下载应用程序",
     "note05.2": "或",
     "refresh-btn": "更改密钥",
-    "update-btn": "更新"
+    "update-btn": "更新",
+    "toast": {
+      "copySuccess": "复制成功。",
+      "invalidOtp": "请输入正确格式的OTP码。"
+    }
   }
 }
