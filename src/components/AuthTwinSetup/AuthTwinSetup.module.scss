@@ -12,6 +12,7 @@
 .refresh-icon {
   width: 16px;
   height: 16px;
+  transition: 0.3s linear;
 }
 
 .strong {
@@ -23,9 +24,8 @@
   width: 150px;
   height: 50px;
   background-color: var(--primary-color);
-  margin-left: 50%;
-  margin-top: 30px;
-  transform: translateX(-50%);
+  transition: 0.5s;
+
   color: white;
   border-radius: 5px;
   font-weight: 500;
@@ -35,7 +35,7 @@
   }
 }
 
-.isDisabled{
+.isDisabled {
   opacity: 0.4;
   user-select: none;
   pointer-events: none;
@@ -44,6 +44,16 @@
 .btn-check-icon {
   width: 24px;
   height: 24px;
+}
+
+.btn-power-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.btn-power-off {
+  background-color: #ef5350;
+  color: white;
 }
 
 .auth-twin {
@@ -85,7 +95,7 @@
 .security-method {
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 10px;
   flex-wrap: wrap;
   margin-top: 30px;
   &__title {
@@ -95,8 +105,9 @@
 
   &__option-label {
     font-size: 1.7rem;
-    font-weight: 400;
-    margin-left: 20px;
+    font-weight: 600;
+    // margin-left: 10px;
+    color: var(--primary-color);
     @include media-breakpoint-down(lg) {
       display: block;
       width: 100%;
@@ -121,6 +132,7 @@
   &__container {
     margin-top: 30px;
     @include media-breakpoint-down(lg) {
+      margin-top: 15px;
     }
   }
 
@@ -160,6 +172,9 @@
   &__value-container {
     display: flex;
     align-items: center;
+    cursor: pointer;
+    user-select: all;
+
     @include media-breakpoint-down(lg) {
       flex-direction: column;
       justify-content: center;
@@ -186,11 +201,23 @@
     border: 1px solid var(--text-color);
     margin-left: 30px;
     border-radius: 5px;
-    transition: 0.5s;
+
+    & {
+      p {
+        transition: 0.3s linear;
+        color: var(--text-color);
+      }
+    }
 
     &:hover {
       border: 1px solid var(--primary-color);
       color: var(--primary-color);
+
+      & {
+        p {
+          color: var(--primary-color);
+        }
+      }
 
       & .refresh-icon {
         color: var(--primary-color);
@@ -212,6 +239,9 @@
     width: 200px;
     height: 200px;
     object-fit: contain;
+    border: 1px solid var(--primary-color);
+    // padding: 5px;
+    border-radius: 5px;
   }
 }
 
@@ -241,6 +271,17 @@
     border-radius: 5px;
   }
 
+  &__btns {
+    display: flex;
+    margin: 30px 0;
+    justify-content: center;
+    gap: 30px;
+
+    @include media-breakpoint-down(lg) {
+      margin: 20px 0;
+    }
+  }
+
   &__note {
     font-size: 1.7rem;
     font-weight: 400;
@@ -265,7 +306,7 @@
     display: flex;
     gap: 5px;
     @include media-breakpoint-down(lg) {
-      width: 100;
+      // width: 100;
     }
   }
 }

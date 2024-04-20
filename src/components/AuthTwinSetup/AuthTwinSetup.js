@@ -4,13 +4,12 @@ import classNames from 'classnames/bind';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-import { getSecretKey } from '~/apiService/authService';
-import { reFreshStatus } from '~/features/authSlice';
-import { getLocalStorageItem, updateFieldInLocalStorage, addOrUpdateFieldInLocalStorage } from '~/utils/localStorage';
+import { getSecretKey, toggle2FA, updateSecretKey } from '~/apiService/authService';
+import { getLocalStorageItem, addOrUpdateFieldInLocalStorage } from '~/utils/localStorage';
 import { generateQRCodeImage } from '~/utils/qrCode';
 
 import style from './AuthTwinSetup.module.scss';
-import { CheckIcon, RefreshIcon } from '../Icons';
+import { CheckIcon, PowerOffIcon, RefreshIcon } from '../Icons';
 import images from '~/assets/images';
 import Button from '../Button';
 
@@ -19,55 +18,97 @@ const cx = classNames.bind(style);
 function AuthTwinSetup() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  // eslint-disable-next-line no-unused-vars
-  const [isUseAuthTwin, setIsUseAuthTwin] = useState(false);
+
+  const [isUseAuthTwin, setIsUseAuthTwin] = useState();
   const [secretKey, SetSecretKey] = useState();
   const [otpValue, setOtpValue] = useState('');
   const [isUpdate, setIsUpdate] = useState(false);
   const [qrImg, setQrImg] = useState('');
-  const [isFirstMounted, setIsFirstMounted] = useState(true);
+  const [isRefresh, setIsRefresh] = useState(false);
+  const [tempSecretKey, setTempSecretKey] = useState();
 
   const reduxData = useSelector((state) => state.auth);
   const userInfo = getLocalStorageItem('user');
+
   useEffect(() => {
+    console.log('userInfo', userInfo);
     const secretKey = userInfo?.secret ? userInfo.secret : '';
     setQrImg(generateQRCodeImage(userInfo.email, secretKey));
     SetSecretKey(secretKey);
-    setIsFirstMounted(false);
+    setIsUseAuthTwin(userInfo.is2FA);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    if (!isFirstMounted) {
-      SetSecretKey(reduxData.secretKey);
-      setQrImg(generateQRCodeImage(userInfo.email, reduxData.secretKey));
-      addOrUpdateFieldInLocalStorage('user', 'secretTemp', reduxData.secretKey);
-      if (reduxData.secretStatus === 200) {
-        toast.success('lam moi thanh cong');
-      } else if (reduxData.secretStatus === 429) {
-        toast.error('quá nhiều request');
-      }
+  const addSpaceForSecretKey = (secretKey) => {
+    let newSecretKey = '';
+    if (!secretKey) {
+      return;
     }
-    dispatch(reFreshStatus());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [reduxData.secretStatus, dispatch]);
-
-  // handle select security method
-  const handleSelectSecurityMethod = (type) => {
-    if (type === 'use') setIsUseAuthTwin(true);
-    if (type === 'no-use') setIsUseAuthTwin(false);
+    for (let i = 0; i < secretKey.length; i += 4) {
+      newSecretKey += secretKey.slice(i, i + 4) + ' ';
+    }
+    return newSecretKey.trim();
   };
 
   // handle refresh secret key
   const handleRefreshSecretKey = () => {
-    dispatch(getSecretKey());
+    if (isRefresh === false) {
+      setIsRefresh(true);
+    }
+
+    dispatch(getSecretKey()).then((result) => {
+      if (result.payload.code === 200) {
+        console.log(result.payload);
+        setTempSecretKey(result.payload.data.secret);
+        SetSecretKey(result.payload.data.secret);
+        setQrImg(generateQRCodeImage(userInfo.email, reduxData.secretKey));
+        toast.success(result.payload.message);
+      } else {
+        toast.error(result.payload.message);
+      }
+    });
+  };
+  console.log(tempSecretKey);
+  const handleToggle2FA = () => {
+    if (!isUseAuthTwin && !isUpdate) {
+      toast.error(t('authTwinSetup.toast.invalidOtp'));
+      return;
+    }
+
+    dispatch(toggle2FA(isUseAuthTwin ? {} : { code: otpValue })).then((result) => {
+      if (result.payload.code === 200) {
+        toast.success(result.payload.message);
+        setIsUseAuthTwin(!isUseAuthTwin);
+        setOtpValue('');
+        addOrUpdateFieldInLocalStorage('user', 'is2FA', result.payload.data.is2FA);
+      } else {
+        setOtpValue('');
+        toast.error(result.payload.message);
+      }
+    });
+    setIsUpdate(false);
   };
 
-  // handle otp input change
+  const handleUpdateSecretKey = () => {
+    console.log(tempSecretKey);
 
-  const handleOtpInputChange = (event) => {
-    // setOtpValue(event.target.value);
+    if (isUpdate) {
+      dispatch(updateSecretKey({ code: otpValue, secret: tempSecretKey })).then((result) => {
+        console.log(result.payload);
+        if (result.payload.code === 200) {
+          toast.success(result.payload.message);
+          addOrUpdateFieldInLocalStorage('user', 'secret', result.payload.data.secret);
+          setIsUpdate(false);
+          setIsRefresh(false);
+        } else {
+          toast.error(result.payload.message);
+        }
+      });
+    } else {
+      toast.error(t('authTwinSetup.toast.invalidOtp'));
+    }
+    setOtpValue('');
   };
-
   const validateOtpInput = (event) => {
     const value = event.target.value;
 
@@ -122,24 +163,8 @@ function AuthTwinSetup() {
         {/* method security */}
         <div className={cx('security-method__title')}>{t('authTwinSetup.title02')}</div>
         <div className={cx('security-method__options')}>
-          <label
-            className={cx('security-method__option-label')}
-            onClick={() => {
-              handleSelectSecurityMethod('no-use');
-            }}
-          >
-            <input type="radio" name="security-method" checked={!isUseAuthTwin} />
-            {t('authTwinSetup.method01')}
-          </label>
-          <label
-            className={cx('security-method__option-label')}
-            onClick={() => {
-              handleSelectSecurityMethod('use');
-            }}
-          >
-            <input type="radio" name="security-method" checked={isUseAuthTwin} />
-            {t('authTwinSetup.method02')}
-          </label>
+          {!isUseAuthTwin && <div className={cx('security-method__option-label')}>{t('authTwinSetup.method01')}</div>}
+          {isUseAuthTwin && <div className={cx('security-method__option-label')}>{t('authTwinSetup.method02')}</div>}
         </div>
       </div>
 
@@ -150,11 +175,19 @@ function AuthTwinSetup() {
 
             <p className={cx('secret-key__label')}>Secret Key:</p>
             <div className={cx('secret-key__value-container')}>
-              <div className={cx('secret-key__value')}>{secretKey}</div>
+              <span
+                onDoubleClick={(e) => {
+                  const text = e.target.innerText;
+                  navigator.clipboard.writeText(text);
+                  toast.error(t('authTwinSetup.toast.copySuccess'));
+                }}
+              >
+                <div className={cx('secret-key__value')}>{addSpaceForSecretKey(secretKey)}</div>
+              </span>
               <Button
                 leftIcon={<RefreshIcon className={cx('refresh-icon')} />}
                 className={cx('secret-key__refresh-btn')}
-                disabled={!isUseAuthTwin}
+                disabled={reduxData.loading}
                 onClick={() => {
                   handleRefreshSecretKey();
                 }}
@@ -167,7 +200,7 @@ function AuthTwinSetup() {
             className={cx('secret-key__qr-code')}
             src={qrImg}
             alt="QR Code"
-            crossorigin="anonymous"
+            crossOrigin="anonymous"
             onError={(e) => {
               e.target.onerror = null;
               e.target.src = images.avatarDefault;
@@ -179,7 +212,7 @@ function AuthTwinSetup() {
           <div className={cx('otp__title')}>{t('authTwinSetup.title03')}</div>
           <div>
             <input
-              className={cx('otp__input', { isDisabled: !isUseAuthTwin })}
+              className={cx('otp__input')}
               placeholder="XXXXXX"
               value={otpValue}
               onChange={(e) => {
@@ -189,13 +222,29 @@ function AuthTwinSetup() {
           </div>
           <p className={cx('otp__note')}> {t('authTwinSetup.otpNote')}</p>
         </div>
-        <Button
-          leftIcon={<CheckIcon className={cx('btn-check-icon')} />}
-          className={cx('update-btn')}
-          disabled={!isUseAuthTwin || !isUpdate}
-        >
-          {t('authTwinSetup.update-btn')}
-        </Button>
+        <div className={cx('otp__btns')}>
+          <Button
+            leftIcon={<PowerOffIcon className={cx('btn-power-icon')} />}
+            className={cx('update-btn', { 'btn-power-off': isUseAuthTwin })}
+            disabled={(isRefresh && !isUseAuthTwin) || reduxData.loading}
+            onClick={() => {
+              handleToggle2FA();
+            }}
+          >
+            {isUseAuthTwin ? 'Tắt' : 'Bật'}
+          </Button>
+
+          <Button
+            leftIcon={<CheckIcon className={cx('btn-check-icon')} />}
+            className={cx('update-btn')}
+            disabled={!isRefresh || reduxData.loading}
+            onClick={() => {
+              handleUpdateSecretKey();
+            }}
+          >
+            {t('authTwinSetup.update-btn')}
+          </Button>
+        </div>
 
         <div className={cx('note__container')}>
           <p className={cx('note__title')}>{t('authTwinSetup.title04')}</p>
