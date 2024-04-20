@@ -121,7 +121,7 @@
       transition: border linear 0.2s;
 
       &--open {
-        border: 1.5px solid #676767;
+        border: 1.5px solid var(--primary-color);
       }
     }
 
@@ -162,14 +162,18 @@
     min-width: 180px;
     text-align: left;
     border-radius: 6px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    transform: scale(0);
+    transform-origin: top right;
     background-color: var(--white);
-    transition: visibility ease, opacity ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    transition: visibility, opacity, transform;
     transition-duration: 0.3s;
+    transition-timing-function: linear;
 
     &--show {
-      visibility: visible;
       opacity: 1;
+      transform: scale(1);
+      visibility: visible;
     }
   }
 
