@@ -82,6 +82,9 @@ function LoginWith2FA() {
         toast.success(t('login.notify01'));
       } else {
         toast.error(result.payload.message);
+        setSubmit(false);
+        setInputs(Array(6).fill(''));
+        setButton(t('button.btn10'));
       }
     });
   };
