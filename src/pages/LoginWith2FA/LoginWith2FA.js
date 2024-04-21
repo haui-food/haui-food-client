@@ -48,7 +48,7 @@ function LoginWith2FA() {
       setInputs(pasteArray);
       setSubmit(true);
       inputRefs.current[5].current.focus();
-    } else if(pasteArray.length < 6) {
+    } else if (pasteArray.length < 6) {
       setSubmit(false);
     }
   };
@@ -80,6 +80,8 @@ function LoginWith2FA() {
       if (result.payload.code === 200) {
         navigate('/');
         toast.success(t('login.notify01'));
+      } else {
+        toast.error(result.payload.message);
       }
     });
   };
