@@ -18,6 +18,21 @@ export const loginUser = createAsyncThunk('auth/login', async (userCredentials, 
   }
 });
 
+export const LoginWith2FA = createAsyncThunk('auth/login-with-2FA', async (data, { rejectWithValue }) => {
+  try {
+    const response = await callApi('post', '/v1/auth/login-with-2fa', null, data);
+    if (response.code === 200) {
+      console.log(response);
+      localStorage.setItem('accessToken', JSON.stringify(response.data.accessToken));
+      localStorage.setItem('refreshToken', JSON.stringify(response.data.refreshToken));
+      localStorage.setItem('user', JSON.stringify(response.data.user));
+    }
+    return response;
+  } catch (error) {
+    return rejectWithValue({ ...error });
+  }
+});
+
 export const registerUser = createAsyncThunk('auth/signup', async (userCredentials) => {
   try {
     const req = await axios.post(`${hostname}/v1/auth/register`, userCredentials);
@@ -29,7 +44,7 @@ export const registerUser = createAsyncThunk('auth/signup', async (userCredentia
   }
 });
 
-export const getMe = createAsyncThunk('user/getMe', async (_, { rejectWithValue }) => {
+export const getMe = createAsyncThunk('auth/getMe', async (_, { rejectWithValue }) => {
   try {
     const response = await callApi('get', '/v1/auth/me', null, {});
     return response;
@@ -38,7 +53,7 @@ export const getMe = createAsyncThunk('user/getMe', async (_, { rejectWithValue 
   }
 });
 
-export const updateMe = createAsyncThunk('user/updateMe', async ({ userData, avatar }, { rejectWithValue }) => {
+export const updateMe = createAsyncThunk('auth/updateMe', async ({ userData, avatar }, { rejectWithValue }) => {
   try {
     const customHeaders = {
       'Content-Type': 'multipart/form-data',

@@ -9,6 +9,7 @@ import {
   toggle2FA,
   getMe,
   updateMe,
+  LoginWith2FA,
 } from '~/apiService/authService';
 import { addOrUpdateFieldInLocalStorage } from '~/utils/localStorage';
 
@@ -36,6 +37,22 @@ const authSlice = createSlice({
 
   extraReducers: (builder) => {
     builder
+
+      // login with 2fa
+      .addCase(LoginWith2FA.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(LoginWith2FA.fulfilled, (state, action) => {
+        state.loading = false;
+        state.secretKey = action.payload.data.secret;
+        state.message = action.payload.message;
+      })
+      .addCase(LoginWith2FA.rejected, (state, action) => {
+        state.loading = false;
+        state.message = action.payload.message;
+      })
+
       // toggle 2FA
       .addCase(toggle2FA.pending, (state) => {
         state.loading = true;
