@@ -7,7 +7,10 @@ import {
   getSecretKey,
   updateSecretKey,
   toggle2FA,
+  getMe,
+  updateMe,
 } from '~/apiService/authService';
+import { addOrUpdateFieldInLocalStorage } from '~/utils/localStorage';
 
 const authSlice = createSlice({
   name: 'auth',
@@ -19,6 +22,7 @@ const authSlice = createSlice({
     status: null,
     secretKey: '',
     message: '',
+    isUpdate: false,
   },
 
   reducers: {
@@ -32,7 +36,6 @@ const authSlice = createSlice({
 
   extraReducers: (builder) => {
     builder
-
       // toggle 2FA
       .addCase(toggle2FA.pending, (state) => {
         state.loading = true;
@@ -78,23 +81,53 @@ const authSlice = createSlice({
         state.error = action.payload.message;
       })
 
+      // get me
+      .addCase(getMe.pending, (state, action) => {
+        state.loading = true;
+        state.error = null;
+        state.isUpdate = false;
+      })
+      .addCase(getMe.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = action.payload.data;
+      })
+      .addCase(getMe.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload.code;
+      })
+
+      // update me
+      .addCase(updateMe.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+        state.isUpdate = false;
+      })
+      .addCase(updateMe.fulfilled, (state, action) => {
+        console.log(action.payload.data);
+        state.loading = false;
+        state.user = action.payload.data;
+        addOrUpdateFieldInLocalStorage('user', null, action.payload.data);
+        state.isUpdate = true;
+      })
+      .addCase(updateMe.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+        state.isUpdate = false;
+      })
+
       // change password
       .addCase(changePassword.pending, (state) => {
-        console.log('change password Pending');
         state.loading = true;
         state.error = null;
       })
       .addCase(changePassword.fulfilled, (state, action) => {
-        console.log('change password fulfilled', action.payload);
         state.loading = false;
-        state.status = action.payload.code || action.payload.status;
-        console.log(action.payload.code || action.payload.error);
+        state.status = action.payload.code;
       })
       .addCase(changePassword.rejected, (state, action) => {
         state.loading = false;
-        console.log('change password rejected', typeof action.error);
-        state.status = action.error.status;
-        state.error = action.error.message;
+        state.status = action.payload.code;
+        state.message = action.payload.message;
       })
 
       // login
