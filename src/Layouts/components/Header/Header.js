@@ -439,7 +439,15 @@ function Header() {
                 <span className={cx('cart__bottom-price')}>{cartItems.totalPrice.toLocaleString('vi-VN')} ₫</span>
               </div>
               <Link to={routes.checkout}>
-                <Button checkout primary>
+                <Button
+                  onClick={() => {
+                    if (location.pathname === '/checkout') {
+                      handleCloseCart();
+                    }
+                  }}
+                  checkout
+                  primary
+                >
                   {t('button.btn01')}
                 </Button>
               </Link>
