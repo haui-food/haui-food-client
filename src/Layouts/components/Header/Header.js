@@ -138,7 +138,7 @@ function Header() {
   useEffect(() => {
     const onScroll = () => {
       if (window.innerWidth >= 768) {
-        if (window.scrollY > 0) {
+        if (window.scrollY > 50) {
           headerRef.current.style.backgroundColor = '#fff';
           headerRef.current.style.boxShadow = '0 1px 1px rgba(0, 0, 0, 0.12)';
 
@@ -166,8 +166,10 @@ function Header() {
   useEffect(() => {
     if (location.pathname !== '/') {
       setLogo(images.logoVip2);
+      headerRef.current.style.backgroundColor = '#fff';
     } else {
       setLogo(images.logoVip1);
+      headerRef.current.style.backgroundColor = 'transparent';
     }
   }, [location]);
 
