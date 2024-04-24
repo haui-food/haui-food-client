@@ -140,7 +140,7 @@
     "heading": "Sign up",
     "desc01": "Let's start creating a new account to fully experience our features and services.",
     "desc02": "You already have an account",
-    "notify": "Registration successful"
+    "notify": "Registration successful, please verify your email"
   },
   "forgot-password": {
     "heading": "Recover password",
