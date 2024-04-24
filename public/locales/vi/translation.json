@@ -323,5 +323,8 @@
     "desc01": "Vui lòng nhập mã OTP được tạo từ khóa bí mật của bạn để tiếp tục.",
     "desc02": "Tìm mã OTP từ secret key",
     "here": "Tại đây"
+  },
+  "system": {
+    "error": "Đã sảy ra lỗi vui lòng thử lại sau"
   }
 }
