@@ -1,0 +1,32 @@
+.wrapper {
+}
+
+.order-status {
+  &__nav {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+
+    position: relative;
+  }
+
+  &__item {
+    font-size: 1.6rem;
+    font-weight: 500;
+    flex-grow: 1;
+    text-align: center;
+    border-top: 2px solid rgba(0, 0, 0, 0.07);
+    border-bottom: 3px solid rgba(0, 0, 0, 0.07);
+    padding: 10px 0;
+    cursor: pointer;
+    transition: 0.5s;
+
+    &:hover {
+      color: var(--primary-color);
+    }
+
+    &--active {
+      border-bottom: 3px solid var(--primary-color);
+      color: var(--primary-color);
+    }
+  }
+}

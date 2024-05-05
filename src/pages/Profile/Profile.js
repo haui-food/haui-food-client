@@ -10,6 +10,7 @@ import {
   EyeIcon,
   HideIcon,
   KeyIcon,
+  HistoryOderIcon,
 } from '~/components/Icons';
 import Button from '~/components/Button';
 import { useState, useRef, useEffect } from 'react';
@@ -25,6 +26,7 @@ import { changePassword, getMe, updateMe } from '~/apiService/authService';
 import TermsOfUse from '~/components/TermsOfUse';
 import Help from '~/components/Help';
 import AuthTwinSetup from '~/components/AuthTwinSetup';
+import HistoryOder from '~/components/HistoryOrder/HistoryOrder';
 const cx = classNames.bind(style);
 
 function Profile() {
@@ -99,6 +101,10 @@ function Profile() {
       navId: 'changePassword',
     },
     {
+      title: 'Đơn mua',
+      icon: <HistoryOderIcon className={cx('icon')} />,
+    },
+    {
       title: t('profile.nav05'),
       icon: <KeyIcon className={cx('icon')} />,
       navId: 'authTwinSetup',
@@ -120,7 +126,7 @@ function Profile() {
     },
   ];
 
-  const [selectedOption, setSelectedOption] = useState(listOptions[1].title);
+  const [selectedOption, setSelectedOption] = useState(listOptions[3].title);
 
   const upDateUserInfo = (userInfo) => {
     if (userInfo) {
@@ -464,7 +470,6 @@ function Profile() {
     validateDate(date);
   };
 
- 
   return (
     <div className={cx('wrapper')}>
       <div className={cx('container')}>
@@ -565,7 +570,6 @@ function Profile() {
                   >
                     <div className={cx('profile-content__title')}>{selectedOption}</div>
                     {selectedOption === listOptions[1].title && <div className={cx('profile__sub-row')}></div>}
-
                     {/* personal infor */}
                     {selectedOption === listOptions[1].title && (
                       <>
@@ -729,7 +733,6 @@ function Profile() {
                         </div>
                       </>
                     )}
-
                     {/* change password */}
                     {selectedOption === listOptions[2].title && (
                       <>
@@ -841,14 +844,14 @@ function Profile() {
                         </div>
                       </>
                     )}
-
                     {/* auth twin setup */}
-                    {selectedOption === listOptions[3].title && <AuthTwinSetup />}
-
+                    {selectedOption === listOptions[4].title && <AuthTwinSetup />}
                     {/* help */}
-                    {selectedOption === listOptions[5].title && <Help />}
+                    {selectedOption === listOptions[6].title && <Help />}
                     {/* Terms of use */}
-                    {selectedOption === listOptions[6].title && <TermsOfUse />}
+                    {selectedOption === listOptions[7].title && <TermsOfUse />}
+                    {/* history oder */}
+                    {selectedOption === listOptions[3].title && <HistoryOder />}
                   </div>
 
                   {/* listOption[1].title là "Personal info" */}
