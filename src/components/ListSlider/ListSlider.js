@@ -2,11 +2,12 @@ import classNames from 'classnames/bind';
 import styles from './ListSlider.module.scss';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import ProductCard from '~/components/ProductCard/ProductCard';
+import RestaurantCard from '~/components/RestaurantCard/RestaurantCard';
 import Slider from 'react-slick';
 import { memo, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getRestaurants } from '~/apiService/restaurantService';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -143,19 +144,18 @@ function ListPromo() {
             {data.length > 0 &&
               data.map((item, index) => {
                 return (
-                  <a
-                    href={`/restaurant/${ChangeToSlug(item?.fullname ? item.fullname : '')}`}
+                  <Link
+                    to={`/restaurant/${ChangeToSlug(item?.fullname ? item.fullname : '')}`}
                     key={index}
                     className={cx('item')}
                   >
-                    <ProductCard
+                    <RestaurantCard
                       className={cx({ 'first-item': index === 0 }, { 'last-item': index === data.length - 1 })}
                       data={item}
                     />
-                  </a>
+                  </Link>
                 );
               })}
-
           </Slider>
         </div>
       </div>
