@@ -45,7 +45,7 @@ function HistoryOderItem() {
 
       {listSubItem.map((subItem, index) => {
         return (
-          <div className={cx('sub-item__info-container')}>
+          <div key={index} className={cx('sub-item__info-container')}>
             <img className={cx('sub-item__img')} src={subItem.img} alt="haui food" />
             <div className={cx('sub-item__info')}>
               <div className={cx('sub-item__name')}>{subItem.name}</div>
@@ -62,8 +62,8 @@ function HistoryOderItem() {
           <div className={cx('total__label')}>Thành tiền</div>
           <div className={cx('total__value')}>100000</div>
         </div>
-        <Button className={cx('re-buy-btn')} primary>
-          Mua lai
+        <Button className={cx('total__container-btn')} order primary>
+          Mua lại
         </Button>
       </div>
     </div>
