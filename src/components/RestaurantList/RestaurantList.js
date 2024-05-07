@@ -1,11 +1,13 @@
 import classNames from 'classnames/bind';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { memo, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import style from './RestaurantList.module.scss';
 import ProductCard from '../ProductCard/ProductCard';
 import Loader from '../Loader';
 import NoResult from '../NoResult';
+import { getRestaurants } from '~/apiService/restaurantService';
 const cx = classNames.bind(style);
 const nomalizeString = (str) => {
   return str
@@ -20,75 +22,131 @@ function RestaurentList({ category, query, type }) {
   const [isLoading, setIsLoading] = useState(false);
   const [totalPages, setTotalPages] = useState(0);
   const [totalDocuments, setTotalDocuments] = useState(0);
-  const [isFirstMount, setFirstMount] = useState(true); // console.log('restaurentList');
+  const [isFirstMount, setFirstMount] = useState(true);
+  const [hasMore, setHasMore] = useState(false);
+  // console.log('restaurentList');
+  // const [keyword, setKeyword] = useState(query);
+
+  const limit = 8;
+  const dispatch = useDispatch();
+  const reduxData = useSelector((state) => state.restaurant);
+
+  useEffect(() => {
+    setIsLoading(reduxData.loading);
+  }, [reduxData]);
+
   useEffect(() => {
     setFirstMount(false);
   }, []);
 
-  let url = '';
-  if (category) {
-    const newCategory = nomalizeString(category);
-    url = `https://testapi.io/api/lenghia0108/category/${newCategory}/page${currentPage}`;
-  } else if (query) {
-    url = `https://testapi.io/api/lenghia0108/restaurant/keyword=${query}`;
-  } else if (!query && !category) {
-    url = `https://testapi.io/api/lenghia0108/restaurent${currentPage}`;
-  }
+  // let url = '';
+  // if (category) {
+  //   const newCategory = nomalizeString(category);
+  //   url = `https://testapi.io/api/lenghia0108/category/${newCategory}/page${currentPage}`;
+  // } else if (query) {
+  //   url = `https://testapi.io/api/lenghia0108/restaurant/keyword=${query}`;
+  // } else if (!query && !category) {
+  //   url = `https://testapi.io/api/lenghia0108/restaurent${currentPage}`;
+  // }
   // console.log(url);
   const fectRestaurants = async () => {
-    try {
-      setIsLoading(true);
-      const response = await fetch(url);
-      // if (!response.ok) {
-      //   throw new Error('Something went wrong');
-      // }
-
-      const data = await response.json();
-      setTotalPages(data.totalPages);
-      setTotalDocuments(data.totalDocuments);
-
-      setRestaurentList((preRestaurent) => {
-        return [...preRestaurent, ...data.data];
+    console.log('call api');
+    if (!query) {
+      dispatch(getRestaurants({ limit: limit, page: currentPage })).then((result) => {
+        console.log(result);
+        if (result.payload.code === 200) {
+          setTotalPages(result.payload.data.totalPage);
+          setTotalDocuments(result.payload.data.totalResult);
+          setRestaurentList((preRestaurent) => {
+            return [...preRestaurent, ...result.payload.data.shops];
+          });
+          setCurrentPage((pre) => ++pre);
+          // setIsLoading(false);
+        }
       });
-      // console.log(restaurentList);
-      setIsLoading(false);
-      setCurrentPage((prePage) => prePage + 1);
-    } catch (err) {
-      console.log(err);
+    } else if (query) {
+      // console.log('in query');
+      dispatch(getRestaurants({ limit: limit, page: currentPage, keyword: query })).then((result) => {
+        if (result.payload.code === 200) {
+          console.log(result);
+          if (result.payload.data.totalResult > 0) {
+            setTotalPages(result.payload.data.totalPage);
+            setTotalDocuments(result.payload.data.totalResult);
+            setRestaurentList((preRestaurent) => {
+              return [...preRestaurent, ...result.payload.data.shops];
+            });
+            setCurrentPage((pre) => {
+              return ++pre;
+            });
+          } else {
+            setHasMore(false);
+          }
+        }
+      });
+    } else {
+      console.log('categories');
+      setCurrentPage(1);
+      setRestaurentList([]);
+      setTotalPages(0);
+      setTotalDocuments(0);
     }
   };
 
   useEffect(() => {
-    if (isFirstMount && !query) {
-      return;
-    }
+    // if (isFirstMount) {
+    //   return;
+    // }
+    console.log('query change');
+    console.log(query);
     if (!isFirstMount && query) {
+      // console.log('in query');
+      setCurrentPage(1);
       setRestaurentList([]);
-      fectRestaurants();
+      // setTotalPages(0);
+      setTotalDocuments(0);
+      setHasMore(true);
+      // fectRestaurants();
     }
-    // console.log('query');
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
 
   useEffect(() => {
-    if (isFirstMount) return;
-    fectRestaurants();
-    // console.log('type');
+    // if (isFirstMount && query) return;
+    // fectRestaurants();
+    setCurrentPage(1);
+    setTotalPages(0);
+    setRestaurentList([]);
+    setTotalDocuments(0);
+    setHasMore(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [type]);
-  // console.log('currantpage', currentPage);
-  // console.log('totalPages', totalPages);
-  // console.log(restaurentList.length);
-  // console.log(totalDocuments);
-  // console.log(restaurentList.length === totalDocuments);
+
+  console.log(query);
+  console.log('currentPage', currentPage);
+  console.log('totalDocuments', totalDocuments);
+  console.log('restaurentList', restaurentList);
+  console.log(hasMore);
+  console.log('');
+
   return (
     <div className={cx('restaurant-list')}>
       <div className={cx()}>
         <InfiniteScroll
+          scrollThreshold="5%"
           className={cx('infinite-scroll row')}
-          dataLength={restaurentList.length}
-          next={currentPage - 1 >= totalPages ? null : fectRestaurants}
-          hasMore={restaurentList.length === totalDocuments ? false : true}
+          dataLength={totalDocuments === 0 ? 8 : totalDocuments}
+          next={() => {
+            console.log('next');
+            fectRestaurants();
+            currentPage === 1 && totalDocuments === 0 && totalDocuments
+              ? setHasMore(true)
+              : restaurentList.length < totalDocuments
+              ? setHasMore(true)
+              : setHasMore(false);
+          }}
+          // hasMore={restaurentList.length === totalDocuments ? false : true}
+          hasMore={hasMore}
           scrollableTarget="restaurant-list"
         >
           {restaurentList.map((item, index) => {
@@ -102,7 +160,7 @@ function RestaurentList({ category, query, type }) {
           })}
         </InfiniteScroll>
       </div>
-      {restaurentList.length <= 0 && <NoResult />}
+      {!isLoading && restaurentList.length <= 0 && <NoResult />}
       {isLoading && restaurentList.length > 0 && <Loader className={cx('list__loader')} />}
       {/* {currentPage - 1 === totalPage && <div className={cx('list__end')}></div>} */}
     </div>

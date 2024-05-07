@@ -126,7 +126,7 @@ function Profile() {
     },
   ];
 
-  const [selectedOption, setSelectedOption] = useState(listOptions[3].title);
+  const [selectedOption, setSelectedOption] = useState(listOptions[1].title);
 
   const upDateUserInfo = (userInfo) => {
     if (userInfo) {
@@ -304,19 +304,6 @@ function Profile() {
   }, [selectedOption]);
 
   const handleCancel = () => {
-    // {
-    //   // setFullName(userInfo?.fullname || '');
-    //   // setMsv(userInfo?.MSV || '');
-    //   // setPhoneNumber(userInfo?.phone || '');
-    //   // setEmail(userInfo?.email || '');
-    //   // setGender(
-    //   //   userInfo?.gender
-    //   //     ? userInfo.gender.toLowerCase() === 'male'
-    //   //       ? t('profile.gender.male')
-    //   //       : t('profile.gender.female')
-    //   //     : '',
-    //   // );
-    // }
     upDateUserInfo();
 
     setOldPassword('');
@@ -469,6 +456,7 @@ function Profile() {
     // console.log(date);
     validateDate(date);
   };
+  console.log(userInfo);
 
   return (
     <div className={cx('wrapper')}>
