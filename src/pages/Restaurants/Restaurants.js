@@ -19,7 +19,6 @@ function Restaurants() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
-  
   const { category } = useParams();
   const query = searchParams.get('q');
   // console.log(category);
@@ -102,7 +101,7 @@ function Restaurants() {
             </div>
           )}
           <div className={cx('restaurant__list')}>
-            <RestaurantList category={category} query={query} type={currentPageType} />
+            <RestaurantList category={category} type={currentPageType} />
           </div>
         </div>
       </div>

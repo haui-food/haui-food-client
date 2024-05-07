@@ -56,6 +56,10 @@ function Profile() {
   const { t } = useTranslation();
 
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
+  useEffect(() => {
     if (selectedOption === listOptions[1].title) {
       setIsLoading(reduxData.loading);
     } else if (selectedOption === listOptions[2].title) {

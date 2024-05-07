@@ -7,6 +7,7 @@ const restaurantSlice = createSlice({
     restaurants: null,
     loading: null,
     error: null,
+    length: 0,
   },
 
   reducers: {},
@@ -16,17 +17,19 @@ const restaurantSlice = createSlice({
         state.loading = true;
         state.error = null;
         state.restaurants = null;
+        // state.length = 0;
       })
       .addCase(getRestaurants.fulfilled, (state, action) => {
-        // console.log(action.payload);
         state.loading = false;
-        state.restaurants = action.data;
+        state.restaurants = action.payload.data;
+        state.length = action.payload.data.totalResult;
         state.error = null;
       })
       .addCase(getRestaurants.rejected, (state, action) => {
         state.loading = false;
         state.restaurants = null;
         state.error = action.error.message;
+        state.length = 0;
       });
   },
 });
