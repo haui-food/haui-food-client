@@ -8,18 +8,20 @@ import style from './QuantityDrawer.module.scss';
 import { CloseIcon, MinusIcon, PlusIcon } from '~/components/Icons';
 import Button from '~/components/Button';
 import formatCurrency from '~/utils/formatCurrency';
+import { addProductToCart } from '~/apiService/cartService';
+import { toast } from 'react-toastify';
 
 const cx = classNames.bind(style);
 
 const QuantityDrawer = () => {
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(98);
 
   const isOpen = useSelector((state) => state.product.isOpenQuantityDrawer);
   const data = useSelector((state) => state.product.updatingQuantityProduct);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setQuantity(1);
+    setQuantity(98);
   }, [isOpen]);
 
   const handleCloseDrawer = () => {
@@ -36,6 +38,14 @@ const QuantityDrawer = () => {
     }
 
     if (type === 'plus') {
+      if (quantity === 100) {
+        toast.info('Số lượng sản phẩm không được vượt quá 100 sản phẩm', {
+          style: {
+            zIndex: 999999999, // Thiết lập giá trị z-index mong muốn
+          },
+        });
+        return;
+      }
       setQuantity(quantity + 1);
     }
   };
@@ -100,6 +110,11 @@ const QuantityDrawer = () => {
             onClick={() => {
               if (quantity === 0) {
                 handleCloseDrawer();
+              } else {
+                // console.log(data?._id);
+                dispatch(addProductToCart({ product: data?.id, quantity: quantity })).then((result) => {
+                  console.log(result);
+                });
               }
             }}
           >
