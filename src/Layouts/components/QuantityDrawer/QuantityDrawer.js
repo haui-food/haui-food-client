@@ -18,10 +18,12 @@ const QuantityDrawer = () => {
 
   const isOpen = useSelector((state) => state.product.isOpenQuantityDrawer);
   const data = useSelector((state) => state.product.updatingQuantityProduct);
+  const loading = useSelector((state) => state.cart.loading);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setQuantity(98);
+    setQuantity(1);
   }, [isOpen]);
 
   const handleCloseDrawer = () => {
@@ -77,7 +79,12 @@ const QuantityDrawer = () => {
           </div>
         </div>
 
-        <div className={cx('quantity-drawer__footer')}>
+        <div
+          className={cx('quantity-drawer__footer')}
+          style={{
+            pointerEvents: loading ? 'none' : '',
+          }}
+        >
           <div className={cx('quantity-drawer__quantity-container')}>
             <div
               className={cx('quantity-drawer__quantity-minus')}
@@ -102,6 +109,7 @@ const QuantityDrawer = () => {
 
           <Button
             primary
+            disabled={loading}
             className={cx('quantity-drawer__add-btn')}
             style={{
               backgroundColor: quantity === 0 ? '#ee6352' : '',
@@ -112,8 +120,16 @@ const QuantityDrawer = () => {
                 handleCloseDrawer();
               } else {
                 // console.log(data?._id);
-                dispatch(addProductToCart({ product: data?.id, quantity: quantity })).then((result) => {
+                dispatch(addProductToCart({ product: data?._id, quantity: quantity })).then((result) => {
                   console.log(result);
+
+                  if (result.payload.code === 200) {
+                    toast.success(result.payload.message);
+                    handleCloseDrawer();
+                  } else {
+                    handleCloseDrawer();
+                    toast.error(result.payload.message);
+                  }
                 });
               }
             }}
