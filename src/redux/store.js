@@ -6,6 +6,7 @@ import captchaReducer from '../features/captchaSlide';
 import restaurantReducer from '~/features/restaurantSlice';
 import productReducer from '~/features/productSlice';
 import cartReducer from '~/features/cartSlice';
+import orderReducer from '~/features/orderSlice';
 
 export default configureStore({
   reducer: {
@@ -16,5 +17,6 @@ export default configureStore({
     restaurant: restaurantReducer,
     product: productReducer,
     cart: cartReducer,
+    order: orderReducer,
   },
 });
