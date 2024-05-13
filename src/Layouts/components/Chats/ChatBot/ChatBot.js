@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 import classNames from 'classnames/bind';
 import Modal from '@mui/material/Modal';
+import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 
 import styles from './ChatBot.module.scss';
+
 import ChatModal from './ChatModal';
 
 const cx = classNames.bind(styles);
@@ -26,6 +27,7 @@ const ChatBot = () => {
         <p className={cx('chat-bot__text')}>Trợ lý</p>
       </div>
       <Modal
+        sx={{ zIndex: 99999, fontSize: 24 }}
         open={open}
         onClose={handleClose}
         aria-labelledby="simple-modal-title"

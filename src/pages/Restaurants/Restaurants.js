@@ -1,9 +1,10 @@
 import classNames from 'classnames/bind';
-import styles from './Restaurants.module.scss';
 import { useParams, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { memo } from 'react';
+
+import styles from './Restaurants.module.scss';
 
 import ListSlider from '~/components/ListSlider/ListSlider';
 import RestaurantList from '~/components/RestaurantList';
@@ -15,14 +16,15 @@ const cx = classNames.bind(styles);
 function Restaurants() {
   const { t } = useTranslation();
   const url = useLocation();
-
-  const [searchValue, setSearchValue] = useState('');
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
 
   const { category } = useParams();
+  const [searchParams] = useSearchParams();
+  const [searchValue, setSearchValue] = useState('');
+
   const query = searchParams.get('q');
 
+  // kiểm tra xem đang là page restaurant hay restaurant by category
   const getPageType = () => {
     let pageType = 'restaurants';
     if (url.pathname.includes('restaurants')) {
@@ -35,11 +37,12 @@ function Restaurants() {
   };
   const [currentPageType, setCurrentPageType] = useState(getPageType());
 
-  // console.log(category);
-  // console.log(query);
-  // kiểm tra xem đang là page restaurant hay restaurant by category
-
-  console.log('re-render');
+  const handleClick = (e) => {
+    if (searchValue.trim()) {
+      navigate(`/restaurants?q=${searchValue}`);
+    }
+    e.target.blur();
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -54,23 +57,16 @@ function Restaurants() {
     }
   }, [category, url.pathname, query]);
 
-  const handleClick = (e) => {
-    if (searchValue.trim()) {
-      navigate(`/restaurants?q=${searchValue}`);
-    }
-    e.target.blur();
-  };
-  // console.log(currentPageType);
   return (
     <div className={cx('wrapper')}>
-      <div className={cx('container')}>
+      <div className={cx('container gx-5')}>
         <div className={cx('restaurant__search-container')}>
           <SearchIcon className={cx('restaurant__search-icon')} />
           <input
             onChange={(e) => {
               setSearchValue(e.target.value);
             }}
-            onKeyPress={(e) => {
+            onKeyUp={(e) => {
               if (e.key === 'Enter') {
                 handleClick(e);
               }
@@ -87,7 +83,7 @@ function Restaurants() {
         </div>
       </div>
       <div className={cx('restaurant__sparate')}></div>
-      <div className={cx('container')}>
+      <div className={cx('container gx-5')}>
         <div className={cx('restaurant')}>
           <BreadCrumb className={cx('restaurant__breadcrumb')} />
           {currentPageType === 'restaurants' && !query && (

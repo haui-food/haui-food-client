@@ -8,6 +8,7 @@ import { Oval } from '@agney/react-loading';
 import { Radio, RadioGroup, FormControlLabel, FormControl, FormLabel } from '@mui/material';
 
 import styles from './CheckOut.module.scss';
+
 import Button from '~/components/Button';
 import images from '~/assets/images';
 import routes from '~/config/routes';
@@ -26,12 +27,14 @@ function CheckOut() {
   const isLoading = useSelector((state) => state.cart.loading);
   const isAddProduct = useSelector((state) => state.cart.isAddProduct);
   const isDeleteProduct = useSelector((state) => state.cart.isDeleteProduct);
+  
+  const buildings = ['A1', 'A7', 'A8', 'A9', 'A10', 'A12'];
 
   const [cartsData, setCartsData] = useState({});
-  const cartsLength = cartsData.carts ? cartsData.carts.length : 0;
   const [havePower, setHavePower] = useState(false);
+  const cartsLength = cartsData.carts ? cartsData.carts.length : 0;
+  const cartsTotalMoney = cartsData.totalMoneyAllCarts ? cartsData.totalMoneyAllCarts : 0;
 
-  const buildings = ['A1', 'A7', 'A8', 'A9', 'A10', 'A12'];
   const [buildingFloors, setBuildingFloors] = useState([]);
   const [rooms, setRooms] = useState([]);
   const [selectedFloor, setSelectedFloor] = useState(null);
@@ -407,10 +410,6 @@ function CheckOut() {
                     style={{ '--separate-bg': '#d1d3d6', '--separate-mg': '12px 0 20px' }}
                   ></div>
 
-                  {/* {cartsData.carts.cartDetails.map((item, index) => (
-                    <CartItem key={index} data={item} />
-                  ))} */}
-
                   <div className={cx('checkout__carts')}>
                     {cartsData.carts &&
                       cartsData.carts.map((cartItem, index) => {
@@ -424,7 +423,7 @@ function CheckOut() {
                             </div>
                             <div className={cx('cart__products-list')}>
                               {cartItem.cartDetails.map((cartDetail, index) => (
-                                <CartItem key={index} data={cartDetail} />
+                                <CartItem key={index} data={cartDetail} isCheckout />
                               ))}
                             </div>
                             <div className={cx('cart__summary')}>
@@ -444,9 +443,7 @@ function CheckOut() {
                     <div className={cx('checkout__total-group')}>
                       <h6 className={cx('checkout__total-title')}>{t('checkout.title10')}</h6>
                       <h6 className={cx('checkout__total-value')}>
-                        {cartsData.totalMoneyAllCarts
-                          ? `${cartsData.totalMoneyAllCarts.toLocaleString('vi-VN')} ₫`
-                          : '0 ₫'}
+                        {cartsTotalMoney && `${cartsTotalMoney.toLocaleString('vi-VN')} ₫`}
                       </h6>
                     </div>
                     <div className={cx('checkout__total-group')}>
@@ -520,9 +517,7 @@ function CheckOut() {
                   <div className={cx('checkout__right-info')}>
                     <h4 className={cx('checkout__right-title')}>{t('cart.desc03')}</h4>
                     <span className={cx('checkout__right-cost')}>
-                      {cartsData.totalMoneyAllCarts
-                        ? `${(cartsData.totalMoneyAllCarts + 10000).toLocaleString('vi-VN')} ₫`
-                        : '10.000 ₫'}
+                      {cartsTotalMoney && `${(cartsTotalMoney + 10000).toLocaleString('vi-VN')} ₫`}
                     </span>
                   </div>
                   <Button disabled={!isSubmit} order primary>

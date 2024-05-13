@@ -1,12 +1,12 @@
-import classNames from 'classnames/bind';
-import style from './RestaurantDetail.module.scss';
 import { useState, useEffect } from 'react';
+import classNames from 'classnames/bind';
+import { useDispatch, useSelector } from 'react-redux';
+
+import style from './RestaurantDetail.module.scss';
 
 import BreadCrumb from '~/components/BreadCrumb/BreadCrumb';
 import { EmptyStarIcon, HaftStarIcon, StarIcon } from '~/components/Icons';
 import ProductCard from '~/components/ProductCard';
-
-import { useDispatch, useSelector } from 'react-redux';
 import { getRestaurantDetail } from '~/apiService/restaurantService';
 import NoResult from '~/components/NoResult';
 import { useTranslation } from 'react-i18next';
@@ -14,14 +14,32 @@ import { useTranslation } from 'react-i18next';
 const cx = classNames.bind(style);
 
 function RestaurantDetail() {
-  const [activeCategory, setActiveCategory] = useState(null);
-  const { t } = useTranslation();
-
-  //   const []
-
   const dispatch = useDispatch();
   const reduxData = useSelector((prop) => prop.restaurant);
-  //   console.log(reduxData);
+  const { t } = useTranslation();
+
+  const [activeCategory, setActiveCategory] = useState(null);
+
+  const handleCategoryClick = (categoryId) => {
+    setActiveCategory(categoryId);
+    const element = document.getElementById(categoryId);
+    if (element) {
+      window.scrollTo({
+        top: element.getBoundingClientRect().top - 100,
+        behavior: 'smooth',
+      });
+    }
+  };
+
+  const rating = reduxData.restaurantDetail?.rating || 0;
+  const fullStars = Math.floor(rating);
+  const halfStars = rating - fullStars !== 0;
+  const stars = [];
+  for (let i = 1; i <= 5; i++) {
+    if (i <= fullStars) stars.push(<StarIcon className={cx('star-icon')} />);
+    else if (i === fullStars + 1 && halfStars) stars.push(<HaftStarIcon className={cx('star-icon')} />);
+    else stars.push(<EmptyStarIcon className={cx('star-icon')} />);
+  }
 
   useEffect(() => {
     // Cuộn lên đầu trang mỗi khi component mount
@@ -61,37 +79,15 @@ function RestaurantDetail() {
     };
   }, [reduxData.restaurantDetail]); // Kích hoạt khi restaurantDetail thay đổi
 
-  const handleCategoryClick = (categoryId) => {
-    setActiveCategory(categoryId);
-    const element = document.getElementById(categoryId);
-    if (element) {
-      window.scrollTo({
-        top: element.getBoundingClientRect().top - 100,
-        behavior: 'smooth',
-      });
-    }
-  };
-
   useEffect(() => {
     const restaurantId = JSON.parse(sessionStorage.getItem('restaurantIDSelected'));
     dispatch(getRestaurantDetail({ restaurantId: restaurantId })).then((result) => {
-      console.log(result);
       if (result.payload.code === 200) {
         setActiveCategory(result.payload.data.shop.categories[0]?._id);
       }
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  // console.log(reduxData.restaurantDetail)
-  const rating = reduxData.restaurantDetail?.rating || 0;
-  const fullStars = Math.floor(rating);
-  const halfStars = rating - fullStars !== 0;
-  const stars = [];
-  for (let i = 1; i <= 5; i++) {
-    if (i <= fullStars) stars.push(<StarIcon className={cx('star-icon')} />);
-    else if (i === fullStars + 1 && halfStars) stars.push(<HaftStarIcon className={cx('star-icon')} />);
-    else stars.push(<EmptyStarIcon className={cx('star-icon')} />);
-  }
 
   return (
     <div className={cx('restaurant')}>
@@ -103,7 +99,7 @@ function RestaurantDetail() {
             alt={reduxData.restaurantDetail?.fullname}
           />
 
-          <div className={cx('container')}>
+          <div className={cx('container gx-5')}>
             <BreadCrumb />
             <h1 className={cx('restaurant__name')}>{reduxData.restaurantDetail?.fullname}</h1>
             <p className={cx('restaurant__desc')}>{reduxData.restaurantDetail?.description}</p>
@@ -126,7 +122,7 @@ function RestaurantDetail() {
         </div>
 
         <div className={cx('restaurant__nav-container')}>
-          <div className={cx('container')}>
+          <div className={cx('container gx-5')}>
             <div className={cx('restaurant__nav')}>
               {reduxData.restaurantDetail?.categories.map((category, index) => {
                 return (
@@ -149,7 +145,7 @@ function RestaurantDetail() {
 
         {reduxData.restaurantDetail?.categories.length > 0 && (
           <div className={cx('restaurant-body')}>
-            <div className={cx('container')}>
+            <div className={cx('container gx-5')}>
               {reduxData.restaurantDetail?.categories.map((category, index) => (
                 <div key={index} className={cx('restaurant__group-product-container')} id={category._id}>
                   <div className={cx('restaurant__group-product-name')}>{category.name}</div>

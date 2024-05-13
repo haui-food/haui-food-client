@@ -3,14 +3,16 @@ import classNames from 'classnames/bind';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import { Oval } from '@agney/react-loading';
+import { toast } from 'react-toastify';
 
 import styles from './Cart.module.scss';
+
 import { ClockIcon, CloseIcon } from '~/components/Icons';
 import images from '~/assets/images';
 import routes from '~/config/routes';
 import CartItem from '~/components/CartItem';
 import Button from '~/components/Button';
-import { Oval } from '@agney/react-loading';
 
 const cx = classNames.bind(styles);
 
@@ -32,7 +34,7 @@ function Cart({ showCart, handleCloseCart, data }) {
   };
 
   return (
-    <div className={cx('cart', showCart ? 'cart--show' : '')}>
+    <div className={cx('cart', showCart && 'cart--show')}>
       <div className={cx('cart__top')}>
         <button onClick={handleCloseCart} className={cx('cart__close')}>
           <CloseIcon />
@@ -49,7 +51,7 @@ function Cart({ showCart, handleCloseCart, data }) {
           </div>
         )}
       </div>
-      <div className={cx('cart__container', !isProduct || !auth || !token ? 'cart__container--center' : '')}>
+      <div className={cx('cart__container', (!isProduct || !auth || !token) && 'cart__container--center')}>
         {!auth && !token && (
           <div className={cx('cart__empty')}>
             <img className={cx('cart__empty-img')} src={images.cart} alt="cart" />
@@ -71,28 +73,32 @@ function Cart({ showCart, handleCloseCart, data }) {
           </div>
         )}
 
-        {loading && (
-          <div className={cx('cart__empty')}>
-            <Oval width="50" color="#00ba51" />
+        {loading && location.pathname !== '/checkout' && (
+          <div className={cx('cart__empty', 'cart__loading')}>
+            <Oval width="50" className={cx('cart__loading-icon')} />
           </div>
         )}
 
-        {isProduct && !loading && (auth || token) && (
+        {isProduct && (auth || token) && (
           <div ref={cartRef} onWheel={handleWheel} className={cx('cart__scroll')}>
             <div className={cx('cart__content')}>
               {data.carts.map((cartItem, index) => {
-                // console.log(data);
                 return (
                   <div key={index} className={cx('cart__products')}>
                     <div className={cx('cart__products-top')}>
                       <Link to={'#!'}>
                         <h5 className={cx('cart__products-heading')}>{cartItem.shop.fullname}</h5>
                       </Link>
-                      <button className={cx('cart__products-delete-all')}>{t('button.btn04')}</button>
+                      <button
+                        onClick={() => toast.info('Tính năng đang được phát triển')}
+                        className={cx('cart__products-delete-all')}
+                      >
+                        {t('button.btn04')}
+                      </button>
                     </div>
                     <div className={cx('cart__products-list')}>
                       {cartItem.cartDetails.map((cartDetail, index) => (
-                        <CartItem key={index} data={cartDetail} />
+                        <CartItem key={index} data={cartDetail} showCart={showCart} />
                       ))}
                     </div>
                     <div className={cx('cart__summary')}>
