@@ -7,6 +7,8 @@ import restaurantReducer from '~/features/restaurantSlice';
 import productReducer from '~/features/productSlice';
 import cartReducer from '~/features/cartSlice';
 import orderReducer from '~/features/orderSlice';
+import checkoutCarts from '~/features/checkoutCartsSlice';
+import ordersSlide from '~/features/ordersSlide';
 
 export default configureStore({
   reducer: {
@@ -18,5 +20,7 @@ export default configureStore({
     product: productReducer,
     cart: cartReducer,
     order: orderReducer,
+    checkoutCarts: checkoutCarts,
+    orders: ordersSlide,
   },
 });
