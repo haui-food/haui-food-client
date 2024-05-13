@@ -9,12 +9,14 @@ import { EmptyStarIcon, HaftStarIcon, StarIcon } from '~/components/Icons';
 import ProductCard from '~/components/ProductCard';
 import { getRestaurantDetail } from '~/apiService/restaurantService';
 import NoResult from '~/components/NoResult';
+import { useTranslation } from 'react-i18next';
 
 const cx = classNames.bind(style);
 
 function RestaurantDetail() {
   const dispatch = useDispatch();
   const reduxData = useSelector((prop) => prop.restaurant);
+  const { t } = useTranslation();
 
   const [activeCategory, setActiveCategory] = useState(null);
 
@@ -113,8 +115,8 @@ function RestaurantDetail() {
             </div>
 
             <div className={cx('restaurant__time-open')}>
-              <div className={cx('restaurant__time-open-label')}>Giờ mở cửa</div>
-              <div className={cx('restaurant__time-open-value')}>Từ thứ 2 đến thứ 7 06:00 - 22:00</div>
+              <div className={cx('restaurant__time-open-label')}>{t('restaurant-detail.open-time-label')}</div>
+              <div className={cx('restaurant__time-open-value')}>{t('restaurant-detail.open-time-value')}</div>
             </div>
           </div>
         </div>
