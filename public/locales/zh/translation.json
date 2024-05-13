@@ -345,5 +345,10 @@
       "invalid-quantity": "产品数量不能超过100件",
       "unauthorized": "请登录以添加到购物车"
     }
+  },
+
+  "restaurant-detail": {
+    "open-time-label": "营业时间",
+    "open-time-value": "周一至周六 06:00 - 22:00"
   }
 }
