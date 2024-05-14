@@ -158,7 +158,7 @@ function CheckOut() {
         setFloor(t('checkout.title05'));
         setClassroom(t('checkout.title07'));
         toast.success(result.payload.message);
-        if (payment === 'cod') {
+        if (payment === 'cod' || payment === 'prepaid') {
           setTimeout(() => {
             navigate('/auth/profile');
             toast.info(t('checkout.notify04'));

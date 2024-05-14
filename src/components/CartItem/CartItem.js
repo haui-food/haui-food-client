@@ -133,6 +133,7 @@ function CartItem({ data, isCheckout = false, showCart, shopChecked, onItemCheck
       setChangeQuantity(data.quantity);
     }
     setChangeTotalPrice(data.totalPrice);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [openChange]);
 
   return (
