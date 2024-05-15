@@ -66,17 +66,23 @@ function WalletRecharge({ userInfo }) {
         <p className={cx('wallet__note-desc')}>
           <div>-</div> Cố tình nạp dưới mức nạp không hỗ trợ.
         </p>
-        <p className={cx('wallet__note-desc')}>
-          <div> -</div> Nạp sai cú pháp, sai số tài khoản, sai ngân hàng sẽ bị trừ 20% phí giao dịch. VD: nạp 100k sai
-          nội dung sẽ chỉ nhận được 80K hauifood coin và phải liên hệ admin để cộng tay.
-        </p>
-        <p className={cx('wallet__note-desc')}>
-          <div> -</div> Sau 5-10 phút tài khoản chưa được cộng coin hãy liên hệ admin tại{' '}
-          <a href="https://www.facebook.com/profile.php?id=61557360312825" target="blank">
-            đây
-          </a>{' '}
-          để được hỗ trợ.
-        </p>
+        <div className={cx('wallet__note-desc')}>
+          <div> -</div>{' '}
+          <p>
+            Nạp sai cú pháp, sai số tài khoản, sai ngân hàng sẽ bị trừ 20% phí giao dịch. VD: nạp 100k sai nội dung sẽ
+            chỉ nhận được 80K hauifood coin và phải liên hệ admin để cộng tay.
+          </p>
+        </div>
+        <div className={cx('wallet__note-desc')}>
+          <div> -</div>{' '}
+          <p>
+            Sau 5-10 phút tài khoản chưa được cộng coin hãy liên hệ admin tại{' '}
+            <a href="https://www.facebook.com/profile.php?id=61557360312825" target="blank">
+              đây
+            </a>{' '}
+            để được hỗ trợ.
+          </p>
+        </div>
       </div>
     </div>
   );
