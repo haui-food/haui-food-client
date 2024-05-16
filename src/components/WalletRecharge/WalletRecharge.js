@@ -16,7 +16,7 @@ function WalletRecharge({ userInfo }) {
       <div title="Copy" className={cx('wallet__transfer-content-container')}>
         <div
           className={cx('wallet__transfer-content-value')}
-          onDoubleClick={(e) => {
+          onClick={(e) => {
             const text = e.target.innerText;
             navigator.clipboard.writeText(text);
             toast.info(t('authTwinSetup.toast.copySuccess'));

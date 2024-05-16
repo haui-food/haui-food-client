@@ -20,9 +20,11 @@ function HistoryOderItem({ data }) {
 
   const handleCancelOrder = () => {
     dispatch(cancelOrder(data?._id)).then((result) => {
-      console.log(result);
+      // console.log(result);
       if (result.payload.code === 200) {
         toast.success(result.payload.message);
+
+        //khi người dùng xóa thành công thì distpatch id đơn hàng để cập nhật lại danh sách đơn hàng
         dispatch(cancel(data?._id));
       } else {
         toast.error(result.payload.message);
